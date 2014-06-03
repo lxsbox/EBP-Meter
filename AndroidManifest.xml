@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.amour.ebpmeter.MainActivity"
+            android:name="com.tech37c.ebpmeter.contorller.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +22,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.tech37c.ebpmeter.contorller.AddRecordActivity"
+            android:label="@string/title_activity_add_record"
+            android:parentActivityName="com.tech37c.ebpmeter.contorller.MainActivity" >
+        </activity>
+
+        <service android:name="com.tech37c.ebpmeter.service.BackgroundService" >
+            <intent-filter>
+                <action android:name="com.tech37c.ebpmeter.service.BackgroundService" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="com.tech37c.ebpmeter.contorller.ShowAllDataActivity"
+            android:label="@string/title_activity_show_all_data" >
+        </activity>
+        <activity
+            android:name="com.tech37c.ebpmeter.contorller.ChartActivity"
+            android:label="@string/title_activity_chart" >
+        </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

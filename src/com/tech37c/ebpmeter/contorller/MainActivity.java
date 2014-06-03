@@ -1,10 +1,16 @@
-package com.amour.ebpmeter;
+package com.tech37c.ebpmeter.contorller;
 
+
+
+import com.amour.ebpmeter.R;
+import com.tech37c.ebpmeter.model.BaseDAO;
+import com.tech37c.ebpmeter.model.BusinessHandler;
+import com.tech37c.ebpmeter.model.RecordPOJO;
+import com.tech37c.ebpmeter.service.BackgroundService;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,8 +20,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class MainActivity extends Activity implements OnClickListener,
-		OnItemSelectedListener {
+public class MainActivity extends Activity implements OnClickListener, OnItemSelectedListener {
+	
 	protected TextView meterUser;
 	protected TextView checkingTime;
 	protected TextView highValue;
@@ -25,44 +31,38 @@ public class MainActivity extends Activity implements OnClickListener,
 	protected Button giveCall;
 	protected Button giveVideo;
 
-	protected MeterData meterData;
+	protected BaseDAO dao;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		/* Connect interface elements to properties */
+		
+		//连接界面元素和属性
 		meterUser = (TextView) findViewById(R.id.meter_user);
 		checkingTime = (TextView) findViewById(R.id.checking_time);
 		highValue = (TextView) findViewById(R.id.high_value);
 		lowValue = (TextView) findViewById(R.id.low_value);
 		heartBeat = (TextView) findViewById(R.id.heart_beat);
-
 		giveCall = (Button) findViewById(R.id.give_call);
 		giveVideo = (Button) findViewById(R.id.give_video);
 
-		/* Setup ClickListeners */
+		//设置监听事件
 		giveCall.setOnClickListener(this);
 		giveVideo.setOnClickListener(this);
-
-		/* Set the blood pressure meter's data source */
-		meterData = new MeterData(this);
-
-		/* Add some default data! (Adjust to your preference :) */
-		if (meterData.count() == 0) {
-			meterData.insert("贾某某","2014-01-05 20:00:00", 135, 85, 75);
-			meterData.insert("程爽", "2014-02-08 20:00:00", 135, 85, 75);
-			meterData.insert("周瑜", "2014-03-10 20:00:00", 135, 85, 75);
-		}
-		Cursor cursor = meterData.all(this);
-		if (cursor.moveToLast()) {
-			meterUser.setText(cursor.getString(1));
-			checkingTime.setText(cursor.getString(2));
-			highValue.setText(cursor.getInt(3) + "");
-			lowValue.setText(cursor.getInt(4) + "");
-			heartBeat.setText(cursor.getInt(5) + "");
-		}
+        
+		
+		BusinessHandler handler = new BusinessHandler(this);//初始化业务处理对象
+		RecordPOJO record = handler.initMainView();
+		meterUser.setText(record.getUserId());
+		checkingTime.setText(record.getCheckingTime());
+		highValue.setText(record.getHighValue());
+		lowValue.setText(record.getLowValue());
+		heartBeat.setText(record.getHeartBeat());
+		
+		startService(new Intent(BackgroundService.ACTION));
 	}
 
 	@Override
@@ -90,21 +90,28 @@ public class MainActivity extends Activity implements OnClickListener,
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	@Override
-	  public boolean onOptionsItemSelected(MenuItem item) {
-	    switch(item.getItemId()) {
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
 	      case R.id.add_record:
-	        Intent intent = new Intent(this, AddTeaActivity.class);
+	        Intent intent = new Intent(this, AddRecordActivity.class);
 	        startActivity(intent);
 	        return true;
 
 	      case R.id.show_chart:
+	    	Intent chartIntent = new Intent(this, ChartActivity.class);
+		    startActivity(chartIntent);
 	        return true;
+	        
+	      case R.id.show_all_data:
+	    	  Intent sdIntent = new Intent(this, ShowAllDataActivity.class);
+		      startActivity(sdIntent);
+		      return true;
 	        
 	      default:
 	        return super.onOptionsItemSelected(item);
 	    }
-	  }
+	}
 
 }

@@ -21,25 +21,18 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class MainActivity extends Activity implements OnClickListener, OnItemSelectedListener {
-	
 	protected TextView meterUser;
 	protected TextView checkingTime;
 	protected TextView highValue;
 	protected TextView lowValue;
 	protected TextView heartBeat;
-
 	protected Button giveCall;
 	protected Button giveVideo;
-
-	protected BaseDAO dao;
-	
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
 		//连接界面元素和属性
 		meterUser = (TextView) findViewById(R.id.meter_user);
 		checkingTime = (TextView) findViewById(R.id.checking_time);
@@ -48,20 +41,17 @@ public class MainActivity extends Activity implements OnClickListener, OnItemSel
 		heartBeat = (TextView) findViewById(R.id.heart_beat);
 		giveCall = (Button) findViewById(R.id.give_call);
 		giveVideo = (Button) findViewById(R.id.give_video);
-
+		
 		//设置监听事件
 		giveCall.setOnClickListener(this);
 		giveVideo.setOnClickListener(this);
-        
-		
 		BusinessHandler handler = new BusinessHandler(this);//初始化业务处理对象
 		RecordPOJO record = handler.initMainView();
-		meterUser.setText(record.getUserId());
-		checkingTime.setText(record.getCheckingTime());
-		highValue.setText(record.getHighValue());
-		lowValue.setText(record.getLowValue());
-		heartBeat.setText(record.getHeartBeat());
-		
+		meterUser.setText(record.getUser_ID());
+		checkingTime.setText(record.getMeasure_Time());
+		highValue.setText(record.getHBP());
+		lowValue.setText(record.getLBP());
+		heartBeat.setText(record.getBeat());
 		startService(new Intent(BackgroundService.ACTION));
 	}
 
@@ -98,17 +88,14 @@ public class MainActivity extends Activity implements OnClickListener, OnItemSel
 	        Intent intent = new Intent(this, AddRecordActivity.class);
 	        startActivity(intent);
 	        return true;
-
 	      case R.id.show_chart:
 	    	Intent chartIntent = new Intent(this, ChartActivity.class);
 		    startActivity(chartIntent);
 	        return true;
-	        
 	      case R.id.show_all_data:
 	    	  Intent sdIntent = new Intent(this, ShowAllDataActivity.class);
 		      startActivity(sdIntent);
 		      return true;
-	        
 	      default:
 	        return super.onOptionsItemSelected(item);
 	    }

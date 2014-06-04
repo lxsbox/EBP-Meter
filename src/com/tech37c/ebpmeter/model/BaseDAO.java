@@ -57,13 +57,13 @@ public class BaseDAO extends SQLiteOpenHelper {
 		SQLiteDatabase db = getWritableDatabase();
 
 		ContentValues values = new ContentValues();
-		values.put(Dev_Type, Dev_Type);
-		values.put(Dev_ID, Dev_ID);
-		values.put(User_ID, User_ID);
-		values.put(Measure_Time, Measure_Time);
-		values.put(HBP, HBP);
-		values.put(LBP, LBP);
-		values.put(Beat, Beat);
+		values.put("Dev_Type", Dev_Type);
+		values.put("Dev_ID", Dev_ID);
+		values.put("User_ID", User_ID);
+		values.put("Measure_Time", Measure_Time);
+		values.put("HBP", HBP);
+		values.put("LBP", LBP);
+		values.put("Beat", Beat);
 
 		return db.insertOrThrow(BP_RECORD, null, values);
 	}

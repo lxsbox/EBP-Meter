@@ -68,25 +68,16 @@ public class ProtoUtil {
 		String[] dAndt = null;
         String[] date = null;
         String[] time = null;
-        if (null != dateTime && !dateTime.equals("")) {
-        	dAndt = dateTime.split(" ");
-        	date = dAndt[0].split("-");
-        	time = dAndt[1].split(":");
-        	//年月日，时分秒
-            b[0] = (byte)Integer.parseInt(date[0].substring(2));
-            b[1] = (byte)Integer.parseInt(date[1]);
-            b[2] = (byte)Integer.parseInt(date[2]);
-            b[3] = (byte)Integer.parseInt(time[0]);
-            b[4] = (byte)Integer.parseInt(time[1]);
-            b[5] = (byte)Integer.parseInt(time[2].substring(0,2));
-        } else {
-        	b[0] = 19;
-            b[1] = 0;
-            b[2] = 0;
-            b[3] = 0;
-            b[4] = 0;
-            b[5] = 0;
-        }
+    	dAndt = dateTime.split(" ");
+    	date = dAndt[0].split("-");
+    	time = dAndt[1].split(":");
+    	//年月日，时分秒
+        b[0] = (byte)Integer.parseInt(date[0].substring(2));
+        b[1] = (byte)Integer.parseInt(date[1]);
+        b[2] = (byte)Integer.parseInt(date[2]);
+        b[3] = (byte)Integer.parseInt(time[0]);
+        b[4] = (byte)Integer.parseInt(time[1]);
+        b[5] = (byte)Integer.parseInt(time[2]);
 		return b;
 	}
 	

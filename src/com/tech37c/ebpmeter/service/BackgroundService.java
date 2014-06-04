@@ -31,8 +31,10 @@ import android.os.IBinder;
  */
 public class BackgroundService extends Service {
 //	private static String DATA_CENTER_IP = "54.200.144.55";// 数据中心IP
-	private static int DATA_CENTER_UDP_PORT = 18899;// 数据中心端口
-	private static String DATA_CENTER_IP = "192.168.199.101";//数据中心IP
+//	private static int DATA_CENTER_UDP_PORT = 18899;// 数据中心端口
+//	private static String DATA_CENTER_IP = "192.168.199.101";//数据中心IP
+	private static int DATA_CENTER_UDP_PORT = 6005;// 数据中心端口
+	private static String DATA_CENTER_IP = "192.168.199.190";//数据中心IP
 //	private static int DATA_CENTER_UDP_PORT = 6001; //数据中心端口
 	private static int TIME_OUT = 3000;
 	private static int MAXTRIES = 3;
@@ -50,8 +52,8 @@ public class BackgroundService extends Service {
 	private Intent messageIntent;
 	private PendingIntent messagePendingIntent;
 	private int messageNotificationID = 1000;
-	private Notification messageNotification;
-	private NotificationManager messageNotificatioManager;
+	private Notification notification;
+	private NotificationManager notificatioManager;
 	private BaseDAO dao;
 
 	public IBinder onBind(Intent intent) {
@@ -61,11 +63,11 @@ public class BackgroundService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		dao = new BaseDAO(this);
-		messageNotification = new Notification();
-		messageNotification.icon = R.drawable.icon;
-		messageNotification.tickerText = "新消息";
-		messageNotification.defaults = Notification.DEFAULT_SOUND;
-		messageNotificatioManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		notification = new Notification();
+		notification.icon = R.drawable.icon;
+		notification.tickerText = "新消息";
+		notification.defaults = Notification.DEFAULT_SOUND;
+		notificatioManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		messageIntent = new Intent(this, MainActivity.class);
 		messagePendingIntent = PendingIntent.getActivity(this, 0,
 				messageIntent, 0);
@@ -123,10 +125,11 @@ public class BackgroundService extends Service {
 			String dateTime = ProtoUtil.byte2Time(response[13], response[14],response[15],//测量时间
 									    response[16],response[17],response[18]);
 			dao.insert(response[10]+"", response[11]+"", response[19]+"", dateTime,
-					response[20]+"",response[21]+"",response[22]+"");
+					(response[20]&0xFF)+"",response[21]+"",response[22]+"");//高压值可能溢出，转为无符号
 			dao.close();
 			SharedPreferences.Editor editor = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE).edit();
-			editor.putString(POP_UP_STRING, response[19] + "有新的血压值，高压："+ response[20]);
+			editor.putString(POP_UP_STRING, dateTime + " " + response[19] + "新血压值 ："+ (response[20]&0xFF));
+			editor.putString(LATEST_RECORD_TIME, dateTime);
 			editor.commit();
 		}
 	}
@@ -135,17 +138,15 @@ public class BackgroundService extends Service {
 	 * 检查本地文件是否有提示信息
 	 * 提示完后置空
 	 */
+	@SuppressWarnings("deprecation")
 	public void checkPopUpString() {
 		SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
 		String popUp = sharedPreferences.getString(POP_UP_STRING, "");
         
 		if (!popUp.equals("")) {
-			messageNotification.setLatestEventInfo(BackgroundService.this,
-					"新消息", popUp, messagePendingIntent);
-			messageNotificatioManager.notify(messageNotificationID,
-					messageNotification);
+			notification.setLatestEventInfo(BackgroundService.this,"新消息", popUp, messagePendingIntent);
+			notificatioManager.notify(messageNotificationID, notification);
 			messageNotificationID++;
-			
 			SharedPreferences.Editor editor = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE).edit();
 			editor.putString(POP_UP_STRING, "");
 			editor.commit();
@@ -159,7 +160,7 @@ public class BackgroundService extends Service {
 	 */
 	public byte[] getAnRecord()  {
 		SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
-		String time = sharedPreferences.getString(LATEST_RECORD_TIME, "");
+		String time = sharedPreferences.getString(LATEST_RECORD_TIME, "2010-1-1 0:0:0");
 		byte[] bDateTime = ProtoUtil.time2Byte(time);
 		
 		DatagramSocket socket = null;
@@ -168,7 +169,7 @@ public class BackgroundService extends Service {
 		try {
 			socket = new DatagramSocket();
 			socket.setSoTimeout(TIME_OUT);
-			EmptyByte eb = new EmptyByte(22);
+			EmptyByte eb = new EmptyByte(20);
 			byte[] out = eb.getSbyte();
 			out[0] = 0x25;
 			out[1] = 0x43;
@@ -178,7 +179,8 @@ public class BackgroundService extends Service {
 			out[6] = 0x0A;//宿类型
 			
 		    out[10] = 1; //设备型号
-		    short sId = (short)32760;
+//		    short sId = (short)32760;
+		    short sId = (short)65534;
 		    byte[] bId = ProtoUtil.shortToByte(sId);
 		    out[11] = bId[1]; //设备ID
 		    out[12] = bId[0]; //设备ID
@@ -188,7 +190,7 @@ public class BackgroundService extends Service {
 			out[16] = bDateTime[3];
 			out[17] = bDateTime[4];
 			out[18] = bDateTime[5];
-			DatagramPacket outPacket = new DatagramPacket(out,22,
+			DatagramPacket outPacket = new DatagramPacket(out,20,
 					InetAddress.getByName(DATA_CENTER_IP), DATA_CENTER_UDP_PORT);// 包裹
 			socket.send(outPacket);// 发送报文
 		} catch (SocketException e1) {
@@ -201,7 +203,6 @@ public class BackgroundService extends Service {
 		EmptyByte eb = new EmptyByte(24);
 		byte[] in = eb.getSbyte();
 		DatagramPacket inPacket = new DatagramPacket(in, 24);// 构造用来接收长度为length的数据包
-		
 		do {
 			try {
 				socket.receive(inPacket);

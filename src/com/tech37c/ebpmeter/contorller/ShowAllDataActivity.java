@@ -28,14 +28,13 @@ public class ShowAllDataActivity extends Activity {
 		Cursor cursor = dao.all(this);
 		StringBuffer sb = new StringBuffer();
 		while(cursor.moveToNext()) {
-			sb.append(cursor.getString(0) + "  "+ cursor.getString(1) + "  " + cursor.getString(2)  + "  " + cursor.getInt(3) + "  " + cursor.getInt(4) + "  " + cursor.getInt(5) + "\r\n");
+			sb.append(cursor.getInt(0) + "  "+ cursor.getString(4) + "  " + cursor.getInt(5)  + "  " + cursor.getInt(6) + "  " + cursor.getInt(7) + "\r\n");
 		}
 		sb.toString();
 		allData.setText(sb);
 		
 		SharedPreferences sharedPreferences = getSharedPreferences(BusinessHandler.SHARED_PREFS_NAME, MODE_PRIVATE);
-	    int idInPref = sharedPreferences.getInt(BusinessHandler.lAST_RECORD_ID_SHARED_PREF, 0);
-	    lastID.setText(idInPref+"");
+	    lastID.setText(cursor.getCount());
 	}
 
 	@Override

@@ -90,21 +90,4 @@ public class MainActivity extends Activity implements OnClickListener,
 		// TODO Auto-generated method stub
 
 	}
-	
-	@Override
-	  public boolean onOptionsItemSelected(MenuItem item) {
-	    switch(item.getItemId()) {
-	      case R.id.add_record:
-	        Intent intent = new Intent(this, AddTeaActivity.class);
-	        startActivity(intent);
-	        return true;
-
-	      case R.id.show_chart:
-	        return true;
-	        
-	      default:
-	        return super.onOptionsItemSelected(item);
-	    }
-	  }
-
 }

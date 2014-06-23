@@ -33,7 +33,7 @@ public class BackgroundService extends Service {
 //	private static String DATA_CENTER_IP = "54.200.144.55";// 数据中心IP
 //	private static int DATA_CENTER_UDP_PORT = 18899;// 数据中心端口
 //	private static String DATA_CENTER_IP = "192.168.199.101";//数据中心IP
-	private static int DATA_CENTER_UDP_PORT = 6005;// 数据中心端口
+	private static int DATA_CENTER_UDP_PORT = 6006;// 数据中心端口
 	private static String DATA_CENTER_IP = "192.168.199.190";//数据中心IP
 //	private static int DATA_CENTER_UDP_PORT = 6001; //数据中心端口
 	private static int TIME_OUT = 3000;

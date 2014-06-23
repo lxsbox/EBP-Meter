@@ -31,11 +31,11 @@ public class BusinessHandler extends Activity{
 	 */
 	public RecordPOJO initMainView() {
 		//插入测试数据
-//		if (dao.count() == 0) {
-//			dao.insert("1", "11", "周瑜", "2014-01-05 20:00:00", "135", "85", "75");
-//			dao.insert("1", "11", "豆豆 ", "2014-02-08 20:00:00", "135", "85", "75");
-//			dao.insert("1", "11", "贾某某", "2014-03-10 20:00:00", "135", "85", "75");
-//		}
+		if (dao.count() == 0) {
+			dao.insert("1", "11", "周瑜", "2014-01-05 20:00:00", "135", "85", "75");
+			dao.insert("1", "11", "豆豆 ", "2014-02-08 20:00:00", "135", "85", "75");
+			dao.insert("1", "11", "贾某某", "2014-03-10 20:00:00", "135", "85", "75");
+		}
 		
 		Cursor cursor = dao.all();
 		RecordPOJO record = new RecordPOJO();
@@ -46,8 +46,12 @@ public class BusinessHandler extends Activity{
 			record.setLBP(cursor.getInt(6) + "");
 			record.setBeat(cursor.getInt(7) + "");
 		}
-		
+		System.out.println(cursor.getCount());
 		return record;
+	}
+	
+	public Cursor getRecordCursor() {
+		return dao.all();
 	}
 	
 	/**

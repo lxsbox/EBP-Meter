@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">爱慕一体血压计</string>
+    <string name="app_name">游子吟</string>
+    <string name="register_cloud">云端注册</string>
+    <string name="register">注册</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_add_record">添加一条记录</string>
@@ -13,12 +15,13 @@
     <string name="save_record_fail">请填写所有信息！</string>
     <string name="title_activity_show_all_data">全部数据</string>
     <string name="title_activity_chart">血压曲线/一个月</string>
-    
-    <string name="title_template_step">Step 
-        <xliff:g id="step_number">%1$d</xliff:g>: LoremIpsum
-    </string>
+    <string name="title_template_step">Step <xliff:g id="step_number">%1$d</xliff:g>: LoremIpsum</string>
     <string name="action_previous">Previous</string>
-     <string name="action_next">Next</string>
+    <string name="action_next">Next</string>
     <string name="action_finish">Finish</string>
+    <string name="title_activity_calling">Call Him/Her</string>
+    <string name="title_activity_register">云端注册</string>
+    <string name="register_sucess">注册成功 </string>
+    <string name="register_failed">注册失败 :( </string>
 
 </resources>

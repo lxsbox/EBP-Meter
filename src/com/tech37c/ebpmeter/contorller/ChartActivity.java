@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.amour.ebpmeter.R;
+import com.tech37c.ebpmeter.R;
 import com.tech37c.ebpmeter.model.BaseDAO;
 import com.tech37c.ebpmeter.model.BusinessHandler;
 import com.tech37c.ebpmeter.view.ChartData;

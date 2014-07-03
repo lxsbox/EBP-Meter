@@ -1,6 +1,6 @@
 package com.tech37c.ebpmeter.contorller;
 
-import com.amour.ebpmeter.R;
+import com.tech37c.ebpmeter.R;
 import com.tech37c.ebpmeter.model.BusinessHandler;
 import com.tech37c.ebpmeter.model.RecordPOJO;
 import com.tech37c.ebpmeter.service.BackgroundService;
@@ -90,7 +90,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener,
 		// highValue.setText(record.getHBP());
 		// lowValue.setText(record.getLBP());
 		// heartBeat.setText(record.getBeat());
-		startService(new Intent(BackgroundService.ACTION));
 	}
 
 	@Override
@@ -143,14 +142,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener,
 			// for more.
 			NavUtils.navigateUpTo(this, new Intent(this, MainActivity.class));
 			return true;
-
 		case R.id.action_previous:
 			// Go to the previous step in the wizard. If there is no previous
 			// step,
 			// setCurrentItem will do nothing.
 			mPager.setCurrentItem(mPager.getCurrentItem() - 1);
 			return true;
-
 		case R.id.action_next:
 			// Advance to the next step in the wizard. If there is no next step,
 			// setCurrentItem
@@ -171,22 +168,23 @@ public class MainActivity extends FragmentActivity implements OnClickListener,
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-		// switch(item.getItemId()) {
-		// case R.id.add_record:
-		// Intent intent = new Intent(this, AddRecordActivity.class);
-		// startActivity(intent);
-		// return true;
-		// case R.id.show_chart:
-		// Intent chartIntent = new Intent(this, ChartActivity.class);
-		// startActivity(chartIntent);
-		// return true;
-		// case R.id.show_all_data:
-		// Intent sdIntent = new Intent(this, ShowAllDataActivity.class);
-		// startActivity(sdIntent);
-		// return true;
-		// default:
-		// return super.onOptionsItemSelected(item);
-		// }
+		
+//		 switch(item.getItemId()) {
+//		 case R.id.add_record:
+//		 Intent intent = new Intent(this, AddRecordActivity.class);
+//		 startActivity(intent);
+//		 return true;
+//		 case R.id.show_chart:
+//		 Intent chartIntent = new Intent(this, ChartActivity.class);
+//		 startActivity(chartIntent);
+//		 return true;
+//		 case R.id.show_all_data:
+//		 Intent sdIntent = new Intent(this, ShowAllDataActivity.class);
+//		 startActivity(sdIntent);
+//		 return true;
+//		 default:
+//		 return super.onOptionsItemSelected(item);
+//		 }
 	}
 
 	/**

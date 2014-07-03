@@ -1,6 +1,6 @@
 package com.tech37c.ebpmeter.contorller;
 
-import com.amour.ebpmeter.R;
+import com.tech37c.ebpmeter.R;
 import com.tech37c.ebpmeter.model.BaseDAO;
 import com.tech37c.ebpmeter.model.BusinessHandler;
 

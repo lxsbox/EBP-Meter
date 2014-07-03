@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.amour.ebpmeter"
+    package="com.tech37c.ebpmeter"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,14 +14,27 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.tech37c.ebpmeter.contorller.MainActivity"
+            android:name="com.tech37c.ebpmeter.contorller.RegisterActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.tech37c.ebpmeter.contorller.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+<!--         <activity -->
+<!--             android:name="com.tech37c.ebpmeter.contorller.MainActivity" -->
+<!--             android:label="@string/app_name" > -->
+<!--             <intent-filter> -->
+<!--                 <action android:name="android.intent.action.MAIN" /> -->
+<!--                 <category android:name="android.intent.category.LAUNCHER" /> -->
+<!--             </intent-filter> -->
+<!--         </activity> -->
+        
+        
         <activity
             android:name="com.tech37c.ebpmeter.contorller.AddRecordActivity"
             android:label="@string/title_activity_add_record"
@@ -42,8 +55,14 @@
             android:name="com.tech37c.ebpmeter.contorller.ChartActivity"
             android:label="@string/title_activity_chart" >
         </activity>
+        <activity
+            android:name="com.tech37c.ebpmeter.contorller.calling.ContactsPickerActivity"
+            android:label="@string/title_activity_calling" >
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>

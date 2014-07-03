@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.amour.ebpmeter;
+package com.tech37c.ebpmeter;
 
 public final class R {
     public static final class attr {
@@ -25,6 +25,9 @@ public final class R {
         public static final int icon=0x7f020001;
     }
     public static final class id {
+        public static final int Label=0x7f050016;
+        public static final int Label2=0x7f050017;
+        public static final int ProgressBar=0x7f05001a;
         public static final int action_flip=0x7f050001;
         /** 
         These action bar item IDs (menu item IDs) are defined here for
@@ -35,27 +38,33 @@ public final class R {
     
          */
         public static final int action_next=0x7f050000;
-        public static final int action_previous=0x7f05001b;
-        public static final int action_settings=0x7f050017;
-        public static final int add_record=0x7f050018;
-        public static final int all_data=0x7f050014;
+        public static final int action_previous=0x7f050024;
+        public static final int action_settings=0x7f050020;
+        public static final int add_record=0x7f050021;
+        public static final int all_data=0x7f05001c;
         public static final int beat=0x7f050009;
         public static final int chart=0x7f05000b;
-        public static final int checking_time=0x7f05000e;
+        public static final int checking_time=0x7f05000f;
         public static final int date=0x7f05000a;
-        public static final int give_call=0x7f050012;
-        public static final int give_video=0x7f050013;
-        public static final int heart_beat=0x7f050011;
+        public static final int devId=0x7f050019;
+        public static final int devType=0x7f050018;
+        public static final int display_name=0x7f05001e;
+        public static final int fragment_container=0x7f05000c;
+        public static final int give_call=0x7f050013;
+        public static final int give_video=0x7f050014;
+        public static final int heart_beat=0x7f050012;
         public static final int high=0x7f050007;
-        public static final int high_value=0x7f05000f;
-        public static final int last_id=0x7f050015;
+        public static final int high_value=0x7f050010;
+        public static final int last_id=0x7f05001d;
+        public static final int linearLayout1=0x7f050015;
         public static final int low=0x7f050008;
-        public static final int low_value=0x7f050010;
-        public static final int meter_user=0x7f05000d;
-        public static final int pager=0x7f05000c;
-        public static final int save_record=0x7f050016;
-        public static final int show_all_data=0x7f05001a;
-        public static final int show_chart=0x7f050019;
+        public static final int low_value=0x7f050011;
+        public static final int meter_user=0x7f05000e;
+        public static final int pager=0x7f05000d;
+        public static final int register=0x7f05001b;
+        public static final int save_record=0x7f05001f;
+        public static final int show_all_data=0x7f050023;
+        public static final int show_chart=0x7f050022;
         public static final int textView1=0x7f050002;
         public static final int textView2=0x7f050003;
         public static final int textView3=0x7f050005;
@@ -65,33 +74,45 @@ public final class R {
     public static final class layout {
         public static final int activity_add_record=0x7f030000;
         public static final int activity_chart=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_main_content=0x7f030003;
-        public static final int activity_show_all_data=0x7f030004;
+        public static final int activity_contacts=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_main_content=0x7f030004;
+        public static final int activity_register=0x7f030005;
+        public static final int activity_show_all_data=0x7f030006;
+        public static final int fragment_contacts_list=0x7f030007;
+        public static final int fragment_contacts_list2=0x7f030008;
+        public static final int list_item_contacts=0x7f030009;
     }
     public static final class menu {
         public static final int add_record=0x7f080000;
         public static final int chart=0x7f080001;
         public static final int main=0x7f080002;
-        public static final int show_all_data=0x7f080003;
+        public static final int register=0x7f080003;
+        public static final int show_all_data=0x7f080004;
     }
     public static final class string {
-        public static final int action_finish=0x7f06000f;
-        public static final int action_next=0x7f06000e;
-        public static final int action_previous=0x7f06000d;
-        public static final int action_settings=0x7f060001;
-        public static final int add_record=0x7f060006;
+        public static final int action_finish=0x7f060011;
+        public static final int action_next=0x7f060010;
+        public static final int action_previous=0x7f06000f;
+        public static final int action_settings=0x7f060003;
+        public static final int add_record=0x7f060008;
         public static final int app_name=0x7f060000;
-        public static final int hello_world=0x7f060002;
-        public static final int save_record=0x7f060007;
-        public static final int save_record_fail=0x7f060009;
-        public static final int save_record_success=0x7f060008;
-        public static final int show_all_data=0x7f060005;
-        public static final int show_chart=0x7f060004;
-        public static final int title_activity_add_record=0x7f060003;
-        public static final int title_activity_chart=0x7f06000b;
-        public static final int title_activity_show_all_data=0x7f06000a;
-        public static final int title_template_step=0x7f06000c;
+        public static final int hello_world=0x7f060004;
+        public static final int register=0x7f060002;
+        public static final int register_cloud=0x7f060001;
+        public static final int register_failed=0x7f060015;
+        public static final int register_sucess=0x7f060014;
+        public static final int save_record=0x7f060009;
+        public static final int save_record_fail=0x7f06000b;
+        public static final int save_record_success=0x7f06000a;
+        public static final int show_all_data=0x7f060007;
+        public static final int show_chart=0x7f060006;
+        public static final int title_activity_add_record=0x7f060005;
+        public static final int title_activity_calling=0x7f060012;
+        public static final int title_activity_chart=0x7f06000d;
+        public static final int title_activity_register=0x7f060013;
+        public static final int title_activity_show_all_data=0x7f06000c;
+        public static final int title_template_step=0x7f06000e;
     }
     public static final class style {
         /** 
@@ -120,5 +141,6 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
+        public static final int ListItem=0x7f070002;
     }
 }

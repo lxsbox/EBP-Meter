@@ -8,8 +8,9 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-import com.amour.ebpmeter.R;
+import com.tech37c.ebpmeter.R;
 import com.tech37c.ebpmeter.contorller.MainActivity;
+import com.tech37c.ebpmeter.contorller.RegisterActivity;
 import com.tech37c.ebpmeter.model.BaseDAO;
 import com.tech37c.ebpmeter.model.EmptyByte;
 import com.tech37c.ebpmeter.utils.ProtoUtil;
@@ -33,11 +34,11 @@ public class BackgroundService extends Service {
 //	private static String DATA_CENTER_IP = "54.200.144.55";// 数据中心IP
 //	private static int DATA_CENTER_UDP_PORT = 18899;// 数据中心端口
 //	private static String DATA_CENTER_IP = "192.168.199.101";//数据中心IP
-	private static int DATA_CENTER_UDP_PORT = 6006;// 数据中心端口
-	private static String DATA_CENTER_IP = "192.168.199.190";//数据中心IP
+	public static int DATA_CENTER_UDP_PORT = 6007;// 数据中心端口
+	public static String DATA_CENTER_IP = "192.168.199.190";//数据中心IP
 //	private static int DATA_CENTER_UDP_PORT = 6001; //数据中心端口
-	private static int TIME_OUT = 3000;
-	private static int MAXTRIES = 3;
+	public static int TIME_OUT = 3000;
+	public static int MAXTRIES = 3;
 	
 	public static final String SHARED_PREFS_NAME = "tech37c_ebpmeter_preferences";// 本地共享文件名
 	public static final String POP_UP_STRING = "pop_up_string";// 气泡信息内容
@@ -67,11 +68,16 @@ public class BackgroundService extends Service {
 		notification.icon = R.drawable.icon;
 		notification.tickerText = "新消息";
 		notification.defaults = Notification.DEFAULT_SOUND;
+		notification.flags = Notification.FLAG_AUTO_CANCEL;//点击后自动清除
 		notificatioManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		messageIntent = new Intent(this, MainActivity.class);
+		
 		messagePendingIntent = PendingIntent.getActivity(this, 0,
-				messageIntent, 0);
+				messageIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 		// 心跳线程
+//		SharedPreferences pref = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
+//		String devType = pref.getString(RegisterActivity.DEVICE_TYPE, "");
+//		String devId = pref.getString(RegisterActivity.DEVICE_ID, "");
 		heartBeatThread = new BackgroundThread();
 		heartBeatThread.type = 0;
 		heartBeatThread.start();
@@ -95,17 +101,17 @@ public class BackgroundService extends Service {
 
 		public void run() {
 			while (isRunning) {
-				try {
-					Thread.sleep(5000);// 5秒一次心跳
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 				switch (type) {
 				case 0:
 					reportHeartBeat();
 				case 1:
 					checkPopUpString();
 				default:
+				}
+				try {
+					Thread.sleep(5000);// 5秒一次心跳
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 			}
 		}
@@ -146,7 +152,7 @@ public class BackgroundService extends Service {
 		if (!popUp.equals("")) {
 			notification.setLatestEventInfo(BackgroundService.this,"新消息", popUp, messagePendingIntent);
 			notificatioManager.notify(messageNotificationID, notification);
-			messageNotificationID++;
+//			messageNotificationID++;
 			SharedPreferences.Editor editor = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE).edit();
 			editor.putString(POP_UP_STRING, "");
 			editor.commit();
@@ -159,10 +165,11 @@ public class BackgroundService extends Service {
 	 * @return
 	 */
 	public byte[] getAnRecord()  {
-		SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
-		String time = sharedPreferences.getString(LATEST_RECORD_TIME, "2010-1-1 0:0:0");
+		SharedPreferences pref = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
+		String devId = pref.getString(RegisterActivity.DEVICE_ID, "");
+		String devType = pref.getString(RegisterActivity.DEVICE_TYPE, "");
+		String time = pref.getString(LATEST_RECORD_TIME, "2010-1-1 0:0:0");
 		byte[] bDateTime = ProtoUtil.time2Byte(time);
-		
 		DatagramSocket socket = null;
 		int tries = 0;
 		boolean receivedResponse = false;
@@ -207,9 +214,9 @@ public class BackgroundService extends Service {
 			try {
 				socket.receive(inPacket);
 				//为什么得到得值还有一个／？
-//				if (!inPacket.getAddress().equals(DATA_CENTER_IP)) {
-//					throw new IOException("Received packet from an unknown source");
-//				}
+				if (!inPacket.getAddress().equals(DATA_CENTER_IP)) {
+					throw new IOException("Received packet from an unknown source");
+				}
 				receivedResponse = true;
 			} catch (InterruptedIOException e) {
 				tries += 1;

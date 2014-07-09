@@ -16,10 +16,10 @@
         android:showAsAction="never"
         android:title="@string/show_all_data"/>
 
-    <!-- Adds an item to the list. -->
     <item
         android:id="@+id/action_previous"
         android:showAsAction="ifRoom|withText"
-        android:title="@string/action_previous"/>
+        android:title="@string/action_previous"
+        android:visible="false"/>
 
 </menu>

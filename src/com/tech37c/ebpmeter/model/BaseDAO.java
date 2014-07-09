@@ -1,10 +1,14 @@
 package com.tech37c.ebpmeter.model;
 
 
+import com.tech37c.ebpmeter.service.BackgroundService;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -25,10 +29,12 @@ public class BaseDAO extends SQLiteOpenHelper {
 	public static final String LBP = "LBP";
 	public static final String Beat = "Beat";
 	public static final String Create_Time = "Create_Time";
+	private Context context;
 	
 
 	public BaseDAO(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		this.context = context;
 	}
 
 	@Override
@@ -87,13 +93,21 @@ public class BaseDAO extends SQLiteOpenHelper {
 		return cursor;
 	}
 	
+	/**
+	 * 查询每个用户的所有信息
+	 * @return
+	 */
 	public Cursor all() {
 		String[] from = { ID, Dev_Type, Dev_ID, User_ID, Measure_Time,
 		         HBP, LBP, Beat, Create_Time};
 		String order = ID;
 
+	    SharedPreferences pref = context.getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
+	    String userId = pref.getString("CURRENT_USER_ID", "1");
 		SQLiteDatabase db = getReadableDatabase();
-		Cursor cursor = db.query(BP_RECORD, from, null, null, null, null,
+		Cursor cursor = db.query(BP_RECORD, from,
+				"User_ID=" + userId,
+				null, null, null,
 				order);
 		return cursor;
 	}

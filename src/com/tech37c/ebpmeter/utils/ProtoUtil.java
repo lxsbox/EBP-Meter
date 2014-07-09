@@ -2,7 +2,11 @@ package com.tech37c.ebpmeter.utils;
 
 import com.tech37c.ebpmeter.service.BackgroundService;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.NetworkInfo.State;
 
 /**
  * 通讯协议相关
@@ -93,4 +97,16 @@ public class ProtoUtil {
 		return strDateTime;
 	}
 
+	
+	/**
+	 * 是否连接到网络
+	 * @return
+	 */
+	public static boolean isConnected2Internet(Context context) {
+		ConnectivityManager cm = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		if(cm.getActiveNetworkInfo() != null) {  
+	        return cm.getActiveNetworkInfo().isAvailable();  
+	    }  
+	    return false;
+	}
 }

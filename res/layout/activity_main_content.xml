@@ -34,6 +34,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.63"
         android:paddingBottom="50dp"
         android:paddingLeft="20dp"
         android:paddingTop="50dp" >
@@ -67,6 +68,7 @@
             android:text="" />
 
         <TextView
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -80,27 +82,16 @@
             android:layout_alignParentRight="true"
             android:layout_below="@id/low_value"
             android:text="" />
-    </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="50dp"
-        android:paddingTop="50dp" >
-
-        <Button
+        <ImageButton
             android:id="@+id/give_call"
-            android:layout_width="150dp"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="电话 " />
+            android:layout_below="@id/heart_beat"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/phone" />
 
-        <Button
-            android:id="@+id/give_video"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="视频 " />
     </RelativeLayout>
 
 </LinearLayout>

@@ -5,11 +5,15 @@ import com.tech37c.ebpmeter.model.BusinessHandler;
 import com.tech37c.ebpmeter.model.RecordPOJO;
 import com.tech37c.ebpmeter.service.BackgroundService;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentActivity;
@@ -20,8 +24,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
@@ -31,8 +38,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
  * @author ShawnLi
  * 
  */
-public class MainActivity extends FragmentActivity implements OnClickListener,
-		OnItemSelectedListener {
+public class MainActivity extends FragmentActivity  implements  CompatActionBarNavListener, OnClickListener,
+											       OnItemSelectedListener {
 	protected TextView meterUser;
 	protected TextView checkingTime;
 	protected TextView highValue;
@@ -45,12 +52,27 @@ public class MainActivity extends FragmentActivity implements OnClickListener,
 	private ViewPager mPager;
 	private PagerAdapter mPagerAdapter;
 	private BusinessHandler handler;
+	final String CATEGORIES[] = { "Top Stories", "Politics", "Economy", "Technology" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);//自定义标题栏
 		setContentView(R.layout.activity_main);
-		handler = new BusinessHandler(this);// 初始化业务处理对象
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_main_title);
+		final TextView txtView  = (TextView)findViewById(R.id.current_user);
+		
+		SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
+		String userFlag = pref.getString(UserEditActivity.CURRENT_USER_ID, "");
+		String name = "";
+		if (userFlag.equals("1")) {
+			name = pref.getString(UserEditActivity.DAD, "");
+		} else {
+			name = pref.getString(UserEditActivity.MOM, "");
+		}
+		txtView.setText(name+"的血压记录");
+		
+		handler = new BusinessHandler(this);//初始化业务处理对象
 		RecordPOJO record = handler.initMainView();
 		// NUM_PAGES = handler.getRecordNum();
 		mPager = (ViewPager) findViewById(R.id.pager);
@@ -71,6 +93,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener,
 			}
 		});
 
+		
+		 setUpActionBar();
 		// 连接界面元素和属性
 		// meterUser = (TextView) findViewById(R.id.meter_user);
 		// checkingTime = (TextView) findViewById(R.id.checking_time);
@@ -92,44 +116,65 @@ public class MainActivity extends FragmentActivity implements OnClickListener,
 		// heartBeat.setText(record.getBeat());
 	}
 
+	
+	/** Sets up Action Bar (if present).
+    *
+    * @param showTabs whether to show tabs (if false, will show list).
+    * @param selTab the selected tab or list item.
+    */
+   public void setUpActionBar() {
+       if (Build.VERSION.SDK_INT < 11) {
+           // No action bar for you!
+           // But do not despair. In this case the layout includes a bar across the
+           // top that looks and feels like an action bar, but is made up of regular views.
+           return;
+       }
+       ActionBar actionBar = getActionBar();
+//       actionBar.setDisplayShowTitleEnabled(false);
+       // Set up a CompatActionBarNavHandler to deliver us the Action Bar nagivation events
+       CompatActionBarNavHandler handler = new CompatActionBarNavHandler(this);
+       actionBar.setNavigationMode(android.app.ActionBar.NAVIGATION_MODE_LIST);
+       SpinnerAdapter adap = new ArrayAdapter<String>(this, R.layout.activity_main_bar_list, CATEGORIES);
+       actionBar.setListNavigationCallbacks(adap, handler);
+       // Show logo instead of icon+title.
+       actionBar.setDisplayUseLogoEnabled(true);
+   }
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.main, menu);
 
-		menu.findItem(R.id.action_previous).setEnabled(
-				mPager.getCurrentItem() > 0);
-
-		// Add either a "next" or "finish" button to the action bar, depending
-		// on which page
-		// is currently selected.
-		MenuItem item = menu
-				.add(Menu.NONE,
-						R.id.action_next,
-						Menu.NONE,
-						(mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish
-								: R.string.action_next);
-		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM
-				| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+//		menu.findItem(R.id.action_previous).setEnabled(
+//				mPager.getCurrentItem() > 0);
+//
+//		// Add either a "next" or "finish" button to the action bar, depending
+//		// on which page
+//		// is currently selected.
+//		MenuItem item = menu
+//				.add(Menu.NONE,
+//						R.id.action_next,
+//						Menu.NONE,
+//						(mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish
+//								: R.string.action_next);
+//		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM
+//				| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		return true;
 	}
 
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -219,5 +264,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener,
 			NUM_PAGES = cursor.getCount();
 			return NUM_PAGES;
 		}
+	}
+
+	@Override
+	public void onCategorySelected(int catIndex) {
+		
 	}
 }

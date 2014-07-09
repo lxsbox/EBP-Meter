@@ -24,6 +24,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -43,22 +44,32 @@ public class RegisterActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);//自定义标题栏
+		
 		SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
 		String devId = pref.getString(DEVICE_ID, "");
 		String devType = pref.getString(DEVICE_TYPE, "");
 		
 		if (devId.equals("")||devType.equals("")) {
 			setContentView(R.layout.activity_register);
+			getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_register_title);//Title
+			final Button regButton  = (Button)findViewById(R.id.register);
 			typeText = (EditText) findViewById(R.id.devType);
 			idText = (EditText) findViewById(R.id.devId);
-			regButton = (Button) findViewById(R.id.register);
-			
 			regButton.setOnClickListener(new Button.OnClickListener(){
 	    		public void onClick (View v){
 	    			String type = typeText.getText().toString();
 	    	    	String id = idText.getText().toString();
 	    			String[] typeId = {type, id};
-	    			new RegisterTask(v.getContext()).execute(typeId);
+	    			
+	    			//检测是否在连上互联网 ！！！ 虚拟机下验证不成功
+	    			if(ProtoUtil.isConnected2Internet(v.getContext())) {
+	    				new RegisterTask(v.getContext()).execute(typeId);
+	    			} else {
+	    				Toast.makeText(v.getContext(), getString(R.string.net_unavailable, ""), Toast.LENGTH_SHORT).show();
+	    			};
+	    			
 	    		}
 	    	});
 			
@@ -71,7 +82,7 @@ public class RegisterActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.register, menu);
+//		getMenuInflater().inflate(R.menu.register, menu);
 		return true;
 	}
 	
@@ -183,7 +194,8 @@ public class RegisterActivity extends Activity {
 		@Override
 		protected void onPostExecute(byte[] result) {
 			super.onPostExecute(result);
-			if (null != result && result[2] == 0x18 && (int)result[10] == 0 ) {//!!! 少了网络状况检测
+			
+			if (null != result && result[2] == 0x18 && (int)result[10] == 0 ) {
 				xh_ProgressBar.setVisibility(View.GONE);
 				
 				SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
@@ -193,9 +205,8 @@ public class RegisterActivity extends Activity {
     	    	
     	    	Toast.makeText(mContext, getString(R.string.register_sucess, ""), Toast.LENGTH_SHORT).show();
     	    	
-                Intent intent = new Intent(mContext, MainActivity.class);
+                Intent intent = new Intent(mContext, UserEditActivity.class);
     			startActivity(intent);
-    			startService(new Intent(BackgroundService.ACTION));//开始心跳服务
 			}else {
 				xh_ProgressBar.setVisibility(View.GONE);
 				Toast.makeText(mContext, getString(R.string.register_failed, ""), Toast.LENGTH_SHORT).show();

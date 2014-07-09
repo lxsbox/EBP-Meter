@@ -25,12 +25,14 @@ import com.tech37c.ebpmeter.model.RecordPOJO;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -52,7 +54,7 @@ public class ScreenSlidePageFragment extends Fragment {
     public static final String HBP = "HBP";
     public static final String LBP = "LBP";
     public static final String Beat = "Beat";
-    protected Button contactsButton;
+    protected ImageButton contactsButton;
 
     /**
      * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
@@ -110,13 +112,17 @@ public class ScreenSlidePageFragment extends Fragment {
 //        		getString(R.string.title_template_step, mPageNumber + 1));
         
         
-        contactsButton = (Button)rootView.findViewById(R.id.give_call);
+        contactsButton = (ImageButton)rootView.findViewById(R.id.give_call);
 		// add button listener
         contactsButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				Intent contactPicker = new Intent(getActivity(), ContactsPickerActivity.class);
-				startActivity(contactPicker);
+//				Intent contactPicker = new Intent(getActivity(), ContactsPickerActivity.class);
+//				startActivity(contactPicker);
+				
+				Intent callIntent = new Intent(Intent.ACTION_DIAL);
+				callIntent.setData(Uri.parse("tel:"+ "13812345678"));
+				startActivity(callIntent);
 			}
 		});
         return rootView;

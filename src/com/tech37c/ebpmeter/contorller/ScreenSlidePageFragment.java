@@ -22,9 +22,11 @@ import com.tech37c.ebpmeter.contorller.calling.ContactsPickerActivity;
 import com.tech37c.ebpmeter.model.BaseDAO;
 import com.tech37c.ebpmeter.model.BusinessHandler;
 import com.tech37c.ebpmeter.model.RecordPOJO;
+import com.tech37c.ebpmeter.service.BackgroundService;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -103,6 +105,13 @@ public class ScreenSlidePageFragment extends Fragment {
             Bundle savedInstanceState) {
         // Inflate the layout containing a title and body text.
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.activity_main_content, container, false);
+        
+        SharedPreferences pref =  getActivity().getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
+		String name = pref.getString(UserEditActivity.CURRENT_USER_ID, "").equals(UserEditActivity.USER_1)?//获取当前用户名
+				pref.getString(UserEditActivity.DAD, ""):pref.getString(UserEditActivity.MOM, "");
+		final TextView txtView = (TextView) rootView.findViewById(R.id.user_In_content);
+		txtView.setText(name + "的血压记录");
+		
         // Set the title view to show the page number.
         ((TextView) rootView.findViewById(R.id.meter_user)).setText(record.getUser_ID());
         ((TextView) rootView.findViewById(R.id.checking_time)).setText(record.getMeasure_Time());

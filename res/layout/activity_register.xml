@@ -53,19 +53,15 @@
             android:layout_height="25dp"
             android:layout_weight="1" 
              android:visibility="gone"/>
-        
 
-<!--         <Button -->
-<!--             android:id="@+id/register" -->
-<!--             android:layout_width="284dp" -->
-<!--             android:layout_height="match_parent" -->
-<!--             android:layout_marginTop="40dp" -->
-<!--             android:layout_weight="1" -->
-<!--             android:clickable="true" -->
-<!--             android:gravity="center_vertical|center_horizontal" -->
-<!--             android:text="@string/register"  -->
-<!--             android:background="@android:color/holo_green_dark" -->
-<!--             android:textColor="@android:color/white"/> -->
+        <Button
+            android:id="@+id/skipReg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:background="@android:color/white"
+            android:clickable="true"
+            android:text="skip" />
 
     </LinearLayout>
 

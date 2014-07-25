@@ -73,6 +73,15 @@ public class RegisterActivity extends Activity {
 	    		}
 	    	});
 			
+			
+			final Button skipRegButton  = (Button)findViewById(R.id.skipReg);
+			skipRegButton.setOnClickListener(new Button.OnClickListener(){
+	    		public void onClick (View v){
+	    			Intent intent = new Intent(v.getContext(), TabsActivity.class);
+	    			startActivity(intent);
+	    		}
+	    	});
+			
 		} else {
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);

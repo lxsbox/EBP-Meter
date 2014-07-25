@@ -11,6 +11,7 @@ import java.net.UnknownHostException;
 import com.tech37c.ebpmeter.R;
 import com.tech37c.ebpmeter.contorller.MainActivity;
 import com.tech37c.ebpmeter.contorller.RegisterActivity;
+import com.tech37c.ebpmeter.contorller.TabsActivity;
 import com.tech37c.ebpmeter.model.BaseDAO;
 import com.tech37c.ebpmeter.model.EmptyByte;
 import com.tech37c.ebpmeter.utils.ProtoUtil;
@@ -70,7 +71,7 @@ public class BackgroundService extends Service {
 		notification.defaults = Notification.DEFAULT_SOUND;
 		notification.flags = Notification.FLAG_AUTO_CANCEL;//点击后自动清除
 		notificatioManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		messageIntent = new Intent(this, MainActivity.class);
+		messageIntent = new Intent(this, TabsActivity.class);
 		
 		messagePendingIntent = PendingIntent.getActivity(this, 0,
 				messageIntent, PendingIntent.FLAG_CANCEL_CURRENT);

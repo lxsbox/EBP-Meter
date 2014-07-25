@@ -31,6 +31,8 @@ public class UserEditActivity extends Activity {
 	public static final String DAD = "dad";
 	public static final String MOM = "mom";
 	public static final String CURRENT_USER_ID = "current_user_id";
+	public static final String USER_1 = "1";
+	public static final String USER_2 = "2";
 	
 
 	@Override
@@ -68,13 +70,13 @@ public class UserEditActivity extends Activity {
 				edit.putString(DAD, name1);
 				edit.putString(MOM, name2);
 				if (dadCheckBox.isChecked()) {
-					edit.putString(CURRENT_USER_ID, "1");
+					edit.putString(CURRENT_USER_ID, USER_1);
 				} else {
-					edit.putString(CURRENT_USER_ID, "2");
+					edit.putString(CURRENT_USER_ID, USER_2);
 				}
 				edit.commit();
 				
-				Intent intent = new Intent(v.getContext(), MainActivity.class);
+				Intent intent = new Intent(v.getContext(), TabsActivity.class);
     			startActivity(intent);
     			startService(new Intent(BackgroundService.ACTION));//开始心跳服务
 			}

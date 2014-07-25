@@ -100,7 +100,7 @@ public class BaseDAO extends SQLiteOpenHelper {
 	public Cursor all() {
 		String[] from = { ID, Dev_Type, Dev_ID, User_ID, Measure_Time,
 		         HBP, LBP, Beat, Create_Time};
-		String order = ID;
+		String order = ID + " DESC";
 
 	    SharedPreferences pref = context.getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
 	    String userId = pref.getString("CURRENT_USER_ID", "1");

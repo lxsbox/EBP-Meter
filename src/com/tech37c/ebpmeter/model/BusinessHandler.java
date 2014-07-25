@@ -31,10 +31,11 @@ public class BusinessHandler extends Activity{
 	 */
 	public RecordPOJO initMainView() {
 		//插入测试数据
-		if (dao.count() == 0) {
-			dao.insert("1", "11", "周瑜", "2014-01-05 20:00:00", "135", "85", "75");
-			dao.insert("1", "11", "豆豆 ", "2014-02-08 20:00:00", "135", "85", "75");
-			dao.insert("1", "11", "贾某某", "2014-03-10 20:00:00", "135", "85", "75");
+		int count = (int)dao.count();
+		if (count == 0) {
+			for (int i=0; i<25; i++) {
+				dao.insert("1", "11", "1", "2014-07-"+ i +" 20:00:"+ i, "135", "85", "75");
+			}
 		}
 		
 		Cursor cursor = dao.all();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name">游子吟</string>
+    <string name="app_name">YZY 血压</string>
     <string name="register_cloud">注册 ></string>
     <string name="register">注册</string>
     <string name="action_settings">Settings</string>
@@ -10,6 +10,7 @@
     <string name="show_chart">显示图表</string>
     <string name="show_all_data">所有数据</string>
     <string name="add_record">添加记录</string>
+    <string name="change_user">切换用户</string>
     <string name="save_record">保存 ></string>
     <string name="save_record_success">保存记录成功</string>
     <string name="save_record_fail">请填写所有信息！</string>
@@ -25,6 +26,13 @@
     <string name="register_sucess">注册成功 </string>
     <string name="register_failed">注册失败 :( </string>
     <string name="title_activity_user_edit">编辑用户</string>
-    
+    <string name="more">...</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="scan_tips">将二维码图片对准扫描框即可自动扫描</string>
+    <string name="title_activity_tabs">TabsActivity</string>
+    <string name="title_activity_reminder">ReminderActivity</string>
+    <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_records">RecordsActivity</string>
+    <string name="s_view_btn">more</string>
 
 </resources>

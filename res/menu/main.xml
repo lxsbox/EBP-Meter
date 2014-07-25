@@ -1,6 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
+        android:id="@+id/change_user"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/change_user"/>
+    <item
         android:id="@+id/add_record"
         android:orderInCategory="100"
         android:showAsAction="never"
@@ -21,5 +26,4 @@
         android:showAsAction="ifRoom|withText"
         android:title="@string/action_previous"
         android:visible="false"/>
-
 </menu>

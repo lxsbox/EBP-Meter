@@ -1,5 +1,8 @@
 package com.tech37c.ebpmeter.contorller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.tech37c.ebpmeter.R;
 import com.tech37c.ebpmeter.model.BusinessHandler;
 import com.tech37c.ebpmeter.model.RecordPOJO;
@@ -11,6 +14,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -20,6 +24,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,9 +33,13 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
+import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
 
 /**
  * 程序入口
@@ -38,8 +47,9 @@ import android.widget.AdapterView.OnItemSelectedListener;
  * @author ShawnLi
  * 
  */
-public class MainActivity extends FragmentActivity  implements  CompatActionBarNavListener, OnClickListener,
-											       OnItemSelectedListener {
+public class MainActivity extends FragmentActivity implements
+		CompatActionBarNavListener, OnClickListener, OnItemSelectedListener {
+	private Context mContext;
 	protected TextView meterUser;
 	protected TextView checkingTime;
 	protected TextView highValue;
@@ -47,34 +57,35 @@ public class MainActivity extends FragmentActivity  implements  CompatActionBarN
 	protected TextView heartBeat;
 	protected Button giveCall;
 	protected Button giveVideo;
+	private Spinner mActionbarSpinner;
+	ImageButton button1;
 	// 分页下相关参数
 	private static int NUM_PAGES;
 	private ViewPager mPager;
 	private PagerAdapter mPagerAdapter;
 	private BusinessHandler handler;
-	final String CATEGORIES[] = { "Top Stories", "Politics", "Economy", "Technology" };
+	private SharedPreferences pref;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);//自定义标题栏
+		
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+//		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);// 自定义标题栏
+		
 		setContentView(R.layout.activity_main);
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_main_title);
-		final TextView txtView  = (TextView)findViewById(R.id.current_user);
 		
-		SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
-		String userFlag = pref.getString(UserEditActivity.CURRENT_USER_ID, "");
-		String name = "";
-		if (userFlag.equals("1")) {
-			name = pref.getString(UserEditActivity.DAD, "");
-		} else {
-			name = pref.getString(UserEditActivity.MOM, "");
-		}
-		txtView.setText(name+"的血压记录");
-		
-		handler = new BusinessHandler(this);//初始化业务处理对象
+//		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_main_title);
+//		pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
+//		String name = pref.getString(UserEditActivity.CURRENT_USER_ID, "").equals(UserEditActivity.USER_1)?//获取当前用户名
+//				pref.getString(UserEditActivity.DAD, ""):pref.getString(UserEditActivity.MOM, "");
+//		final TextView txtView = (TextView) findViewById(R.id.user_In_content);
+//		txtView.setText(name + "的血压记录");
+
+		handler = new BusinessHandler(this);// 初始化业务处理对象
 		RecordPOJO record = handler.initMainView();
-		// NUM_PAGES = handler.getRecordNum();
+//		 NUM_PAGES = handler.getRecordNum();
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPagerAdapter = new ScreenSlidePagerAdapter(getFragmentManager());
 		mPager.setAdapter(mPagerAdapter);
@@ -93,72 +104,43 @@ public class MainActivity extends FragmentActivity  implements  CompatActionBarN
 			}
 		});
 
-		
-		 setUpActionBar();
-		// 连接界面元素和属性
-		// meterUser = (TextView) findViewById(R.id.meter_user);
-		// checkingTime = (TextView) findViewById(R.id.checking_time);
-		// highValue = (TextView) findViewById(R.id.high_value);
-		// lowValue = (TextView) findViewById(R.id.low_value);
-		// heartBeat = (TextView) findViewById(R.id.heart_beat);
-		// giveCall = (Button) findViewById(R.id.give_call);
-		// giveVideo = (Button) findViewById(R.id.give_video);
-		//
-		// //设置监听事件
-		// giveCall.setOnClickListener(this);
-		// giveVideo.setOnClickListener(this);
-		// BusinessHandler handler = new BusinessHandler(this);//初始化业务处理对象
-		// RecordPOJO record = handler.initMainView();
-		// meterUser.setText(record.getUser_ID());
-		// checkingTime.setText(record.getMeasure_Time());
-		// highValue.setText(record.getHBP());
-		// lowValue.setText(record.getLBP());
-		// heartBeat.setText(record.getBeat());
+//		button1 = (ImageButton) findViewById(R.id.button1);
+//		button1.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				mContext = v.getContext();
+//				PopupMenu popup = new PopupMenu(MainActivity.this, button1);
+//				popup.getMenuInflater().inflate(R.menu.main, popup.getMenu());
+//				popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//					public boolean onMenuItemClick(MenuItem item) {
+////						Toast.makeText(MainActivity.this, "You Clicked : " + item.getTitle(),
+////						Toast.LENGTH_SHORT).show();
+//						boolean isChangeItem = true;
+//						String itemId = (String)item.getTitle();
+//						isChangeItem = itemId.equals(getResources().getString(R.string.change_user))?true:false;
+//						if(isChangeItem) {
+//							String cur = pref.getString(UserEditActivity.CURRENT_USER_ID, "");
+//							
+//							String perparedId = cur.equals(UserEditActivity.USER_1)?UserEditActivity.USER_2 : UserEditActivity.USER_1;
+//									
+//							Editor edit = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE).edit();
+//							edit.putString(UserEditActivity.CURRENT_USER_ID, perparedId);
+//							edit.commit();
+//							Intent intent = new Intent(mContext, MainActivity.class);
+//							startActivity(intent);
+//						}
+//						return true;
+//					}
+//				});
+//				popup.show();
+//			}
+//		});
 	}
 
-	
-	/** Sets up Action Bar (if present).
-    *
-    * @param showTabs whether to show tabs (if false, will show list).
-    * @param selTab the selected tab or list item.
-    */
-   public void setUpActionBar() {
-       if (Build.VERSION.SDK_INT < 11) {
-           // No action bar for you!
-           // But do not despair. In this case the layout includes a bar across the
-           // top that looks and feels like an action bar, but is made up of regular views.
-           return;
-       }
-       ActionBar actionBar = getActionBar();
-//       actionBar.setDisplayShowTitleEnabled(false);
-       // Set up a CompatActionBarNavHandler to deliver us the Action Bar nagivation events
-       CompatActionBarNavHandler handler = new CompatActionBarNavHandler(this);
-       actionBar.setNavigationMode(android.app.ActionBar.NAVIGATION_MODE_LIST);
-       SpinnerAdapter adap = new ArrayAdapter<String>(this, R.layout.activity_main_bar_list, CATEGORIES);
-       actionBar.setListNavigationCallbacks(adap, handler);
-       // Show logo instead of icon+title.
-       actionBar.setDisplayUseLogoEnabled(true);
-   }
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.main, menu);
-
-//		menu.findItem(R.id.action_previous).setEnabled(
-//				mPager.getCurrentItem() > 0);
-//
-//		// Add either a "next" or "finish" button to the action bar, depending
-//		// on which page
-//		// is currently selected.
-//		MenuItem item = menu
-//				.add(Menu.NONE,
-//						R.id.action_next,
-//						Menu.NONE,
-//						(mPager.getCurrentItem() == mPagerAdapter.getCount() - 1) ? R.string.action_finish
-//								: R.string.action_next);
-//		item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM
-//				| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		return true;
 	}
 
@@ -213,23 +195,6 @@ public class MainActivity extends FragmentActivity  implements  CompatActionBarN
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-		
-//		 switch(item.getItemId()) {
-//		 case R.id.add_record:
-//		 Intent intent = new Intent(this, AddRecordActivity.class);
-//		 startActivity(intent);
-//		 return true;
-//		 case R.id.show_chart:
-//		 Intent chartIntent = new Intent(this, ChartActivity.class);
-//		 startActivity(chartIntent);
-//		 return true;
-//		 case R.id.show_all_data:
-//		 Intent sdIntent = new Intent(this, ShowAllDataActivity.class);
-//		 startActivity(sdIntent);
-//		 return true;
-//		 default:
-//		 return super.onOptionsItemSelected(item);
-//		 }
 	}
 
 	/**
@@ -268,6 +233,6 @@ public class MainActivity extends FragmentActivity  implements  CompatActionBarN
 
 	@Override
 	public void onCategorySelected(int catIndex) {
-		
+
 	}
 }

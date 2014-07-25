@@ -1,5 +1,10 @@
 package com.tech37c.ebpmeter.utils;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.tech37c.ebpmeter.service.BackgroundService;
 
 import android.content.Context;
@@ -108,5 +113,78 @@ public class ProtoUtil {
 	        return cm.getActiveNetworkInfo().isAvailable();  
 	    }  
 	    return false;
+	}
+	
+	/**
+	 * 解析二维码
+	 * @return
+	 */
+	public static String[] parseQR(String result) {
+		String[] typeId = new String[2];
+		if (!result.isEmpty()) {
+			String[] temp = result.split(",");
+			String[] typeKV = temp[0].split("=");
+			String type = typeKV[1];
+			
+			String[] idKV = temp[1].split("=");
+			String id = idKV[1];
+			
+			typeId[0] = type;
+			typeId[1] = id;
+		}
+		
+		return typeId;
+	}
+	
+	/**
+	 * 将原始时间转位更易读的时间
+	 * @return
+	 */
+	public static String getEasyTime(String origTime) {
+		Date now = new Date();
+		DateFormat df1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
+		String strNow = df2.format(now);
+		boolean isToday = true;
+		boolean isYesterday = true;
+		long aDayMilli = 24*60*60*1000;
+		long Min30Milli = 30*60*1000;
+		long diff =0;
+		try {
+			Date orgin = df1.parse(origTime);
+			Date nowNoTime = df2.parse(strNow);
+			long today0Milli = nowNoTime.getTime();
+			long orginMilli = orgin.getTime();
+			isToday	= (orginMilli-today0Milli)>0?true:false;
+			isYesterday	= orginMilli-today0Milli<0 && Math.abs(orginMilli-today0Milli)<aDayMilli?true:false;
+			diff = now.getTime() - orginMilli;
+//			days = diff / (1000 * 60 * 60 * 24);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		String[] dateTime = origTime.split(" ");
+		String date = dateTime[0];
+		String dateNoYear = date.substring(5);
+		String time = dateTime[1];
+		String timeNoSec = time.substring(0, 5);
+		
+		String easyTime = "";
+		if(isToday) {
+			if(diff<Min30Milli) {
+				easyTime = "刚刚";
+			}else {
+				easyTime = "今天    "+ timeNoSec;
+			}
+			
+		}else {
+			if(isYesterday) {
+				easyTime = "昨天    " + timeNoSec;
+			}else {
+				easyTime = dateNoYear + " " +  timeNoSec;
+			}
+		}
+		
+		return easyTime;
 	}
 }

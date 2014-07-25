@@ -25,5 +25,12 @@
     -->
     <item type="id" name="action_next" />
     <item type="id" name="action_flip" />
+    
+    <item name="auto_focus" type="id"/>
+    <item name="decode" type="id"/>
+    <item name="decode_failed" type="id"/>
+    <item name="decode_succeeded" type="id"/>
+    <item name="restart_preview" type="id"/>
+    <item name="quit" type="id"/>
 
 </resources>

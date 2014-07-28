@@ -33,7 +33,7 @@ public class BusinessHandler extends Activity{
 		//插入测试数据
 		int count = (int)dao.count();
 		if (count == 0) {
-			for (int i=0; i<25; i++) {
+			for (int i=0; i<5; i++) {
 				dao.insert("1", "11", "1", "2014-07-"+ i +" 20:00:"+ i, "135", "85", "75");
 			}
 		}

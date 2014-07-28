@@ -85,7 +85,7 @@
             android:label="@string/title_activity_calling" >
         </activity>
         <activity
-            android:name="com.tech37c.ebpmeter.contorller.RecordsAcivity"
+            android:name="com.tech37c.ebpmeter.contorller.RecordsActivity"
             android:label="@string/title_activity_records" >
         </activity>
     </application>

@@ -33,7 +33,7 @@ public class TabsActivity extends TabActivity {
 	}
 
 	private void setTabs() {
-		addTab("记录", R.drawable.tab_list, RecordsAcivity.class);
+		addTab("记录", R.drawable.tab_list, RecordsActivity.class);
 		addTab("提醒", R.drawable.tab_reminder, ReminderActivity.class);
 		addTab("设置", R.drawable.tab_setting, SettingActivity.class);
 	}

@@ -40,8 +40,7 @@
             android:layout_gravity="bottom|right"
             android:text="@string/s_view_btn"
             android:layout_marginLeft="100px"
-            android:src="@drawable/phone"
-            android:background="#FF8000"/>
+            android:src="@drawable/phone"/>
         
 
     </LinearLayout>

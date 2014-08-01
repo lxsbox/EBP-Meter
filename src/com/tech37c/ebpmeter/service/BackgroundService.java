@@ -13,6 +13,7 @@ import com.tech37c.ebpmeter.contorller.MainActivity;
 import com.tech37c.ebpmeter.contorller.RecordsActivity;
 import com.tech37c.ebpmeter.contorller.RegisterActivity;
 import com.tech37c.ebpmeter.contorller.TabsActivity;
+import com.tech37c.ebpmeter.contorller.UserEditActivity;
 import com.tech37c.ebpmeter.model.BaseDAO;
 import com.tech37c.ebpmeter.model.EmptyByte;
 import com.tech37c.ebpmeter.utils.ProtoUtil;
@@ -34,17 +35,20 @@ import android.util.Log;
  * 
  */
 public class BackgroundService extends Service {
-	// private static String DATA_CENTER_IP = "54.200.144.55";// 数据中心IP
-	// private static int DATA_CENTER_UDP_PORT = 18899;// 数据中心端口
-	// private static String DATA_CENTER_IP = "192.168.199.101";//数据中心IP
 	public static int DATA_CENTER_UDP_PORT = 6007;// 数据中心端口
-	public static String DATA_CENTER_IP = "192.168.199.190";// 数据中心IP
-	// private static int DATA_CENTER_UDP_PORT = 6001; //数据中心端口
+//	public static String DATA_CENTER_IP = "192.168.199.190";// 朱威 pc
+	public static String DATA_CENTER_IP = "192.168.199.101";// 李想 pc
 	public static int TIME_OUT = 3000;
 	public static int MAXTRIES = 3;
 
 	public static final String SHARED_PREFS_NAME = "tech37c_ebpmeter_preferences";// 本地共享文件名
-	public static final String POP_UP_STRING = "pop_up_string";// 气泡信息内容
+//	public static final String POP_UP_STRING = "pop_up_string";// 气泡信息内容
+	public static final String POP_UP_TIME = "pop_up_time";
+	public static final String POP_UP_HIGH = "pop_up_high";
+	public static final String POP_UP_LOW = "pop_up_low";
+	public static final String POP_UP_BEAT = "pop_up_beat";
+	
+	
 	public static final String LATEST_RECORD_TIME = "latest_record_time";// 最近插入的一条记录时间
 	public static final String DEV_TYPE = "dev_type";// 设备类型（血压计）
 	public static final String DEV_ID = "dev_id";// 设备ID（血压计）
@@ -137,13 +141,15 @@ public class BackgroundService extends Service {
 					response[15],// 测量时间
 					response[16], response[17], response[18]);
 			dao.insert(response[10] + "", response[11] + "", response[19] + "",
-					dateTime, (response[20] & 0xFF) + "", response[21] + "",
+					dateTime, (response[20] & 0xFF) + "", (response[21] & 0xFF) + "",
 					response[22] + "");// 高压值可能溢出，转为无符号
 			dao.close();
 			SharedPreferences.Editor editor = getSharedPreferences(
 					SHARED_PREFS_NAME, MODE_PRIVATE).edit();
-			editor.putString(POP_UP_STRING, dateTime + " " + response[19]
-					+ "新血压值 ：" + (response[20] & 0xFF));
+			editor.putString(POP_UP_TIME, dateTime);
+			editor.putString(POP_UP_HIGH, (response[20] & 0xFF) +"");
+			editor.putString(POP_UP_LOW, (response[21] & 0xFF) +"");
+			editor.putString(POP_UP_BEAT, response[22] +"");
 			editor.putString(LATEST_RECORD_TIME, dateTime);
 			editor.commit();
 		}
@@ -156,24 +162,35 @@ public class BackgroundService extends Service {
 	public void checkPopUpString() {
 		SharedPreferences sharedPreferences = getSharedPreferences(
 				SHARED_PREFS_NAME, MODE_PRIVATE);
-		final String popUp = sharedPreferences.getString(POP_UP_STRING, "");
+		final String popT = sharedPreferences.getString(POP_UP_TIME, "");
+		final String popH = sharedPreferences.getString(POP_UP_HIGH, "");
+		final String popL = sharedPreferences.getString(POP_UP_LOW, "");
+		final String popB = sharedPreferences.getString(POP_UP_BEAT, "");
 
-		if (!popUp.equals("")) {
+		if (!popT.equals("")) {
 			if (!RecordsActivity.isOnForeground) {// 不在记录acitivty时才提醒
+				String user = sharedPreferences.getString(UserEditActivity.CURRENT_USER_ID, "1").equals(UserEditActivity.USER_1)?
+						sharedPreferences.getString(UserEditActivity.DAD, ""):sharedPreferences.getString(UserEditActivity.MOM, "");
 				notification.setLatestEventInfo(BackgroundService.this, "新消息",
-						popUp, messagePendingIntent);
+						ProtoUtil.getEasyTime(popT) + " " + user + "测了血压：  >< "+  popH + " <>" + popL + " -^-" + popB, messagePendingIntent);
 				notificatioManager.notify(messageNotificationID, notification);
 				// messageNotificationID++;
 			} else {// 在记录activity时，新建线程，每隔1秒发送一次广播，同时把i放进intent传出
 				Intent intent = new Intent();
-				intent.putExtra("popUp", popUp);
-
+				intent.putExtra("popT", popT);
+				intent.putExtra("popH", popH);
+				intent.putExtra("popL", popL);
+				intent.putExtra("popB", popB);
 				intent.setAction("android.intent.action.test");// action与接收器相同
 				sendBroadcast(intent);
 			}
 			SharedPreferences.Editor editor = getSharedPreferences(
 					SHARED_PREFS_NAME, MODE_PRIVATE).edit();
-			editor.putString(POP_UP_STRING, "");
+			editor.putString(POP_UP_TIME, "");
+			editor.putString(POP_UP_HIGH, "");
+			editor.putString(POP_UP_LOW, "");
+			editor.putString(POP_UP_BEAT, "");
+			
 			editor.commit();
 		}
 	}

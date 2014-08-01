@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -73,7 +74,7 @@ public class RecordsActivity extends ListActivity {
 		});
 
 		mData = getData();
-		adapter = new MyAdapter(this);
+		adapter = new MyAdapter(this, mData);
 		setListAdapter(adapter);
 		// 接收BackgroundService的广播
 		receiver = new MyReceiver();
@@ -86,7 +87,7 @@ public class RecordsActivity extends ListActivity {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
 		handler = new BusinessHandler(this);// 初始化业务处理对象
-		RecordPOJO record = handler.initMainView();
+//		RecordPOJO record = handler.initMainView();
 		Cursor cursor = handler.getRecordCursor();
 		while (cursor.moveToNext()) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -127,7 +128,7 @@ public class RecordsActivity extends ListActivity {
 		private LayoutInflater mInflater;
 		private Context context;
 
-		public MyAdapter(Context context) {
+		public MyAdapter(Context context, List<Map<String, Object>> mData) {
 			this.mInflater = LayoutInflater.from(context);
 			this.context = context;
 		}
@@ -169,12 +170,11 @@ public class RecordsActivity extends ListActivity {
 				holder.layout = (LinearLayout) convertView
 						.findViewById(R.id.layoutId);
 
-				System.out.println(getCount());
 				// 首条换样式
 				// holder.time.setTextColor(lastId==getCount()?Color.parseColor("#ffffff"):Color.parseColor("#000000"));
 				// holder.high.setTextColor(lastId==getCount()?Color.parseColor("#ffffff"):Color.parseColor("#000000"));
 				// holder.low.setTextColor(lastId==getCount()?Color.parseColor("#ffffff"):Color.parseColor("#000000"));
-				// holder.viewBtn.setVisibility(lastId==getCount()?0:4);//0:visible
+				holder.viewBtn.setVisibility(lastId==getCount()?0:4);//0:visible
 				// holder.layout.setBackgroundColor(lastId==getCount()?Color.parseColor("#9FF781"):Color.parseColor("#ffffff"));
 
 				convertView.setTag(holder);
@@ -185,8 +185,8 @@ public class RecordsActivity extends ListActivity {
 
 			String origTime = (String) mData.get(position).get("time");
 			holder.time.setText(ProtoUtil.getEasyTime(origTime));
-			holder.high.setText((String) mData.get(position).get("high"));
-			holder.low.setText((String) mData.get(position).get("low"));
+			holder.high.setText("><" + (String) mData.get(position).get("high"));
+			holder.low.setText("<>" + (String) mData.get(position).get("low"));
 
 			holder.viewBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -201,6 +201,27 @@ public class RecordsActivity extends ListActivity {
 
 	}
 
+	
+	public class MyCursorAdapter  extends CursorAdapter  {
+
+		public MyCursorAdapter(Context context, Cursor c) {
+			super(context, c);
+			// TODO Auto-generated constructor stub
+		}
+
+		@Override
+		public void bindView(View arg0, Context arg1, Cursor arg2) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public View newView(Context arg0, Cursor arg1, ViewGroup arg2) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
 	/**
 	 * 加上是否在 foreground 的标志
 	 */
@@ -223,11 +244,16 @@ public class RecordsActivity extends ListActivity {
 			// TODO Auto-generated method stub
 			System.out.println("OnReceiver");
 			Bundle bundle = intent.getExtras();
-			final String popUp = bundle.getString("popUp");
+			final String popT = bundle.getString("popT");
+			final String popH = bundle.getString("popH");
+			final String popL = bundle.getString("popL");
+			final String popB = bundle.getString("popB");
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("id", 55555);
-			map.put("time", popUp);
-			mData.add(map);
+			map.put("id", mData.size()+1);
+			map.put("time", popT);
+			map.put("high", popH);
+			map.put("low", popL);
+			mData.add(0, map);
 			adapter.notifyDataSetChanged();
 		}
 

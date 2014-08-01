@@ -9,14 +9,305 @@ package com.tech37c.ebpmeter;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egAnimationTime=0x7f010004;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egAutoCenter=0x7f01000c;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egBarMargin=0x7f010002;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egBarWidth=0x7f010001;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egCurveSmoothness=0x7f010012;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egDrawValueInPie=0x7f01000d;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egFixedBarWidth=0x7f010003;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egHighlightStrength=0x7f01000a;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egIndicatorColor=0x7f010018;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egIndicatorLeftPadding=0x7f01001a;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egIndicatorTextSize=0x7f010019;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egIndicatorTopPadding=0x7f01001b;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egIndicatorWidth=0x7f010017;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egInnerPadding=0x7f010007;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egInnerPaddingOutline=0x7f010008;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egLegendHeight=0x7f010005;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egLegendTextSize=0x7f010006;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egLineStroke=0x7f010015;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egOpenClockwise=0x7f010011;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egShowDecimal=0x7f010020;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egShowStandardValue=0x7f01001c;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egShowValueIndicator=0x7f010016;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egShowValues=0x7f010000;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egStandardValueColor=0x7f01001e;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egStandardValueIndicatorStroke=0x7f01001d;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egUseCubic=0x7f010013;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egUseCustomInnerValue=0x7f010010;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egUseInnerPadding=0x7f010009;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egUseOverlapFill=0x7f010014;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egUsePieRotation=0x7f01000b;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egValueTextColor=0x7f01000f;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egValueTextSize=0x7f01000e;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int egXAxisStroke=0x7f01001f;
     }
     public static final class color {
-        public static final int tabDark=0x7f050001;
+        public static final int tabDark=0x7f080001;
         /**  	<color name="tabMedium">#2B2B2B</color> 
  	<color name="tabDark">#000000</color> 
          */
-        public static final int tabMedium=0x7f050000;
-        public static final int tabTransparent=0x7f050002;
+        public static final int tabMedium=0x7f080000;
+        public static final int tabTransparent=0x7f080002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -24,16 +315,26 @@ public final class R {
          Customize dimensions originally defined in res/values/dimens.xml (such as
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
+ Default screen margins, per the Android Design guidelines. 
+
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+    
+ Default screen margins, per the Android Design guidelines. 
+
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+    
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
-        public static final int corner_radius=0x7f060002;
-        public static final int corner_radius_zero=0x7f060003;
-        public static final int tab_space=0x7f060005;
-        public static final int tab_space_bottom_line=0x7f060007;
-        public static final int tab_space_plus1=0x7f060006;
-        public static final int tab_space_top=0x7f060004;
-        public static final int tab_space_unselected_top=0x7f060008;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
+        public static final int corner_radius=0x7f050002;
+        public static final int corner_radius_zero=0x7f050003;
+        public static final int tab_space=0x7f050005;
+        public static final int tab_space_bottom_line=0x7f050007;
+        public static final int tab_space_plus1=0x7f050006;
+        public static final int tab_space_top=0x7f050004;
+        public static final int tab_space_unselected_top=0x7f050008;
     }
     public static final class drawable {
         public static final int capture=0x7f020000;
@@ -65,10 +366,10 @@ public final class R {
         public static final int tab_unselected=0x7f02001a;
     }
     public static final class id {
-        public static final int Label=0x7f07002e;
-        public static final int Label2=0x7f07002f;
-        public static final int ProgressBar=0x7f070032;
-        public static final int action_flip=0x7f070001;
+        public static final int Label=0x7f09002e;
+        public static final int Label2=0x7f09002f;
+        public static final int ProgressBar=0x7f090032;
+        public static final int action_flip=0x7f090001;
         /** 
         These action bar item IDs (menu item IDs) are defined here for
         programmatic use. Normally, IDs are created using the "@+id/foo"
@@ -77,77 +378,77 @@ public final class R {
         are defined here.
     
          */
-        public static final int action_next=0x7f070000;
-        public static final int action_previous=0x7f07004a;
-        public static final int action_settings=0x7f070045;
-        public static final int add_record=0x7f070047;
-        public static final int all_data=0x7f070037;
-        public static final int auto_focus=0x7f070002;
-        public static final int beat=0x7f07000f;
-        public static final int bottom_mask=0x7f070025;
-        public static final int button1=0x7f07001f;
-        public static final int button_In_content=0x7f070016;
-        public static final int capture_containter=0x7f070020;
-        public static final int capture_crop_layout=0x7f070023;
-        public static final int capture_preview=0x7f070021;
-        public static final int capture_scan_line=0x7f070024;
-        public static final int change_user=0x7f070046;
-        public static final int chart=0x7f070011;
-        public static final int chart_on_title=0x7f07002a;
-        public static final int checking_time=0x7f070018;
-        public static final int current_user=0x7f07001e;
-        public static final int current_user222=0x7f070029;
-        public static final int dadCheckBox=0x7f07003a;
-        public static final int dadText=0x7f070039;
-        public static final int date=0x7f070010;
-        public static final int decode=0x7f070003;
-        public static final int decode_failed=0x7f070004;
-        public static final int decode_succeeded=0x7f070005;
-        public static final int devId=0x7f070031;
-        public static final int devType=0x7f070030;
-        public static final int display_name=0x7f070042;
-        public static final int fragment_container=0x7f070012;
-        public static final int give_call=0x7f07001c;
-        public static final int heart_beat=0x7f07001b;
-        public static final int high=0x7f07000d;
-        public static final int high_value=0x7f070019;
-        public static final int icon=0x7f070043;
-        public static final int imageView1=0x7f070034;
-        public static final int last_id=0x7f070038;
-        public static final int layoutId=0x7f07002b;
-        public static final int left_mask=0x7f070026;
-        public static final int left_text=0x7f07003d;
-        public static final int linearLayout1=0x7f07002d;
-        public static final int low=0x7f07000e;
-        public static final int low_value=0x7f07001a;
-        public static final int meter_user=0x7f070017;
-        public static final int momCheckBox=0x7f07003c;
-        public static final int momText=0x7f07003b;
-        public static final int myTitle=0x7f070036;
-        public static final int pager=0x7f070013;
-        public static final int quit=0x7f070007;
-        public static final int register=0x7f070035;
-        public static final int restart_preview=0x7f070006;
-        public static final int right_mask=0x7f070027;
-        public static final int saveUser=0x7f07003e;
-        public static final int save_record=0x7f070044;
-        public static final int screen=0x7f07001d;
-        public static final int show_all_data=0x7f070049;
-        public static final int show_chart=0x7f070048;
-        public static final int skipBtn=0x7f070041;
-        public static final int skipReg=0x7f070033;
-        public static final int textView1=0x7f070008;
-        public static final int textView2=0x7f070009;
-        public static final int textView3=0x7f07000b;
-        public static final int time=0x7f07000c;
-        public static final int title=0x7f070014;
-        public static final int top_mask=0x7f070022;
-        public static final int user_In_content=0x7f070015;
-        public static final int user_name=0x7f07000a;
-        public static final int view_btn=0x7f07002c;
-        public static final int welcomeButton=0x7f070040;
-        public static final int welcomeFirst=0x7f07003f;
-        public static final int welcomeProgressBar=0x7f070028;
+        public static final int action_next=0x7f090000;
+        public static final int action_previous=0x7f09004a;
+        public static final int action_settings=0x7f090045;
+        public static final int add_record=0x7f090047;
+        public static final int all_data=0x7f090037;
+        public static final int auto_focus=0x7f090002;
+        public static final int beat=0x7f09000f;
+        public static final int bottom_mask=0x7f090025;
+        public static final int button1=0x7f09001f;
+        public static final int button_In_content=0x7f090016;
+        public static final int capture_containter=0x7f090020;
+        public static final int capture_crop_layout=0x7f090023;
+        public static final int capture_preview=0x7f090021;
+        public static final int capture_scan_line=0x7f090024;
+        public static final int change_user=0x7f090046;
+        public static final int chart_on_title=0x7f09002a;
+        public static final int checking_time=0x7f090018;
+        public static final int cubiclinechart=0x7f090011;
+        public static final int current_user=0x7f09001e;
+        public static final int current_user222=0x7f090029;
+        public static final int dadCheckBox=0x7f09003a;
+        public static final int dadText=0x7f090039;
+        public static final int date=0x7f090010;
+        public static final int decode=0x7f090003;
+        public static final int decode_failed=0x7f090004;
+        public static final int decode_succeeded=0x7f090005;
+        public static final int devId=0x7f090031;
+        public static final int devType=0x7f090030;
+        public static final int display_name=0x7f090042;
+        public static final int fragment_container=0x7f090012;
+        public static final int give_call=0x7f09001c;
+        public static final int heart_beat=0x7f09001b;
+        public static final int high=0x7f09000d;
+        public static final int high_value=0x7f090019;
+        public static final int icon=0x7f090043;
+        public static final int imageView1=0x7f090034;
+        public static final int last_id=0x7f090038;
+        public static final int layoutId=0x7f09002b;
+        public static final int left_mask=0x7f090026;
+        public static final int left_text=0x7f09003d;
+        public static final int linearLayout1=0x7f09002d;
+        public static final int low=0x7f09000e;
+        public static final int low_value=0x7f09001a;
+        public static final int meter_user=0x7f090017;
+        public static final int momCheckBox=0x7f09003c;
+        public static final int momText=0x7f09003b;
+        public static final int myTitle=0x7f090036;
+        public static final int pager=0x7f090013;
+        public static final int quit=0x7f090007;
+        public static final int register=0x7f090035;
+        public static final int restart_preview=0x7f090006;
+        public static final int right_mask=0x7f090027;
+        public static final int saveUser=0x7f09003e;
+        public static final int save_record=0x7f090044;
+        public static final int screen=0x7f09001d;
+        public static final int show_all_data=0x7f090049;
+        public static final int show_chart=0x7f090048;
+        public static final int skipBtn=0x7f090041;
+        public static final int skipReg=0x7f090033;
+        public static final int textView1=0x7f090008;
+        public static final int textView2=0x7f090009;
+        public static final int textView3=0x7f09000b;
+        public static final int time=0x7f09000c;
+        public static final int title=0x7f090014;
+        public static final int top_mask=0x7f090022;
+        public static final int user_In_content=0x7f090015;
+        public static final int user_name=0x7f09000a;
+        public static final int view_btn=0x7f09002c;
+        public static final int welcomeButton=0x7f090040;
+        public static final int welcomeFirst=0x7f09003f;
+        public static final int welcomeProgressBar=0x7f090028;
     }
     public static final class layout {
         public static final int activity_add_record=0x7f030000;
@@ -191,39 +492,39 @@ public final class R {
         public static final int beep=0x7f040000;
     }
     public static final class string {
-        public static final int action_finish=0x7f080012;
-        public static final int action_next=0x7f080011;
-        public static final int action_previous=0x7f080010;
-        public static final int action_settings=0x7f080003;
-        public static final int add_record=0x7f080008;
-        public static final int app_name=0x7f080000;
-        public static final int change_user=0x7f080009;
-        public static final int hello_world=0x7f080004;
-        public static final int more=0x7f080019;
-        public static final int net_unavailable=0x7f080015;
-        public static final int register=0x7f080002;
-        public static final int register_cloud=0x7f080001;
-        public static final int register_failed=0x7f080017;
-        public static final int register_sucess=0x7f080016;
-        public static final int s_view_btn=0x7f080020;
-        public static final int save_record=0x7f08000a;
-        public static final int save_record_fail=0x7f08000c;
-        public static final int save_record_success=0x7f08000b;
-        public static final int scan_tips=0x7f08001b;
-        public static final int show_all_data=0x7f080007;
-        public static final int show_chart=0x7f080006;
-        public static final int title_activity_add_record=0x7f080005;
-        public static final int title_activity_calling=0x7f080013;
-        public static final int title_activity_chart=0x7f08000e;
-        public static final int title_activity_records=0x7f08001f;
-        public static final int title_activity_register=0x7f080014;
-        public static final int title_activity_reminder=0x7f08001d;
-        public static final int title_activity_setting=0x7f08001e;
-        public static final int title_activity_show_all_data=0x7f08000d;
-        public static final int title_activity_tabs=0x7f08001c;
-        public static final int title_activity_user_edit=0x7f080018;
-        public static final int title_activity_welcome=0x7f08001a;
-        public static final int title_template_step=0x7f08000f;
+        public static final int action_finish=0x7f060012;
+        public static final int action_next=0x7f060011;
+        public static final int action_previous=0x7f060010;
+        public static final int action_settings=0x7f060001;
+        public static final int add_record=0x7f060008;
+        public static final int app_name=0x7f060000;
+        public static final int change_user=0x7f060009;
+        public static final int hello_world=0x7f060002;
+        public static final int more=0x7f060019;
+        public static final int net_unavailable=0x7f060015;
+        public static final int register=0x7f060004;
+        public static final int register_cloud=0x7f060003;
+        public static final int register_failed=0x7f060017;
+        public static final int register_sucess=0x7f060016;
+        public static final int s_view_btn=0x7f060020;
+        public static final int save_record=0x7f06000a;
+        public static final int save_record_fail=0x7f06000c;
+        public static final int save_record_success=0x7f06000b;
+        public static final int scan_tips=0x7f06001b;
+        public static final int show_all_data=0x7f060007;
+        public static final int show_chart=0x7f060006;
+        public static final int title_activity_add_record=0x7f060005;
+        public static final int title_activity_calling=0x7f060013;
+        public static final int title_activity_chart=0x7f06000e;
+        public static final int title_activity_records=0x7f06001f;
+        public static final int title_activity_register=0x7f060014;
+        public static final int title_activity_reminder=0x7f06001d;
+        public static final int title_activity_setting=0x7f06001e;
+        public static final int title_activity_show_all_data=0x7f06000d;
+        public static final int title_activity_tabs=0x7f06001c;
+        public static final int title_activity_user_edit=0x7f060018;
+        public static final int title_activity_welcome=0x7f06001a;
+        public static final int title_template_step=0x7f06000f;
     }
     public static final class style {
         /** 
@@ -246,22 +547,683 @@ public final class R {
         res/values-v11/styles.xml on API 14+ devices.
     
  API 14 theme customizations can go here. 
+
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+
+        Base application theme for API 11+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 11+ devices.
+    
+ API 11 theme customizations can go here. 
+
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    
+ API 14 theme customizations can go here. 
+
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+
+        Base application theme for API 11+. This theme completely replaces
+        AppBaseTheme from res/values/styles.xml on API 11+ devices.
+    
+ API 11 theme customizations can go here. 
+
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    
+ API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f070000;
         /** 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme2=0x7f090005;
+        public static final int AppBaseTheme2=0x7f070005;
         /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
          */
-        public static final int AppTheme=0x7f090001;
-        public static final int EbpNoActionBar=0x7f090004;
-        public static final int LargeTitleTheme=0x7f090006;
-        public static final int ListItem=0x7f090003;
-        public static final int pupMenu=0x7f090002;
-        public static final int windowTitleBackgroundStyle=0x7f090007;
+        public static final int AppTheme=0x7f070001;
+        public static final int EbpNoActionBar=0x7f070004;
+        public static final int LargeTitleTheme=0x7f070006;
+        public static final int ListItem=0x7f070003;
+        public static final int pupMenu=0x7f070002;
+        public static final int windowTitleBackgroundStyle=0x7f070007;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a BarChart.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #BarChart_egShowValues com.tech37c.ebpmeter:egShowValues}</code></td><td></td></tr>
+           </table>
+           @see #BarChart_egShowValues
+         */
+        public static final int[] BarChart = {
+            0x7f010000
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egShowValues}
+          attribute's value can be found in the {@link #BarChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egShowValues
+        */
+        public static final int BarChart_egShowValues = 0;
+        /** Attributes that can be used with a BaseBarChart.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #BaseBarChart_egBarMargin com.tech37c.ebpmeter:egBarMargin}</code></td><td></td></tr>
+           <tr><td><code>{@link #BaseBarChart_egBarWidth com.tech37c.ebpmeter:egBarWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #BaseBarChart_egFixedBarWidth com.tech37c.ebpmeter:egFixedBarWidth}</code></td><td></td></tr>
+           </table>
+           @see #BaseBarChart_egBarMargin
+           @see #BaseBarChart_egBarWidth
+           @see #BaseBarChart_egFixedBarWidth
+         */
+        public static final int[] BaseBarChart = {
+            0x7f010001, 0x7f010002, 0x7f010003
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egBarMargin}
+          attribute's value can be found in the {@link #BaseBarChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egBarMargin
+        */
+        public static final int BaseBarChart_egBarMargin = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egBarWidth}
+          attribute's value can be found in the {@link #BaseBarChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egBarWidth
+        */
+        public static final int BaseBarChart_egBarWidth = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egFixedBarWidth}
+          attribute's value can be found in the {@link #BaseBarChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egFixedBarWidth
+        */
+        public static final int BaseBarChart_egFixedBarWidth = 2;
+        /** Attributes that can be used with a BaseChart.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #BaseChart_egAnimationTime com.tech37c.ebpmeter:egAnimationTime}</code></td><td></td></tr>
+           <tr><td><code>{@link #BaseChart_egLegendHeight com.tech37c.ebpmeter:egLegendHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #BaseChart_egLegendTextSize com.tech37c.ebpmeter:egLegendTextSize}</code></td><td></td></tr>
+           </table>
+           @see #BaseChart_egAnimationTime
+           @see #BaseChart_egLegendHeight
+           @see #BaseChart_egLegendTextSize
+         */
+        public static final int[] BaseChart = {
+            0x7f010004, 0x7f010005, 0x7f010006
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egAnimationTime}
+          attribute's value can be found in the {@link #BaseChart} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egAnimationTime
+        */
+        public static final int BaseChart_egAnimationTime = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egLegendHeight}
+          attribute's value can be found in the {@link #BaseChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egLegendHeight
+        */
+        public static final int BaseChart_egLegendHeight = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egLegendTextSize}
+          attribute's value can be found in the {@link #BaseChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egLegendTextSize
+        */
+        public static final int BaseChart_egLegendTextSize = 2;
+        /** Attributes that can be used with a PieChart.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #PieChart_egAutoCenter com.tech37c.ebpmeter:egAutoCenter}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_egDrawValueInPie com.tech37c.ebpmeter:egDrawValueInPie}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_egHighlightStrength com.tech37c.ebpmeter:egHighlightStrength}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_egInnerPadding com.tech37c.ebpmeter:egInnerPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_egInnerPaddingOutline com.tech37c.ebpmeter:egInnerPaddingOutline}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_egOpenClockwise com.tech37c.ebpmeter:egOpenClockwise}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_egUseCustomInnerValue com.tech37c.ebpmeter:egUseCustomInnerValue}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_egUseInnerPadding com.tech37c.ebpmeter:egUseInnerPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_egUsePieRotation com.tech37c.ebpmeter:egUsePieRotation}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_egValueTextColor com.tech37c.ebpmeter:egValueTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #PieChart_egValueTextSize com.tech37c.ebpmeter:egValueTextSize}</code></td><td></td></tr>
+           </table>
+           @see #PieChart_egAutoCenter
+           @see #PieChart_egDrawValueInPie
+           @see #PieChart_egHighlightStrength
+           @see #PieChart_egInnerPadding
+           @see #PieChart_egInnerPaddingOutline
+           @see #PieChart_egOpenClockwise
+           @see #PieChart_egUseCustomInnerValue
+           @see #PieChart_egUseInnerPadding
+           @see #PieChart_egUsePieRotation
+           @see #PieChart_egValueTextColor
+           @see #PieChart_egValueTextSize
+         */
+        public static final int[] PieChart = {
+            0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a,
+            0x7f01000b, 0x7f01000c, 0x7f01000d, 0x7f01000e,
+            0x7f01000f, 0x7f010010, 0x7f010011
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egAutoCenter}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egAutoCenter
+        */
+        public static final int PieChart_egAutoCenter = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egDrawValueInPie}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egDrawValueInPie
+        */
+        public static final int PieChart_egDrawValueInPie = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egHighlightStrength}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egHighlightStrength
+        */
+        public static final int PieChart_egHighlightStrength = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egInnerPadding}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egInnerPadding
+        */
+        public static final int PieChart_egInnerPadding = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egInnerPaddingOutline}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egInnerPaddingOutline
+        */
+        public static final int PieChart_egInnerPaddingOutline = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egOpenClockwise}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egOpenClockwise
+        */
+        public static final int PieChart_egOpenClockwise = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egUseCustomInnerValue}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egUseCustomInnerValue
+        */
+        public static final int PieChart_egUseCustomInnerValue = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egUseInnerPadding}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egUseInnerPadding
+        */
+        public static final int PieChart_egUseInnerPadding = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egUsePieRotation}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egUsePieRotation
+        */
+        public static final int PieChart_egUsePieRotation = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egValueTextColor}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egValueTextColor
+        */
+        public static final int PieChart_egValueTextColor = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egValueTextSize}
+          attribute's value can be found in the {@link #PieChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egValueTextSize
+        */
+        public static final int PieChart_egValueTextSize = 7;
+        /** Attributes that can be used with a ValueLineChart.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ValueLineChart_egCurveSmoothness com.tech37c.ebpmeter:egCurveSmoothness}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egIndicatorColor com.tech37c.ebpmeter:egIndicatorColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egIndicatorLeftPadding com.tech37c.ebpmeter:egIndicatorLeftPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egIndicatorTextSize com.tech37c.ebpmeter:egIndicatorTextSize}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egIndicatorTopPadding com.tech37c.ebpmeter:egIndicatorTopPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egIndicatorWidth com.tech37c.ebpmeter:egIndicatorWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egLineStroke com.tech37c.ebpmeter:egLineStroke}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egShowDecimal com.tech37c.ebpmeter:egShowDecimal}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egShowStandardValue com.tech37c.ebpmeter:egShowStandardValue}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egShowValueIndicator com.tech37c.ebpmeter:egShowValueIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egStandardValueColor com.tech37c.ebpmeter:egStandardValueColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egStandardValueIndicatorStroke com.tech37c.ebpmeter:egStandardValueIndicatorStroke}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egUseCubic com.tech37c.ebpmeter:egUseCubic}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egUseOverlapFill com.tech37c.ebpmeter:egUseOverlapFill}</code></td><td></td></tr>
+           <tr><td><code>{@link #ValueLineChart_egXAxisStroke com.tech37c.ebpmeter:egXAxisStroke}</code></td><td></td></tr>
+           </table>
+           @see #ValueLineChart_egCurveSmoothness
+           @see #ValueLineChart_egIndicatorColor
+           @see #ValueLineChart_egIndicatorLeftPadding
+           @see #ValueLineChart_egIndicatorTextSize
+           @see #ValueLineChart_egIndicatorTopPadding
+           @see #ValueLineChart_egIndicatorWidth
+           @see #ValueLineChart_egLineStroke
+           @see #ValueLineChart_egShowDecimal
+           @see #ValueLineChart_egShowStandardValue
+           @see #ValueLineChart_egShowValueIndicator
+           @see #ValueLineChart_egStandardValueColor
+           @see #ValueLineChart_egStandardValueIndicatorStroke
+           @see #ValueLineChart_egUseCubic
+           @see #ValueLineChart_egUseOverlapFill
+           @see #ValueLineChart_egXAxisStroke
+         */
+        public static final int[] ValueLineChart = {
+            0x7f010012, 0x7f010013, 0x7f010014, 0x7f010015,
+            0x7f010016, 0x7f010017, 0x7f010018, 0x7f010019,
+            0x7f01001a, 0x7f01001b, 0x7f01001c, 0x7f01001d,
+            0x7f01001e, 0x7f01001f, 0x7f010020
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egCurveSmoothness}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egCurveSmoothness
+        */
+        public static final int ValueLineChart_egCurveSmoothness = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egIndicatorColor}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egIndicatorColor
+        */
+        public static final int ValueLineChart_egIndicatorColor = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egIndicatorLeftPadding}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egIndicatorLeftPadding
+        */
+        public static final int ValueLineChart_egIndicatorLeftPadding = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egIndicatorTextSize}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egIndicatorTextSize
+        */
+        public static final int ValueLineChart_egIndicatorTextSize = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egIndicatorTopPadding}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egIndicatorTopPadding
+        */
+        public static final int ValueLineChart_egIndicatorTopPadding = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egIndicatorWidth}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egIndicatorWidth
+        */
+        public static final int ValueLineChart_egIndicatorWidth = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egLineStroke}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egLineStroke
+        */
+        public static final int ValueLineChart_egLineStroke = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egShowDecimal}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egShowDecimal
+        */
+        public static final int ValueLineChart_egShowDecimal = 14;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egShowStandardValue}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egShowStandardValue
+        */
+        public static final int ValueLineChart_egShowStandardValue = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egShowValueIndicator}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egShowValueIndicator
+        */
+        public static final int ValueLineChart_egShowValueIndicator = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egStandardValueColor}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egStandardValueColor
+        */
+        public static final int ValueLineChart_egStandardValueColor = 12;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egStandardValueIndicatorStroke}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egStandardValueIndicatorStroke
+        */
+        public static final int ValueLineChart_egStandardValueIndicatorStroke = 11;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egUseCubic}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egUseCubic
+        */
+        public static final int ValueLineChart_egUseCubic = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egUseOverlapFill}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egUseOverlapFill
+        */
+        public static final int ValueLineChart_egUseOverlapFill = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.tech37c.ebpmeter.R.attr#egXAxisStroke}
+          attribute's value can be found in the {@link #ValueLineChart} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.tech37c.ebpmeter:egXAxisStroke
+        */
+        public static final int ValueLineChart_egXAxisStroke = 13;
+    };
 }

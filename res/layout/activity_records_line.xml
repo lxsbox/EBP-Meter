@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:textSize="22px" 
-            android:layout_marginLeft="13px"/>
+            android:layout_marginLeft="20px"/>
         
         <TextView
             android:id="@+id/high"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:textSize="22px" 
-            android:layout_marginLeft="13px"/>
+            android:layout_marginLeft="20px"/>
 
         <TextView
             android:id="@+id/low"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:textColor="#000000"
             android:textSize="22px" 
-            android:layout_marginLeft="13px"/>
+            android:layout_marginLeft="20px"/>
 
         <ImageButton
             android:id="@+id/view_btn"

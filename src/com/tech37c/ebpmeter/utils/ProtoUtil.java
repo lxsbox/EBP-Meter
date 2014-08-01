@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import com.tech37c.ebpmeter.service.BackgroundService;
 
@@ -20,6 +21,11 @@ import android.net.NetworkInfo.State;
  * 
  */
 public class ProtoUtil {
+	static {
+		TimeZone tz = TimeZone.getTimeZone("Asia/Shanghai");
+		TimeZone.setDefault(tz);
+	}
+	
 	
 	/**
 	 * Byte 转 十六进制 字符串
@@ -97,7 +103,15 @@ public class ProtoUtil {
 	 */
 	public static String byte2Time(int year, int month, int day, 
 									int hour, int minutes, int second) {
-		String strDateTime = "20" + year + "-" + month + "-" + day + " "  + hour + ":" + minutes  + ":"+  second;
+		String sYear = year>9? year+"":"0"+year;
+		String sMonth = month>9? month+"":"0"+month;
+		String sDay = day>9? day+"":"0"+day;
+		
+		String sHour = hour>9? hour+"":"0"+hour;
+		String sMinutes = minutes>9? minutes+"":"0"+minutes;
+		String sSecond = second>9? second+"":"0"+second;
+		
+		String strDateTime = "20" + sYear + "-" + sMonth + "-" + sDay + " "  + sHour + ":" + sMinutes  + ":"+  sSecond;
 		
 		return strDateTime;
 	}

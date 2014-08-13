@@ -23,26 +23,19 @@
     <TextView android:id="@+id/left_text"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:layout_centerInParent="true"
-       android:text="@string/title_activity_user_edit"
-       android:textColor="@android:color/white"/>
-
-<!--     <ImageView -->
-<!--         android:id="@+id/imageView1" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:layout_centerInParent="true" -->
-<!--         android:src="@drawable/cloud" /> -->
+       android:text="@string/title_activity_chart"
+       android:textColor="@android:color/white"
+       android:layout_centerInParent="true"/>
 
     <Button
-        android:id="@+id/saveUser"
+        android:id="@+id/back_rcrds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@android:color/holo_green_dark"
-        android:text="@string/save_record"
+        android:text="@string/back_2_records"
         android:textColor="@android:color/white" />
 
 </RelativeLayout>

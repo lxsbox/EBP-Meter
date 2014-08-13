@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical|center_horizontal"
-        android:text="没有数据哟～～"
-        android:textColor="#FF0000" />
+        android:text="亲，暂时没有数据  :("
+        android:textColor="@android:color/darker_gray" />
 
 </LinearLayout>

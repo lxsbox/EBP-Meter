@@ -111,6 +111,25 @@ public class BaseDAO extends SQLiteOpenHelper {
 				order);
 		return cursor;
 	}
+	
+	/**
+	 * 查询每个用户的所有信息
+	 * @return
+	 */
+	public Cursor all(String OrderBy) {
+		String[] from = { ID, Dev_Type, Dev_ID, User_ID, Measure_Time,
+		         HBP, LBP, Beat, Create_Time};
+		String order = ID + " " + OrderBy;
+
+	    SharedPreferences pref = context.getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
+	    String userId = pref.getString("CURRENT_USER_ID", "1");
+		SQLiteDatabase db = getReadableDatabase();
+		Cursor cursor = db.query(BP_RECORD, from,
+				"User_ID=" + userId,
+				null, null, null,
+				order);
+		return cursor;
+	}
 
 	@Override
 	public synchronized void close() {

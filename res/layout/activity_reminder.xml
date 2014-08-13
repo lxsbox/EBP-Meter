@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
@@ -6,7 +7,8 @@
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="40dip"
-        android:background="@android:color/holo_green_dark">
+        android:background="@android:color/holo_green_dark" >
+
         <TextView
             android:id="@+id/current_user"
             android:layout_width="wrap_content"

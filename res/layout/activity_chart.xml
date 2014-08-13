@@ -1,34 +1,110 @@
-<!-- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" -->
-<!--     xmlns:tools="http://schemas.android.com/tools" -->
-<!--     android:layout_width="match_parent" -->
-<!--     android:layout_height="match_parent" -->
-<!--     android:background="#efefeb" -->
-<!--     android:padding="20dp" > -->
-<!--     <com.tech37c.ebpmeter.view.FancyChart -->
-<!--         android:id="@+id/chart" -->
-<!--         android:layout_width="fill_parent" -->
-<!--         android:layout_height="fill_parent" > -->
-<!--     </com.tech37c.ebpmeter.view.FancyChart> -->
-<!-- </LinearLayout> -->
+<!-- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" -->
+<!-- android:layout_width="match_parent" -->
+<!-- android:layout_height="match_parent" -->
+<!-- xmlns:app="http://schemas.android.com/apk/res-auto" -->
+<!-- xmlns:tools="http://schemas.android.com/tools" -->
+<!-- tools:context="de.eazegraph.app.fragments.ValueLineChartFragment"> -->
+<!-- <CheckBox -->
+<!-- android:id="@+id/tenDays" -->
+<!-- android:layout_toStartOf="@+id/thirtyDays" -->
+<!-- android:layout_width="wrap_content" -->
+<!-- android:layout_height="30dp" -->
+<!-- android:checked="true" -->
+<!-- android:text="@string/chart_10" /> -->
+<!-- <CheckBox -->
+<!-- android:id="@+id/thirtyDays" -->
+<!-- android:layout_toLeftOf="@+id/allDays" -->
+<!-- android:layout_marginRight="10dp" -->
+<!-- android:layout_width="wrap_content" -->
+<!-- android:layout_height="30dp" -->
+<!-- android:checked="true" -->
+<!-- android:text="@string/chart_30" /> -->
+<!-- <CheckBox -->
+<!-- android:id="@+id/allDays" -->
+<!-- android:layout_alignParentRight="true" -->
+<!-- android:layout_marginRight="10dp" -->
+<!-- android:layout_width="wrap_content" -->
+<!-- android:layout_height="30dp" -->
+<!-- android:text="@string/chart_all" /> -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<!-- <TextView -->
+<!-- android:id="@+id/high" -->
+<!-- android:layout_below="@id/thirtyDays" -->
+<!-- android:layout_width="wrap_content" -->
+<!-- android:layout_height="wrap_content" -->
+<!-- android:layout_marginLeft="10dp" -->
+<!-- android:layout_marginTop="20dp" -->
+<!-- android:text="@string/chart_high" -->
+<!-- android:textColor="#5CACEE" /> -->
+
+
+<!-- <org.eazegraph.lib.charts.ValueLineChart -->
+<!-- android:id="@+id/cubiclinechart" -->
+<!-- android:layout_below="@id/high" -->
+<!-- android:layout_width="match_parent" -->
+<!-- android:layout_height="200dp" -->
+<!-- app:egCurveSmoothness="0.4" -->
+<!-- app:egIndicatorColor="#FE6DA8" -->
+<!-- app:egLegendHeight="40dp" -->
+<!-- app:egShowStandardValue="false" -->
+<!-- app:egUseCubic="true" -->
+<!-- app:egUseOverlapFill="true" /> -->
+
+
+<!-- <TextView -->
+<!-- android:id="@+id/low" -->
+<!-- android:layout_below="@id/cubiclinechart" -->
+<!-- android:layout_width="wrap_content" -->
+<!-- android:layout_height="wrap_content" -->
+<!-- android:layout_marginLeft="10dp" -->
+<!-- android:layout_marginTop="20dp" -->
+<!-- android:text="@string/chart_low" -->
+<!-- android:textColor="#54FF9F" /> -->
+
+
+<!-- <org.eazegraph.lib.charts.ValueLineChart -->
+<!-- android:id="@+id/cubiclinechart2" -->
+<!-- android:layout_below="@id/low" -->
+<!-- android:layout_width="match_parent" -->
+<!-- android:layout_height="200dp" -->
+<!-- app:egCurveSmoothness="0.4" -->
+<!-- app:egIndicatorColor="#FE6DA8" -->
+<!-- app:egLegendHeight="40dp" -->
+<!-- app:egShowStandardValue="false" -->
+<!-- app:egUseCubic="true" -->
+<!-- app:egUseOverlapFill="true" /> -->
+
+
+<!-- </RelativeLayout> -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="12dp"
-    android:orientation="vertical"
-    tools:context="de.eazegraph.app.fragments.ValueLineChartFragment">
+    tools:context="de.eazegraph.app.fragments.ValueLineChartFragment" >
 
-    <org.eazegraph.lib.charts.ValueLineChart
-        android:id="@+id/cubiclinechart"
+    <CheckBox
+        android:id="@+id/tenDays"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_toStartOf="@+id/allDays"
+        android:checked="true"
+        android:text="@string/chart_10" />
+
+    <CheckBox
+        android:id="@+id/allDays"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="@string/chart_all" />
+
+    <FrameLayout
+        android:id="@+id/chart_container"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:egUseCubic="true"
-        app:egUseOverlapFill="true"
-        app:egCurveSmoothness="0.4"
-        app:egIndicatorColor="#FE6DA8"
-        app:egLegendHeight="40dp"
-        app:egShowStandardValue="false"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"/>
 
-</LinearLayout>
+</RelativeLayout>

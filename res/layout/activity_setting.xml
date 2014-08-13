@@ -19,4 +19,70 @@
             android:textColor="@android:color/white"
             android:visibility="visible" />
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/content"
+		android:layout_below="@id/title"        
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+   		>
+
+        <TextView
+            android:id="@+id/bubleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="新纪录是否提示" />
+
+        <Switch
+            android:id="@+id/openBuble"
+            android:layout_toRightOf="@id/bubleTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="10dp"
+            android:textOff="不提示"
+            android:textOn="提示" 
+            />
+
+        <TextView
+            android:id="@+id/useTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bubleTxt"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="7天未测是否提示" />
+
+        <Switch
+            android:id="@+id/openNeverUse"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@id/bubleTxt"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/useTxt"
+            android:textOff="不提示"
+            android:textOn="提示" />
+
+        <TextView
+            android:id="@+id/update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/openNeverUse"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="更新" />
+
+        <Button
+            android:id="@+id/updateBtn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/openNeverUse"
+            android:layout_alignTop="@+id/update"
+            android:layout_toRightOf="@+id/useTxt"
+            android:text="更新" />
+
+    </RelativeLayout>
 </RelativeLayout>

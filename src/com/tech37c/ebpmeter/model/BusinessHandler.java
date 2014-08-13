@@ -1,21 +1,14 @@
 package com.tech37c.ebpmeter.model;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 
-public class BusinessHandler extends Activity{
+public class BusinessHandler extends Activity {
 	private static String DATA_CENTER_IP = "54.200.144.55";
 	private static int DATA_CENTER_UDP_PORT = 18899;
 	public static final String SHARED_PREFS_NAME = "tech37c_ebpmeter_preferences";
@@ -59,15 +52,15 @@ public class BusinessHandler extends Activity{
 	 * 查询10天的血压曲线
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List query10Day() {
-		List list = new ArrayList<HashMap>();
-		Map high = new HashMap();
-		Map low = new HashMap<String, Integer>();
-		Cursor cursor = dao.all();
+	public List queryByDay(int num) {
+		List list = new ArrayList<LinkedHashMap>();
+		Map high = new LinkedHashMap<String, Integer>();
+		Map low = new LinkedHashMap<String, Integer>();
+		Cursor cursor = dao.all("ASC");
 		int idx = 0;
 		while(cursor.moveToNext()) {
 			idx ++;
-			if(idx>10)  break;
+			if(idx>num)  break;
 			high.put(cursor.getString(4), cursor.getInt(5));
 			low.put(cursor.getString(4), cursor.getInt(6));
 		}

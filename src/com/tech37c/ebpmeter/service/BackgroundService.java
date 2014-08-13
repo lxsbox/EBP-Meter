@@ -63,6 +63,7 @@ public class BackgroundService extends Service {
 	private Notification notification;
 	private NotificationManager notificatioManager;
 	private BaseDAO dao;
+	public static boolean isON4Buble = true;//用户提醒开关
 
 	public IBinder onBind(Intent intent) {
 		return null;
@@ -129,29 +130,31 @@ public class BackgroundService extends Service {
 	 * 上报心跳 获取结果并插入本地库 提示信息写在本地文件
 	 */
 	public void reportHeartBeat() {
-		byte[] response = getAnRecord();
-		if (response[2] == 0x11) {// 回应的是心跳
-			SharedPreferences.Editor editor = getSharedPreferences(
-					SHARED_PREFS_NAME, MODE_PRIVATE).edit();
-			editor.putString(APP_VERSION, response[10] + "");// 版本号为啥两个字节？
-			editor.commit();
-		} else if (response[2] == 0x12) {// 回应的是记录
-			// 缺少本地库记录时间验证验证， 以保证数据不重复！！！
-			String dateTime = ProtoUtil.byte2Time(response[13], response[14],
-					response[15],// 测量时间
-					response[16], response[17], response[18]);
-			dao.insert(response[10] + "", response[11] + "", response[19] + "",
-					dateTime, (response[20] & 0xFF) + "", (response[21] & 0xFF) + "",
-					response[22] + "");// 高压值可能溢出，转为无符号
-			dao.close();
-			SharedPreferences.Editor editor = getSharedPreferences(
-					SHARED_PREFS_NAME, MODE_PRIVATE).edit();
-			editor.putString(POP_UP_TIME, dateTime);
-			editor.putString(POP_UP_HIGH, (response[20] & 0xFF) +"");
-			editor.putString(POP_UP_LOW, (response[21] & 0xFF) +"");
-			editor.putString(POP_UP_BEAT, response[22] +"");
-			editor.putString(LATEST_RECORD_TIME, dateTime);
-			editor.commit();
+		if(isON4Buble) {
+			byte[] response = getAnRecord();
+			if (response[2] == 0x11) {// 回应的是心跳
+				SharedPreferences.Editor editor = getSharedPreferences(
+						SHARED_PREFS_NAME, MODE_PRIVATE).edit();
+				editor.putString(APP_VERSION, response[10] + "");// 版本号为啥两个字节？
+				editor.commit();
+			} else if (response[2] == 0x12) {// 回应的是记录
+				// 缺少本地库记录时间验证验证， 以保证数据不重复！！！
+				String dateTime = ProtoUtil.byte2Time(response[13], response[14],
+						response[15],// 测量时间
+						response[16], response[17], response[18]);
+				dao.insert(response[10] + "", response[11] + "", response[19] + "",
+						dateTime, (response[20] & 0xFF) + "", (response[21] & 0xFF) + "",
+						response[22] + "");// 高压值可能溢出，转为无符号
+				dao.close();
+				SharedPreferences.Editor editor = getSharedPreferences(
+						SHARED_PREFS_NAME, MODE_PRIVATE).edit();
+				editor.putString(POP_UP_TIME, dateTime);
+				editor.putString(POP_UP_HIGH, (response[20] & 0xFF) +"");
+				editor.putString(POP_UP_LOW, (response[21] & 0xFF) +"");
+				editor.putString(POP_UP_BEAT, response[22] +"");
+				editor.putString(LATEST_RECORD_TIME, dateTime);
+				editor.commit();
+			}
 		}
 	}
 

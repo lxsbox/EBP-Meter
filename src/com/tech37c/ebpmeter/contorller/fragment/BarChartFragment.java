@@ -85,7 +85,7 @@ public class BarChartFragment extends ChartFragment {
 			Object obj = (String) it.next();
 			String dateTime = (String) obj;
 			String highX = dateTime.substring(5, 10);
-			mBarChart.addBar(new BarModel((Integer)highMap.get(obj), getRandomColor()));
+			mBarChart.addBar(new BarModel((Integer)highMap.get(obj), getRandomColor((Integer)highMap.get(obj))));
 		}
 	    
 //		Map lowMap = (LinkedHashMap) list.get(1);
@@ -97,10 +97,17 @@ public class BarChartFragment extends ChartFragment {
 //		}
 	}
 
-    private int getRandomColor() {
-    	int[] a = {0xFF123456,0xFF343456,0xFF563456,0xFF873F56,0xFF56B7F1,0xFF343456,0xFF1FF4AC,0xFF1BA4E6};
-    	int i = (int)(a.length*Math.random());
-    	return a[i];
+    private int getRandomColor(int high) {
+    	
+    	
+//    	int[] a = {0xFF123456,0xFF343456,0xFF563456,0xFF873F56,0xFF56B7F1,0xFF343456,0xFF1FF4AC,0xFF1BA4E6};
+    	int[] a = {Color.parseColor("#0099f1"), Color.parseColor("#6dbaf0"), Color.parseColor("#0099f1")};
+//    	int i = (int)(a.length*Math.random());
+    	if(high>160) {
+    		return a[2];
+    	}else{
+    		return a[1];
+    	}
     }
     
     private BarChart mBarChart;

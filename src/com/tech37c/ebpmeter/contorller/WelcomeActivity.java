@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class WelcomeActivity extends Activity {
 
@@ -24,7 +25,7 @@ public class WelcomeActivity extends Activity {
 		if (devId.equals("")||devType.equals("")) {//如果已经注册过直接到主页面
 			setContentView(R.layout.activity_welcome);
 			final Button regButton  = (Button)findViewById(R.id.welcomeButton);
-			final Button skipBtn  = (Button)findViewById(R.id.skipBtn);
+			final TextView skipBtn  = (TextView)findViewById(R.id.skipBtn);
 			regButton.setOnClickListener(new Button.OnClickListener(){
 	    		public void onClick (View v){
 	    			Intent intent = new Intent(v.getContext(), CaptureActivity.class);

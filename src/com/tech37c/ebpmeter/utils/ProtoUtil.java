@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
+import android.os.Environment;
 
 /**
  * 通讯协议相关
@@ -200,5 +201,18 @@ public class ProtoUtil {
 		}
 		
 		return easyTime;
+	}
+	
+	/**
+	 * 检查是否存在SDCard
+	 * @return
+	 */
+	public static boolean hasSdcard(){
+		String state = Environment.getExternalStorageState();
+		if(state.equals(Environment.MEDIA_MOUNTED)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

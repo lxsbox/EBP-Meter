@@ -31,14 +31,14 @@ public class AddRecordActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_record);
 		
-		userName = (EditText)findViewById(R.id.user_name);
-		
-		date = (EditText)findViewById(R.id.date);
-		time = (EditText)findViewById(R.id.time);
-		
-		high = (EditText)findViewById(R.id.high);
-		low = (EditText)findViewById(R.id.low);
-		beat = (EditText)findViewById(R.id.beat);
+//		userName = (EditText)findViewById(R.id.user_name);
+//		
+//		date = (EditText)findViewById(R.id.date);
+//		time = (EditText)findViewById(R.id.time);
+//		
+//		high = (EditText)findViewById(R.id.high);
+//		low = (EditText)findViewById(R.id.low);
+//		beat = (EditText)findViewById(R.id.beat);
 	}
 
 	@Override

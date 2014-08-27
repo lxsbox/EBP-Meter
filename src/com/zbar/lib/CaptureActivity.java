@@ -34,10 +34,13 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tech37c.ebpmeter.R;
+import com.tech37c.ebpmeter.contorller.MainActivity;
 import com.tech37c.ebpmeter.contorller.RegisterActivity;
+import com.tech37c.ebpmeter.contorller.TabsActivity;
 import com.tech37c.ebpmeter.contorller.UserEditActivity;
 import com.tech37c.ebpmeter.model.EmptyByte;
 import com.tech37c.ebpmeter.service.BackgroundService;
@@ -70,7 +73,11 @@ public class CaptureActivity extends Activity implements Callback {
 	private int cropHeight = 0;
 	private RelativeLayout mContainer = null;
 	private RelativeLayout mCropLayout = null;
+	private ImageView mQrLineView = null;
+	private TextView mTextView = null;
 	private boolean isNeedCapture = false;
+	private static final long VIBRATE_DURATION = 200L;
+	private boolean flag = true;
 	
 	public boolean isNeedCapture() {
 		return isNeedCapture;
@@ -125,8 +132,9 @@ public class CaptureActivity extends Activity implements Callback {
 
 		mContainer = (RelativeLayout) findViewById(R.id.capture_containter);
 		mCropLayout = (RelativeLayout) findViewById(R.id.capture_crop_layout);
+		mTextView = (TextView) findViewById(R.id.capture_txt);
 
-		ImageView mQrLineView = (ImageView) findViewById(R.id.capture_scan_line);
+		mQrLineView = (ImageView) findViewById(R.id.capture_scan_line);
 		TranslateAnimation mAnimation = new TranslateAnimation(TranslateAnimation.ABSOLUTE, 0f, TranslateAnimation.ABSOLUTE, 0f,
 				TranslateAnimation.RELATIVE_TO_PARENT, 0f, TranslateAnimation.RELATIVE_TO_PARENT, 0.9f);
 		mAnimation.setDuration(1500);
@@ -135,8 +143,6 @@ public class CaptureActivity extends Activity implements Callback {
 		mAnimation.setInterpolator(new LinearInterpolator());
 		mQrLineView.setAnimation(mAnimation);
 	}
-
-	boolean flag = true;
 
 	protected void light() {
 		if (flag == true) {
@@ -193,7 +199,7 @@ public class CaptureActivity extends Activity implements Callback {
 		playBeepSoundAndVibrate();
 		Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
 		// 连续扫描，不发送此消息扫描一次结束后就不能再次扫描
-		// handler.sendEmptyMessage(R.id.restart_preview);
+		handler.sendEmptyMessage(R.id.restart_preview);
 		
 		//检测是否在连上互联网 ！！！ 虚拟机下验证不成功
 		if(ProtoUtil.isConnected2Internet(getApplicationContext())) {
@@ -278,8 +284,6 @@ public class CaptureActivity extends Activity implements Callback {
 		}
 	}
 
-	private static final long VIBRATE_DURATION = 200L;
-
 	private void playBeepSoundAndVibrate() {
 		if (playBeep && mediaPlayer != null) {
 			mediaPlayer.start();
@@ -308,7 +312,6 @@ public class CaptureActivity extends Activity implements Callback {
 	    private String devType;
 	    private String devId;
 	    
-	    
 	    public RegisterTask (Context context){
 	         mContext = context;
 	    }
@@ -317,6 +320,8 @@ public class CaptureActivity extends Activity implements Callback {
 		protected void onPreExecute() {
 	    	xh_ProgressBar = (ProgressBar)findViewById(R.id.welcomeProgressBar);
 			xh_ProgressBar.setVisibility(View.VISIBLE);
+			mCropLayout.setVisibility(View.INVISIBLE);
+			mTextView.setText(R.string.scan_tips_registing);
 		}
 	    
 		@Override
@@ -329,22 +334,22 @@ public class CaptureActivity extends Activity implements Callback {
 		@Override
 		protected void onPostExecute(byte[] result) {
 			super.onPostExecute(result);
-			
 			if (null != result && result[2] == 0x18 && (int)result[10] == 0 ) {
 				xh_ProgressBar.setVisibility(View.GONE);
-				
 				SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
     	    	Editor edit = pref.edit();
     	    	edit.putString(RegisterActivity.DEVICE_TYPE, this.devType);
     	    	edit.putString(RegisterActivity.DEVICE_ID, this.devId);
-    	    	
     	    	Toast.makeText(mContext, getString(R.string.register_sucess, ""), Toast.LENGTH_SHORT).show();
-    	    	
-                Intent intent = new Intent(mContext, UserEditActivity.class);
+    	    	Intent intent = new Intent(mContext, MainActivity.class);
     			startActivity(intent);
+    			
+    			startService(new Intent(BackgroundService.ACTION));//开始心跳服务
 			}else {
 				xh_ProgressBar.setVisibility(View.GONE);
 				Toast.makeText(mContext, getString(R.string.register_failed, ""), Toast.LENGTH_SHORT).show();
+				mCropLayout.setVisibility(View.VISIBLE);
+				mTextView.setText(R.string.scan_tips);
 			}
 		}
 	}
@@ -371,7 +376,6 @@ public class CaptureActivity extends Activity implements Callback {
 				out[3] = 22;//有效数据区长度2
 				out[5] = 0x0C;//源类型（安卓）
 				out[6] = 0x0A;//宿类型
-				
 //			    out[10] = 1; //设备型号
 //			    short sId = (short)65534;
 				out[10] = (byte)Integer.parseInt(devType); //设备型号

@@ -8,90 +8,90 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AddRecordActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="用户名" />
+<!--     <TextView -->
+<!--         android:id="@+id/textView1" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignParentLeft="true" -->
+<!--         android:layout_alignParentTop="true" -->
+<!--         android:text="用户名" /> -->
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/user_name"
-        android:layout_below="@+id/user_name"
-        android:layout_marginTop="20dp"
-        android:text="年月日/时分" />
+<!--     <TextView -->
+<!--         android:id="@+id/textView2" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignLeft="@+id/user_name" -->
+<!--         android:layout_below="@+id/user_name" -->
+<!--         android:layout_marginTop="20dp" -->
+<!--         android:text="年月日/时分" /> -->
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/time"
-        android:layout_below="@+id/time"
-        android:layout_marginTop="25dp"
-        android:text="高/低/心率" />
+<!--     <TextView -->
+<!--         android:id="@+id/textView3" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignLeft="@+id/time" -->
+<!--         android:layout_below="@+id/time" -->
+<!--         android:layout_marginTop="25dp" -->
+<!--         android:text="高/低/心率" /> -->
 
-    <EditText
-        android:id="@+id/high"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3"
-        android:ems="10"
-        android:inputType="number" />
+<!--     <EditText -->
+<!--         android:id="@+id/high" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignLeft="@+id/textView3" -->
+<!--         android:layout_below="@+id/textView3" -->
+<!--         android:ems="10" -->
+<!--         android:inputType="number" /> -->
 
-    <EditText
-        android:id="@+id/low"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/high"
-        android:layout_below="@+id/high"
-        android:ems="10"
-        android:inputType="number" />
+<!--     <EditText -->
+<!--         android:id="@+id/low" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignLeft="@+id/high" -->
+<!--         android:layout_below="@+id/high" -->
+<!--         android:ems="10" -->
+<!--         android:inputType="number" /> -->
 
-    <EditText
-        android:id="@+id/beat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/low"
-        android:layout_below="@+id/low"
-        android:ems="10"
-        android:inputType="number" />
+<!--     <EditText -->
+<!--         android:id="@+id/beat" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignLeft="@+id/low" -->
+<!--         android:layout_below="@+id/low" -->
+<!--         android:ems="10" -->
+<!--         android:inputType="number" /> -->
 
-    <EditText
-        android:id="@+id/user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:ems="10"
-        android:inputType="textPersonName">
+<!--     <EditText -->
+<!--         android:id="@+id/user_name" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignLeft="@+id/textView1" -->
+<!--         android:layout_below="@+id/textView1" -->
+<!--         android:ems="10" -->
+<!--         android:inputType="textPersonName"> -->
         
-        <requestFocus />
-    </EditText>
+<!--         <requestFocus /> -->
+<!--     </EditText> -->
 
-    <EditText
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:ems="10"
-        android:inputType="date" >
+<!--     <EditText -->
+<!--         android:id="@+id/date" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignLeft="@+id/textView2" -->
+<!--         android:layout_below="@+id/textView2" -->
+<!--         android:ems="10" -->
+<!--         android:inputType="date" > -->
 
        
-    </EditText>
+<!--     </EditText> -->
 
-    <EditText
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/date"
-        android:layout_below="@+id/date"
-        android:ems="10"
-        android:inputType="time" />
+<!--     <EditText -->
+<!--         android:id="@+id/time222" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignLeft="@+id/date" -->
+<!--         android:layout_below="@+id/date" -->
+<!--         android:ems="10" -->
+<!--         android:inputType="time" /> -->
 
 </RelativeLayout>

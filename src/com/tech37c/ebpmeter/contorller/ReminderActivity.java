@@ -6,9 +6,13 @@ import com.tech37c.ebpmeter.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class ReminderActivity extends Activity {
@@ -16,10 +20,17 @@ public class ReminderActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);//自定义标题栏
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_reminder);
-		final TextView txtView = (TextView) findViewById(R.id.current_user);
-		txtView.setText("提醒");
+		
+		final ImageButton backBtn = (ImageButton) findViewById(R.id.reminder_back_main);
+		backBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), MainActivity.class);
+    			startActivity(intent);
+			}
+		});
 	}
 
 	@Override
@@ -28,5 +39,4 @@ public class ReminderActivity extends Activity {
 		getMenuInflater().inflate(R.menu.reminder, menu);
 		return true;
 	}
-
 }

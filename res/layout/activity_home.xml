@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- *** TableLayout Version *** -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layout_full"
+    android:orientation="vertical" >
+
+    <TableLayout
+        style="@style/layout_vertical"
+        android:layout_weight="2"
+        android:background="#0099f1" >
+
+        <TableRow
+            android:id="@+id/tb1_rw1"
+            style="@style/layout_horizontal">
+            <TextView
+                android:id="@+id/pic_space_1"
+                android:layout_weight="1" 
+                android:layout_marginTop="40dp"/>
+
+            <ImageView
+                android:id="@+id/head_pic"
+                android:layout_height="120dp"
+                android:layout_marginTop="40dp"
+                android:layout_weight="2"
+                android:src="@drawable/pic_dad" />
+
+			<ImageView
+                android:id="@+id/home_status"
+                android:layout_height="30dp"
+                android:layout_width="0dp"
+                android:layout_marginTop="40dp"
+                android:layout_weight="1"
+                android:src="@drawable/health_good" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tb1_rw2"
+            style="@style/layout_horizontal" >
+
+            <TextView 
+                android:id="@+id/User_space_1"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/current_user_name"
+                android:layout_weight="2"
+                android:text="某爸爸"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:gravity="center"
+                />
+
+            <TextView 
+                android:id="@+id/User_space_2"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tb1_rw3"
+            style="@style/layout_horizontal">
+            <TextView 
+                android:id="@+id/age_space_1"
+                android:layout_weight="1"
+                android:layout_height="30dp" />
+<!--             <ImageView -->
+<!--                 android:id="@+id/birthday" -->
+<!--                 android:layout_weight="1" -->
+<!--                 android:layout_height="30dp" -->
+<!--                 android:src="@drawable/setting" /> -->
+            <TextView
+                android:id="@+id/main_age"
+                android:layout_weight="2"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="60岁"
+                android:textColor="#ffffff" />
+            <TextView 
+                android:id="@+id/age_space_2"
+                android:layout_weight="1"
+                android:layout_height="30dp" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        style="@style/layout_vertical"
+        android:layout_marginTop="0.5dp"
+        android:layout_weight="1"
+        android:background="#0099f1" >
+
+        <TableRow android:id="@+id/tb2_rw1" >
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="高压"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="低压"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="脉搏"
+                android:textColor="#ffffff" />
+        </TableRow>
+
+        <TableRow android:id="@+id/tb2_rw2" >
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="150"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                android:id="@+id/main_high"/>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                 android:gravity="center"
+                android:text="95"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                android:id="@+id/main_low" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="75"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                android:id="@+id/main_beat" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        style="@style/layout_vertical"
+        android:layout_weight="1"
+        android:background="#f5f5f5" >
+
+        <TableRow android:id="@+id/tb3_rw1" >
+
+            <ImageView
+                android:id="@+id/list_btn"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/list_btn" />
+
+            <ImageView
+                android:id="@+id/reminder_btn"
+                android:layout_height="80dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:src="@drawable/rmd_btn" />
+        </TableRow>
+
+        <TableRow android:id="@+id/tb3_rw2" >
+
+            <TextView
+                android:id="@+id/list"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="测量记录 " 
+                />
+
+            <TextView
+                android:id="@+id/reminder"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="用药提醒" 
+                android:layout_marginTop="5dp"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

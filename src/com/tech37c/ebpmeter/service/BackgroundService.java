@@ -48,7 +48,6 @@ public class BackgroundService extends Service {
 	public static final String POP_UP_LOW = "pop_up_low";
 	public static final String POP_UP_BEAT = "pop_up_beat";
 	
-	
 	public static final String LATEST_RECORD_TIME = "latest_record_time";// 最近插入的一条记录时间
 	public static final String DEV_TYPE = "dev_type";// 设备类型（血压计）
 	public static final String DEV_ID = "dev_id";// 设备ID（血压计）
@@ -204,8 +203,7 @@ public class BackgroundService extends Service {
 	 * @return
 	 */
 	public byte[] getAnRecord() {
-		SharedPreferences pref = getSharedPreferences(SHARED_PREFS_NAME,
-				MODE_PRIVATE);
+		SharedPreferences pref = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
 		String devId = pref.getString(RegisterActivity.DEVICE_ID, "");
 		String devType = pref.getString(RegisterActivity.DEVICE_TYPE, "");
 		String time = pref.getString(LATEST_RECORD_TIME, "2010-1-1 0:0:0");

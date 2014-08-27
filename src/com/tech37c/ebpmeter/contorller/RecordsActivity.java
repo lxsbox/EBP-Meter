@@ -31,6 +31,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -62,13 +63,21 @@ public class RecordsActivity extends ListActivity {
 		pref.getString(UserEditActivity.DAD, "")
 				: pref.getString(UserEditActivity.MOM, "");
 		final TextView txtView = (TextView) findViewById(R.id.current_user222);
-		txtView.setText(name + "的血压记录");
+		txtView.setText(name + "测量记录");
 
 		final ImageButton chartBtn = (ImageButton) findViewById(R.id.chart_on_title);
 		chartBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), ChartActivity.class);
+				startActivity(intent);
+			}
+		});
+		final ImageButton backBtn = (ImageButton) findViewById(R.id.list_back_main);
+		backBtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), MainActivity.class);
 				startActivity(intent);
 			}
 		});
@@ -95,6 +104,7 @@ public class RecordsActivity extends ListActivity {
 			map.put("time", cursor.getString(4));
 			map.put("high", cursor.getInt(5) + "");
 			map.put("low", cursor.getInt(6) + "");
+			map.put("beat", cursor.getInt(7) + "");
 			list.add(map);
 		}
 		return list;
@@ -119,7 +129,8 @@ public class RecordsActivity extends ListActivity {
 		public TextView time;
 		public TextView high;
 		public TextView low;
-		public ImageButton viewBtn;
+		public TextView beat;
+		public ImageView viewBtn;
 		public LinearLayout layout;
 	}
 
@@ -160,12 +171,12 @@ public class RecordsActivity extends ListActivity {
 
 				holder = new ViewHolder();
 
-				convertView = mInflater.inflate(R.layout.activity_records_line,
-						null);
+				convertView = mInflater.inflate(R.layout.activity_records_line, null);
 				holder.time = (TextView) convertView.findViewById(R.id.time);
 				holder.high = (TextView) convertView.findViewById(R.id.high);
 				holder.low = (TextView) convertView.findViewById(R.id.low);
-				holder.viewBtn = (ImageButton) convertView
+				holder.beat = (TextView) convertView.findViewById(R.id.beat);
+				holder.viewBtn = (ImageView) convertView
 						.findViewById(R.id.view_btn);
 				holder.layout = (LinearLayout) convertView
 						.findViewById(R.id.layoutId);
@@ -174,19 +185,20 @@ public class RecordsActivity extends ListActivity {
 				// holder.time.setTextColor(lastId==getCount()?Color.parseColor("#ffffff"):Color.parseColor("#000000"));
 				// holder.high.setTextColor(lastId==getCount()?Color.parseColor("#ffffff"):Color.parseColor("#000000"));
 				// holder.low.setTextColor(lastId==getCount()?Color.parseColor("#ffffff"):Color.parseColor("#000000"));
-				holder.viewBtn.setVisibility(lastId==getCount()?0:4);//0:visible
+//				holder.viewBtn.setVisibility(lastId==getCount()?0:4);//0:visible
+				holder.viewBtn.setVisibility(0);//0:visible
 				// holder.layout.setBackgroundColor(lastId==getCount()?Color.parseColor("#9FF781"):Color.parseColor("#ffffff"));
 
 				convertView.setTag(holder);
-
 			} else {
 				holder = (ViewHolder) convertView.getTag();
 			}
 
 			String origTime = (String) mData.get(position).get("time");
 			holder.time.setText(ProtoUtil.getEasyTime(origTime));
-			holder.high.setText("><" + (String) mData.get(position).get("high"));
-			holder.low.setText("<>" + (String) mData.get(position).get("low"));
+			holder.high.setText((String) mData.get(position).get("high"));
+			holder.low.setText((String) mData.get(position).get("low"));
+			holder.beat.setText((String) mData.get(position).get("beat"));
 
 			holder.viewBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -195,10 +207,8 @@ public class RecordsActivity extends ListActivity {
 					showInfo();
 				}
 			});
-
 			return convertView;
 		}
-
 	}
 
 	
@@ -253,6 +263,7 @@ public class RecordsActivity extends ListActivity {
 			map.put("time", popT);
 			map.put("high", popH);
 			map.put("low", popL);
+			map.put("beat", popB);
 			mData.add(0, map);
 			adapter.notifyDataSetChanged();
 		}

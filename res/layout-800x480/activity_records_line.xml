@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutId"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/test_selector"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:textColor="#d3d3d3"
+        android:textSize="10sp"
+        android:layout_marginLeft="7dp"
+        android:text="20:00"/>
+	
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f5f5f5" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:rowCount="3"
+        android:columnCount="6"
+        android:orientation="horizontal">
+        	<!-- row 1 -->
+            <ImageView
+                android:id="@+id/health_status"
+                android:src="@drawable/health_light"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:gravity="center"
+                android:text="高压"
+                android:textSize="10sp"
+                android:textColor="#d3d3d3"
+                android:layout_marginTop="5dp" 
+                android:layout_marginLeft="21dp"/>
+            <TextView
+                android:gravity="center"
+                android:text="低压"
+                android:textSize="10sp"
+                android:textColor="#d3d3d3"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="21dp"/>
+            <TextView
+                android:gravity="center"
+                android:text="脉搏"
+                android:textSize="10sp"
+                android:textColor="#d3d3d3"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="21dp"/>
+            <TextView
+                android:text=""
+                android:layout_marginLeft="21dp"/>
+            <ImageView
+		        android:id="@+id/view_btn"
+		        android:layout_rowSpan="2"
+		        android:layout_width="30dp"
+		        android:layout_height="30dp"
+		        android:src="@drawable/list_call"
+		        android:layout_marginTop="15dp"
+		        android:layout_marginLeft="30dp"/>
+            
+			<!-- row 2 -->
+            <TextView
+                android:text="轻度"
+                android:textSize="10sp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="11dp"/>
+            <TextView
+                android:id="@+id/high"
+                android:textSize="18sp" 
+                android:text="high"
+                android:layout_marginLeft="21dp"
+                android:textColor="#0099f1"/>
+            <TextView
+                android:id="@+id/low"
+                android:layout_gravity="top"
+                android:layout_marginLeft="21dp"
+                android:gravity="center"
+                android:text="low"
+                android:textSize="18sp"
+                android:textColor="#0099f1" />
+            <TextView
+                android:id="@+id/beat"
+                android:layout_gravity="top"
+                android:textSize="18sp"
+                android:textColor="#0099f1"
+                android:text="beat"
+                android:layout_marginLeft="21dp"/>
+    </GridLayout>
+
+</LinearLayout>

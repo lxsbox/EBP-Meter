@@ -27,15 +27,15 @@
        android:textColor="@android:color/white"
        android:layout_centerInParent="true"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/back_rcrds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:background="@android:color/holo_green_dark"
-        android:text="@string/back_2_records"
-        android:textColor="@android:color/white" />
+        android:background="#0099f1"
+        android:src="@drawable/back_2_parent"
+        />
 
 </RelativeLayout>

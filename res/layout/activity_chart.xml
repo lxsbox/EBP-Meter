@@ -78,33 +78,72 @@
 
 <!-- </RelativeLayout> -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/layout_full"
+    android:orientation="vertical"
     tools:context="de.eazegraph.app.fragments.ValueLineChartFragment" >
 
-    <CheckBox
-        android:id="@+id/tenDays"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_toStartOf="@+id/allDays"
-        android:checked="true"
-        android:text="@string/chart_10" />
+<!--     <CheckBox -->
+<!--         android:id="@+id/tenDays" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="30dp" -->
+<!--         android:layout_toStartOf="@+id/allDays" -->
+<!--         android:checked="true" -->
+<!--         android:text="@string/chart_10" /> -->
 
-    <CheckBox
-        android:id="@+id/allDays"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:text="@string/chart_all" />
-
+<!--     <CheckBox -->
+<!--         android:id="@+id/allDays" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="30dp" -->
+<!--         android:layout_alignParentRight="true" -->
+<!--         android:layout_marginRight="10dp" -->
+<!--         android:text="@string/chart_all" /> -->
+	<com.makeramen.segmented.SegmentedRadioGroup
+	    android:layout_weight="2"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dp"
+		android:layout_marginTop="20dp"
+		android:layout_marginLeft="40dp"
+		android:layout_marginRight="40dp"
+		android:orientation="horizontal"
+		android:id="@+id/segment_text"
+		android:checkedButton="@+id/button_one">
+		
+		<RadioButton android:id="@id/button_one"
+		    android:layout_weight="1"
+			android:minHeight="33dp"
+			android:text="最近十天"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:button="@null"
+			android:gravity="center"
+			android:textColor="@drawable/radio_colors" />
+		<RadioButton android:id="@+id/button_two"
+			android:layout_weight="1"
+			android:minHeight="33dp"
+			android:text="最近三个月"
+			android:button="@null"
+			android:gravity="center"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:textColor="@drawable/radio_colors" />
+		<RadioButton android:id="@+id/button_three"
+			android:layout_weight="1"
+			android:minHeight="33dp"
+			android:text="全部"
+			android:button="@null"
+			android:gravity="center"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:textColor="@drawable/radio_colors" />
+	</com.makeramen.segmented.SegmentedRadioGroup>
+	
+	
     <FrameLayout
+        android:layout_weight="6"
+        android:layout_width="wrap_content"
+	    android:layout_height="0dp"
         android:id="@+id/chart_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="20dp"/>
 
-</RelativeLayout>
+</LinearLayout>
+

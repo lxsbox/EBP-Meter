@@ -1,48 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layoutId"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal" >
-    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/test_selector"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/time"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:textColor="#d3d3d3"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:text="20:00"/>
+	
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f5f5f5" />
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="22px" 
-            android:layout_marginLeft="20px"/>
-        
-        <TextView
-            android:id="@+id/high"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="22px" 
-            android:layout_marginLeft="20px"/>
-
-        <TextView
-            android:id="@+id/low"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="22px" 
-            android:layout_marginLeft="20px"/>
-
-        <ImageButton
-            android:id="@+id/view_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:text="@string/s_view_btn"
-            android:layout_marginLeft="100px"
-            android:src="@drawable/phone"/>
-        
-
-    </LinearLayout>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:rowCount="3"
+        android:columnCount="6"
+        android:orientation="horizontal">
+        	<!-- row 1 -->
+            <ImageView
+                android:id="@+id/health_status"
+                android:src="@drawable/health_light"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"/>
+            <TextView
+                android:gravity="center"
+                android:text="高压"
+                android:textSize="20sp"
+                android:textColor="#d3d3d3"
+                android:layout_marginTop="10dp" 
+                android:layout_marginLeft="30dp"/>
+            <TextView
+                android:gravity="center"
+                android:text="低压"
+                android:textSize="20sp"
+                android:textColor="#d3d3d3"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"/>
+            <TextView
+                android:gravity="center"
+                android:text="脉搏"
+                android:textSize="20sp"
+                android:textColor="#d3d3d3"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"/>
+            <TextView
+                android:text=""
+                android:layout_marginLeft="30dp"/>
+            <ImageView
+		        android:id="@+id/view_btn"
+		        android:layout_rowSpan="2"
+		        android:src="@drawable/list_call"
+		        android:layout_marginTop="10dp"
+		        android:layout_marginLeft="30dp"/>
+            
+			<!-- row 2 -->
+            <TextView
+                android:text="轻度"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="32dp"/>
+            <TextView
+                android:id="@+id/high"
+                android:textSize="30sp" 
+                android:text="high"
+                android:layout_marginBottom="20dp" 
+                android:layout_marginLeft="30dp"
+                android:textColor="#0099f1"/>
+            <TextView
+                android:id="@+id/low"
+                android:layout_gravity="top"
+                android:layout_marginLeft="30dp"
+                android:gravity="center"
+                android:text="low"
+                android:textSize="30sp"
+                android:textColor="#0099f1" />
+            <TextView
+                android:id="@+id/beat"
+                android:layout_gravity="top"
+                android:textSize="30sp"
+                android:textColor="#0099f1"
+                android:text="beat"
+                android:layout_marginLeft="30dp"/>
+    </GridLayout>
 
 </LinearLayout>

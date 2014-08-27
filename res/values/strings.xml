@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
     <string name="app_name">YZY 血压</string>
     <string name="register_cloud">注册 ></string>
     <string name="back_2_records" > &#060; 返回 </string>
     <string name="register">注册</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="main_title">游子吟智能电子血压计</string>
+    <string name="main_dad">某爸爸</string>
+    <string name="main_mom">某妈妈</string>
+    <string name="setting">设置</string>
+    
+    
     <string name="title_activity_add_record">添加一条记录</string>
     <string name="show_chart">显示图表</string>
     <string name="show_all_data">所有数据</string>
@@ -27,11 +34,12 @@
     <string name="title_activity_register">云端注册</string>
     <string name="net_unavailable">无法连接到互联网 :( </string>
     <string name="register_sucess">注册成功 </string>
-    <string name="register_failed">注册失败 :( </string>
-    <string name="title_activity_user_edit">编辑用户</string>
+    <string name="register_failed">注册失败 ，请重试 </string>
+    <string name="title_activity_user_edit">用户设置</string>
     <string name="more">...</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
-    <string name="scan_tips">将二维码图片对准扫描框即可自动扫描</string>
+    <string name="scan_tips">对准二维码图片</string>
+    <string name="scan_tips_registing">注册中，请稍候</string>
     <string name="title_activity_tabs">TabsActivity</string>
     <string name="title_activity_reminder">ReminderActivity</string>
     <string name="title_activity_setting">SettingActivity</string>

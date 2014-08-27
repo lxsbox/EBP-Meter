@@ -5,4 +5,8 @@
 	<color name="tabMedium">#FFFFFF</color>
 	<color name="tabDark">#6E6E6E</color>
 	<color name="tabTransparent">#10ffffff</color>
+	
+	<color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="green">#00ff00</color>
 </resources>

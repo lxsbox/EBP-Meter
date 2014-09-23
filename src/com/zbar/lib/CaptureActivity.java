@@ -38,10 +38,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tech37c.ebpmeter.R;
-import com.tech37c.ebpmeter.contorller.MainActivity;
 import com.tech37c.ebpmeter.contorller.RegisterActivity;
-import com.tech37c.ebpmeter.contorller.TabsActivity;
-import com.tech37c.ebpmeter.contorller.UserEditActivity;
+import com.tech37c.ebpmeter.contorller.SearchingIntroductionActivity;
 import com.tech37c.ebpmeter.model.EmptyByte;
 import com.tech37c.ebpmeter.service.BackgroundService;
 import com.tech37c.ebpmeter.utils.ProtoUtil;
@@ -341,10 +339,10 @@ public class CaptureActivity extends Activity implements Callback {
     	    	edit.putString(RegisterActivity.DEVICE_TYPE, this.devType);
     	    	edit.putString(RegisterActivity.DEVICE_ID, this.devId);
     	    	Toast.makeText(mContext, getString(R.string.register_sucess, ""), Toast.LENGTH_SHORT).show();
-    	    	Intent intent = new Intent(mContext, MainActivity.class);
+    	    	Intent intent = new Intent(mContext, SearchingIntroductionActivity.class);
     			startActivity(intent);
-    			
-    			startService(new Intent(BackgroundService.ACTION));//开始心跳服务
+    			finish();// Preventing going back
+//    			startService(new Intent(BackgroundService.ACTION));//开始心跳服务
 			}else {
 				xh_ProgressBar.setVisibility(View.GONE);
 				Toast.makeText(mContext, getString(R.string.register_failed, ""), Toast.LENGTH_SHORT).show();

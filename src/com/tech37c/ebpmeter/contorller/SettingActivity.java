@@ -31,6 +31,8 @@ public class SettingActivity extends Activity {
 		final ImageButton updateBtn = (ImageButton) findViewById(R.id.check_update_Btn);
 		final ImageButton back2MainBtn = (ImageButton) findViewById(R.id.back_2_main);
 		final ImageButton userSetting = (ImageButton) findViewById(R.id.user_setting);
+		final ImageButton rgstDevBtn = (ImageButton) findViewById(R.id.register_dev);
+		
 		
 		openBuble.setChecked(true);
 		openNeverUse.setChecked(true);
@@ -67,6 +69,13 @@ public class SettingActivity extends Activity {
     			startActivity(intent);
     		}
     	});
+		
+		rgstDevBtn.setOnClickListener(new Button.OnClickListener(){
+			public void onClick (View v){
+				Intent intent = new Intent(v.getContext(), WelcomeActivity.class);
+    			startActivity(intent);
+    		}
+		});
 	}
 
 	@Override

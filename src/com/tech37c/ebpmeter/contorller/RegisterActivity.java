@@ -77,12 +77,14 @@ public class RegisterActivity extends Activity {
 			final Button skipRegButton  = (Button)findViewById(R.id.skipReg);
 			skipRegButton.setOnClickListener(new Button.OnClickListener(){
 	    		public void onClick (View v){
-	    			SharedPreferences.Editor editor = getSharedPreferences(
-	    					BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE).edit();
-					editor.putString(UserEditActivity.CURRENT_USER_ID,"1");
-					editor.commit();
+//	    			SharedPreferences.Editor editor = getSharedPreferences(
+//	    					BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE).edit();
+//					editor.putString(UserEditActivity.CURRENT_USER_ID,"1");
+//					editor.commit();
 	    			
-	    			Intent intent = new Intent(v.getContext(), MainActivity.class);
+//	    			Intent intent = new Intent(v.getContext(), MainActivity.class);
+//	    			startActivity(intent);
+	    			Intent intent = new Intent(v.getContext(), SearchingIntroductionActivity.class);
 	    			startActivity(intent);
 	    		}
 	    	});
@@ -220,12 +222,14 @@ public class RegisterActivity extends Activity {
     	    	Toast.makeText(mContext, getString(R.string.register_sucess, ""), Toast.LENGTH_SHORT).show();
     	    	
 //                Intent intent = new Intent(mContext, UserEditActivity.class);
-    	    	Intent intent = new Intent(mContext, MainActivity.class);
+//    	    	Intent intent = new Intent(mContext, MainActivity.class);
+    	    	Intent intent = new Intent(mContext, SearchingIntroductionActivity.class);
     			startActivity(intent);
     			
 //    			Intent intent2 = new Intent(mContext, TabsActivity.class);
 //    			startActivity(intent2);
     			startService(new Intent(BackgroundService.ACTION));//开始心跳服务
+    			finish();
 			}else {
 				xh_ProgressBar.setVisibility(View.GONE);
 				Toast.makeText(mContext, getString(R.string.register_failed, ""), Toast.LENGTH_SHORT).show();

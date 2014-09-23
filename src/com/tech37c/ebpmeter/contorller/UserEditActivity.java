@@ -1,12 +1,14 @@
 package com.tech37c.ebpmeter.contorller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.tech37c.ebpmeter.R;
 import com.tech37c.ebpmeter.utils.ProtoUtil;
+import com.tech37c.ebpmeter.utils.ViewUtil;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.BitmapFactory;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -94,9 +97,45 @@ public class UserEditActivity extends Activity {
 			}
 		});
 		dadImage = (ImageView) findViewById(R.id.dad_image);
-
+		setDrawableFace4UerEidt(dadImage, DAD);
 	}
 
+	
+	/**
+	 * Fill main page's face picture
+	 * @return
+	 */
+	public void setDrawableFace4UerEidt(ImageView face, String imageFlag) {
+		Bitmap bitmap = null;
+		String path = "";
+		if(imageFlag.equals(DAD)) {
+			path = Environment.getExternalStorageDirectory() + "/" + UserEditActivity.DAD_IMAGE_FILE_NAME;
+		} else {
+			path = Environment.getExternalStorageDirectory() + "/" + UserEditActivity.MOM_IMAGE_FILE_NAME;
+		}
+		
+		if (!path.equals("")) {
+			FileInputStream fis = null;
+			try {
+				fis = new FileInputStream(path);
+				bitmap  = BitmapFactory.decodeStream(fis);
+				face.setImageBitmap(ViewUtil.getRoundedCornerBitmap(bitmap, 100, bitmap.getWidth(), bitmap.getHeight()));
+//				Drawable drawable = new BitmapDrawable(bitmap);
+//				face.setImageBitmap(ViewUtil.createStarPhoto(120, 120, bitmap));
+//				face.setImageDrawable(drawable);
+			} catch (FileNotFoundException e) {
+				System.out.println("file not found");
+			} finally {
+				try {
+					if(fis != null) fis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	
 	/**
 	 * 显示选择对话框
 	 */
@@ -270,8 +309,8 @@ public class UserEditActivity extends Activity {
 		if (extras != null) {
 			Bitmap photo = extras.getParcelable("data");
 			saveBitmap(photo);//haha! save afer crop pic yeah~
-			Drawable drawable = new BitmapDrawable(photo);
-			dadImage.setImageDrawable(drawable);
+			dadImage.setImageBitmap(ViewUtil.getRoundedCornerBitmap(photo, 100, photo.getWidth(), photo.getHeight()));
+//			dadImage.setImageDrawable(drawable);
 		}
 	}
 

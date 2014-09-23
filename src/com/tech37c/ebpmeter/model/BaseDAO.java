@@ -1,6 +1,7 @@
 package com.tech37c.ebpmeter.model;
 
 
+import com.tech37c.ebpmeter.contorller.UserEditActivity;
 import com.tech37c.ebpmeter.service.BackgroundService;
 
 import android.annotation.SuppressLint;
@@ -103,7 +104,7 @@ public class BaseDAO extends SQLiteOpenHelper {
 		String order = ID + " DESC";
 
 	    SharedPreferences pref = context.getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
-	    String userId = pref.getString("CURRENT_USER_ID", "1");
+	    String userId = pref.getString(UserEditActivity.CURRENT_USER_ID, "1");
 		SQLiteDatabase db = getReadableDatabase();
 		Cursor cursor = db.query(BP_RECORD, from,
 				"User_ID=" + userId,
@@ -122,7 +123,7 @@ public class BaseDAO extends SQLiteOpenHelper {
 		String order = ID + " " + OrderBy;
 
 	    SharedPreferences pref = context.getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
-	    String userId = pref.getString("CURRENT_USER_ID", "1");
+	    String userId = pref.getString(UserEditActivity.CURRENT_USER_ID, "1");
 		SQLiteDatabase db = getReadableDatabase();
 		Cursor cursor = db.query(BP_RECORD, from,
 				"User_ID=" + userId,
@@ -130,7 +131,7 @@ public class BaseDAO extends SQLiteOpenHelper {
 				order);
 		return cursor;
 	}
-
+	
 	@Override
 	public synchronized void close() {
 		super.close();

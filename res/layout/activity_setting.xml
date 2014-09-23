@@ -90,7 +90,8 @@
                 android:layout_weight="1"
                 android:background="#ffffff"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/setting_arrow" />
+                android:src="@drawable/setting_arrow"
+                android:id="@+id/register_dev" />
         </TableRow>
     </TableLayout>
     

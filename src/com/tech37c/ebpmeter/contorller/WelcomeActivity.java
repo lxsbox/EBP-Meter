@@ -30,17 +30,26 @@ public class WelcomeActivity extends Activity {
 	    		public void onClick (View v){
 	    			Intent intent = new Intent(v.getContext(), CaptureActivity.class);
 	     			startActivity(intent);
+	     			finish();
 	    		}
 	    	});
 			skipBtn.setOnClickListener(new Button.OnClickListener(){
 	    		public void onClick (View v){
 	    			Intent intent = new Intent(v.getContext(), RegisterActivity.class);
 	     			startActivity(intent);
+	     			finish();
 	    		}
 	    	});
 		} else {
+			//Set the current user
+			SharedPreferences.Editor editor = getSharedPreferences(
+					BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE).edit();
+			editor.putString(UserEditActivity.CURRENT_USER_ID,"1");
+			editor.commit();
+			
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
+			finish();
 		}
 	}
 
@@ -49,5 +58,4 @@ public class WelcomeActivity extends Activity {
 		getMenuInflater().inflate(R.menu.welcome, menu);
 		return true;
 	}
-
 }

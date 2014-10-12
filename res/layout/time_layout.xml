@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    <TableLayout
+        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp">
+        <TableRow
+            android:layout_weight="0.8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+            <com.baodian.widget.WheelView
+                android:id="@+id/year"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5" />
+            <com.baodian.widget.WheelView
+                android:id="@+id/month"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5" />
+        </TableRow>
+        <TableRow
+            android:layout_weight="0.2"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="2dip"
+            android:gravity="center" >
+            <Space 
+                android:layout_weight="1"/>
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/lay_left"
+                android:layout_width="wrap_content"
+                android:layout_marginRight="10dip"
+                android:layout_marginTop="5dip"
+                android:layout_gravity="center_vertical"
+                android:text="好了">
+            </Button>
+            <Space 
+                android:layout_weight="1"/>           
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

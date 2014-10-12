@@ -6,7 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import com.baodian.widget.SoftInfoDialog;
 import com.tech37c.ebpmeter.R;
+import com.tech37c.ebpmeter.service.BackgroundService;
 import com.tech37c.ebpmeter.utils.ProtoUtil;
 import com.tech37c.ebpmeter.utils.ViewUtil;
 
@@ -18,13 +20,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.graphics.BitmapFactory;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -34,11 +35,12 @@ import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
 
 /**
  * 编辑用户
@@ -49,16 +51,22 @@ import android.widget.Toast;
 public class UserEditActivity extends Activity {
 	private CheckBox dadCheckBox;
 	private CheckBox momCheckBox;
-	private EditText dadText;
-	private EditText momText;
+	private TextView dad_name_text;
+	private TextView mom_name_text;
+	private ImageButton dad_name_button;
+	private ImageButton mom_name_button;
+	private TextView dad_age_text;
+	private TextView mom_age_text;
 
-	public static final String DAD = "dad";
-	public static final String MOM = "mom";
+//	public static final String DAD = "dad";
+//	public static final String MOM = "mom";
 	public static final String CURRENT_USER_ID = "current_user_id";
-	public static final String USER_1 = "1";
-	public static final String USER_1_AGE = "0";
-	public static final String USER_2 = "2";
-	public static final String USER_2_AGE = "0";
+	public static final String USER_1_KEY = "1";
+	public static final String USER_2_KEY = "2";
+	public static final String USER_1_NAME_VALUE = "user_1_name_value";
+	public static final String USER_2_NAME_VALUE = "user_2_name_value";
+	public static final String USER_1_AGE_VALUE = "user_1_age_value";
+	public static final String USER_2_AGE_VALUE = "user_2_age_value";
 	private static final int SELECT_PHOTO = 100;
 
 	private String[] items = new String[] { "选择本地图片", "拍照" };
@@ -69,8 +77,11 @@ public class UserEditActivity extends Activity {
 	private static final int IMAGE_REQUEST_CODE = 0;
 	private static final int CAMERA_REQUEST_CODE = 1;
 	private static final int RESULT_REQUEST_CODE = 2;
+	public static final int USER1_NAME_EDIT_REQUEST_CODE = 3;
+	public static final int USER2_NAME_EDIT_REQUEST_CODE = 4;
 	private ImageView dadImage = null;
-
+	
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,14 +89,22 @@ public class UserEditActivity extends Activity {
 		setContentView(R.layout.activity_user_edit);
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 				R.layout.activity_user_edit_title);
-
+		
+		dad_name_text = (TextView) findViewById(R.id.dad_name_text);
+		mom_name_text = (TextView) findViewById(R.id.mom_name_text);
+		SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
+		String user1Called = pref.getString(USER_1_NAME_VALUE, getString(R.string.user1_default_name));
+		String user2Called = pref.getString(USER_2_NAME_VALUE, getString(R.string.user2_default_name));
+		dad_name_text.setText(user1Called);
+		mom_name_text.setText(user2Called);
+		
 		final ImageButton backBtn = (ImageButton) findViewById(R.id.back_setting);
 		backBtn.setOnClickListener(new Button.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(),
-						SettingActivity.class);
-				startActivity(intent);
+//				Intent intent = new Intent(v.getContext(),SettingActivity.class);
+//				startActivity(intent);
+				finish();
 			}
 		});
 
@@ -96,10 +115,52 @@ public class UserEditActivity extends Activity {
 				showDialog();
 			}
 		});
+		
+		dad_name_button = (ImageButton) findViewById(R.id.dad_name_button);
+		dad_name_button.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), UserNameEditActivity.class);
+				intent.putExtra("requestFrom", USER1_NAME_EDIT_REQUEST_CODE);
+				startActivityForResult(intent, USER1_NAME_EDIT_REQUEST_CODE);
+			}
+		});
+		mom_name_button = (ImageButton) findViewById(R.id.mom_name_button);
+		mom_name_button.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), UserNameEditActivity.class);
+				intent.putExtra("requestFrom", USER2_NAME_EDIT_REQUEST_CODE);
+				startActivityForResult(intent, USER2_NAME_EDIT_REQUEST_CODE);
+			}
+		});
+		
+		dad_age_text = (TextView)findViewById(R.id.dad_age_text);
+		mom_age_text = (TextView)findViewById(R.id.mom_age_text);
+		String user1Age = pref.getString(USER_1_AGE_VALUE, "55");
+		String user2Age = pref.getString(USER_2_AGE_VALUE, "55");
+		dad_age_text.setText(user1Age);
+		mom_age_text.setText(user2Age);
+		
+		ImageButton dad_birthday_button = (ImageButton)findViewById(R.id.dad_birthday_button);
+		dad_birthday_button.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				new SoftInfoDialog(UserEditActivity.this, dad_age_text, USER_1_KEY);
+			}
+		});
+		ImageButton mom_birthday_button = (ImageButton)findViewById(R.id.mom_birthday_button);
+		mom_birthday_button.setOnClickListener(new Button.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				new SoftInfoDialog(UserEditActivity.this, mom_age_text, USER_2_KEY);
+			}
+		});
+		
+	    
 		dadImage = (ImageView) findViewById(R.id.dad_image);
-		setDrawableFace4UerEidt(dadImage, DAD);
+		setDrawableFace4UerEidt(dadImage, USER_1_KEY);
 	}
-
 	
 	/**
 	 * Fill main page's face picture
@@ -108,7 +169,7 @@ public class UserEditActivity extends Activity {
 	public void setDrawableFace4UerEidt(ImageView face, String imageFlag) {
 		Bitmap bitmap = null;
 		String path = "";
-		if(imageFlag.equals(DAD)) {
+		if(imageFlag.equals(USER_1_KEY)) {
 			path = Environment.getExternalStorageDirectory() + "/" + UserEditActivity.DAD_IMAGE_FILE_NAME;
 		} else {
 			path = Environment.getExternalStorageDirectory() + "/" + UserEditActivity.MOM_IMAGE_FILE_NAME;
@@ -120,9 +181,6 @@ public class UserEditActivity extends Activity {
 				fis = new FileInputStream(path);
 				bitmap  = BitmapFactory.decodeStream(fis);
 				face.setImageBitmap(ViewUtil.getRoundedCornerBitmap(bitmap, 100, bitmap.getWidth(), bitmap.getHeight()));
-//				Drawable drawable = new BitmapDrawable(bitmap);
-//				face.setImageBitmap(ViewUtil.createStarPhoto(120, 120, bitmap));
-//				face.setImageDrawable(drawable);
 			} catch (FileNotFoundException e) {
 				System.out.println("file not found");
 			} finally {
@@ -213,6 +271,18 @@ public class UserEditActivity extends Activity {
 			case RESULT_REQUEST_CODE:
 				if (data != null) {
 					getImageToView(data);
+				}
+				break;
+			case USER1_NAME_EDIT_REQUEST_CODE:
+				if (data != null) {
+					String result = data.getExtras().getString("result");
+					dad_name_text.setText(result);
+				}
+				break;
+			case USER2_NAME_EDIT_REQUEST_CODE:
+				if (data != null) {
+					String result = data.getExtras().getString("result");
+					mom_name_text.setText(result);
 				}
 				break;
 			}
@@ -363,5 +433,4 @@ public class UserEditActivity extends Activity {
 		canvas.drawBitmap(bitmap, rect, rect, paint);
 		return output;
 	}
-
 }

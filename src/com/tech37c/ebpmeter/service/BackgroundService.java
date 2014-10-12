@@ -37,7 +37,10 @@ import android.util.Log;
 public class BackgroundService extends Service {
 	public static int DATA_CENTER_UDP_PORT = 6007;// 数据中心端口
 //	public static String DATA_CENTER_IP = "192.168.199.190";// 朱威 pc
-	public static String DATA_CENTER_IP = "192.168.199.101";// 李想 pc
+//	public static String DATA_CENTER_IP = "192.168.199.101";// 李想 pc
+	public static String DATA_CENTER_IP = "54.68.154.18";// Aamazon
+//	public static int DATA_CENTER_UDP_PORT = 9530;// 外网
+	
 	public static int TIME_OUT = 3000;
 	public static int MAXTRIES = 3;
 
@@ -52,6 +55,7 @@ public class BackgroundService extends Service {
 	public static final String DEV_TYPE = "dev_type";// 设备类型（血压计）
 	public static final String DEV_ID = "dev_id";// 设备ID（血压计）
 	public static final String APP_VERSION = "app_version";// 当前app版本
+	public static final String FORGET_THE_PILL = "forget_the_pill";
 
 	private BackgroundThread heartBeatThread;
 	private BackgroundThread popUpThread;
@@ -135,8 +139,11 @@ public class BackgroundService extends Service {
 				SharedPreferences.Editor editor = getSharedPreferences(
 						SHARED_PREFS_NAME, MODE_PRIVATE).edit();
 				editor.putString(APP_VERSION, response[10] + "");// 版本号为啥两个字节？
+				String time = response[11] != 0 ? ProtoUtil.byte2Time(response[11], response[12],
+										response[13],response[14],response[15],response[16]):"";
+				editor.putString(FORGET_THE_PILL, time);
 				editor.commit();
-			} else if (response[2] == 0x12) {// 回应的是记录
+			}else if (response[2] == 0x12) {// 回应的是记录
 				// 缺少本地库记录时间验证验证， 以保证数据不重复！！！
 				String dateTime = ProtoUtil.byte2Time(response[13], response[14],
 						response[15],// 测量时间
@@ -171,8 +178,8 @@ public class BackgroundService extends Service {
 
 		if (!popT.equals("")) {
 			if (!RecordsActivity.isOnForeground) {// 不在记录acitivty时才提醒
-				String user = sharedPreferences.getString(UserEditActivity.CURRENT_USER_ID, "1").equals(UserEditActivity.USER_1)?
-						sharedPreferences.getString(UserEditActivity.DAD, ""):sharedPreferences.getString(UserEditActivity.MOM, "");
+				String user = sharedPreferences.getString(UserEditActivity.CURRENT_USER_ID, "1").equals(UserEditActivity.USER_1_KEY)?
+						sharedPreferences.getString(UserEditActivity.USER_1_NAME_VALUE, ""):sharedPreferences.getString(UserEditActivity.USER_2_NAME_VALUE, "");
 				notification.setLatestEventInfo(BackgroundService.this, "新消息",
 						ProtoUtil.getEasyTime(popT) + " " + user + "测了血压：  >< "+  popH + " <>" + popL + " -^-" + popB, messagePendingIntent);
 				notificatioManager.notify(messageNotificationID, notification);
@@ -204,9 +211,12 @@ public class BackgroundService extends Service {
 	 */
 	public byte[] getAnRecord() {
 		SharedPreferences pref = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
-		String devId = pref.getString(RegisterActivity.DEVICE_ID, "");
-		String devType = pref.getString(RegisterActivity.DEVICE_TYPE, "");
-		String time = pref.getString(LATEST_RECORD_TIME, "2010-1-1 0:0:0");
+		String devId = pref.getString(RegisterActivity.DEVICE_ID, "65534");
+		String devType = pref.getString(RegisterActivity.DEVICE_TYPE, "1");
+		String time = pref.getString(LATEST_RECORD_TIME, "2014-09-11 0:0:0");
+		String age1 = pref.getString(UserEditActivity.USER_1_AGE_VALUE, "55");
+		String age2 = pref.getString(UserEditActivity.USER_2_AGE_VALUE, "55");
+		
 		byte[] bDateTime = ProtoUtil.time2Byte(time);
 		DatagramSocket socket = null;
 		int tries = 0;
@@ -214,7 +224,7 @@ public class BackgroundService extends Service {
 		try {
 			socket = new DatagramSocket();
 			socket.setSoTimeout(TIME_OUT);
-			EmptyByte eb = new EmptyByte(20);
+			EmptyByte eb = new EmptyByte(21);
 			byte[] out = eb.getSbyte();
 			out[0] = 0x25;
 			out[1] = 0x43;
@@ -223,9 +233,9 @@ public class BackgroundService extends Service {
 			out[5] = 0x0C;// 源类型（安卓）
 			out[6] = 0x0A;// 宿类型
 
-			out[10] = 1; // 设备型号
+			out[10] = new Integer(devType).byteValue();; // 设备类型
 			// short sId = (short)32760;
-			short sId = (short) 65534;
+			short sId = new Integer(devId).shortValue();//设备ID
 			byte[] bId = ProtoUtil.shortToByte(sId);
 			out[11] = bId[1]; // 设备ID
 			out[12] = bId[0]; // 设备ID
@@ -235,7 +245,10 @@ public class BackgroundService extends Service {
 			out[16] = bDateTime[3];
 			out[17] = bDateTime[4];
 			out[18] = bDateTime[5];
-			DatagramPacket outPacket = new DatagramPacket(out, 20,
+			out[19] = new Integer(age1).byteValue();
+			out[20] = new Integer(age2).byteValue();
+			
+			DatagramPacket outPacket = new DatagramPacket(out, 21,
 					InetAddress.getByName(DATA_CENTER_IP), DATA_CENTER_UDP_PORT);// 包裹
 			socket.send(outPacket);// 发送报文
 		} catch (SocketException e1) {

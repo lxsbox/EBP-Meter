@@ -20,10 +20,12 @@ import com.tech37c.ebpmeter.utils.ProtoUtil;
 import com.tech37c.ebpmeter.utils.TypeTrans;
 import com.tech37c.ebpmeter.utils.WifiUtil;
 
+import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -42,8 +44,10 @@ public class WifiInputActivity extends Activity {
 	private EditText wifiName;
 	private EditText wifiPassword;
 	private WifiManager wifiManager;
-	CloseWifiThread cwt;
-	Handler closeWifiHandler;
+	private CloseWifiThread cwt;
+	private Handler closeWifiHandler;
+	public static final int m_nWTSearchTimeOut = 0;// 搜索超时
+	private WTSearchProcess m_wtSearchProcess;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,8 @@ public class WifiInputActivity extends Activity {
     			new WriteWifiTask(v.getContext()).execute(namePassword);
     		}
     	});
+		
+		m_wtSearchProcess = new WTSearchProcess();
 	}
 
 	@Override
@@ -113,6 +119,18 @@ public class WifiInputActivity extends Activity {
 		protected void onPostExecute(byte[] result) {
 			super.onPostExecute(result);
 			if (result[10]==0) {
+				/*Resume previous WIFI*/
+				WifiManager wifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+				WifiUtil wifiUtil = new WifiUtil();
+				wifiUtil.createWiFiAP(wifiManager, wifiUtil.createWifiInfo(),false);
+				wifiUtil.OpenWifi(wifiManager);
+				m_wtSearchProcess.start();
+				wifiUtil.startScan(wifiManager);
+				/*Set device is match flag*/
+				SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
+    	    	Editor edit = pref.edit();
+    	    	edit.putString(RegisterActivity.DEVICE_IS_MATCH, "true");
+				
 				xh_ProgressBar.setVisibility(View.GONE);
     	    	Intent intent = new Intent(mContext, MainActivity.class);
     			startActivity(intent);
@@ -180,5 +198,61 @@ public class WifiInputActivity extends Activity {
 					e.printStackTrace();
 				}
 			return in;
+	}
+	
+	public Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case m_nWTSearchTimeOut:
+				m_wtSearchProcess.stop();
+				break;
+			default:
+				break;
+			}
+		}
+	};
+	
+	
+	class WTSearchProcess implements Runnable {
+		public boolean running = false;
+		private long startTime = 0L;
+		private Thread thread = null;
+
+		WTSearchProcess() {
+		}
+
+		public void run() {
+			while (true) {
+				if (!this.running)
+					return;
+				if (System.currentTimeMillis() - this.startTime >= 30000L) {
+					Message msg = handler.obtainMessage(m_nWTSearchTimeOut);
+					handler.sendMessage(msg);
+				}
+				try {
+					Thread.sleep(10L);
+				} catch (Exception localException) {
+				}
+			}
+		}
+
+		public void start() {
+			try {
+				this.thread = new Thread(this);
+				this.running = true;
+				this.startTime = System.currentTimeMillis();
+				this.thread.start();
+			} finally {
+			}
+		}
+
+		public void stop() {
+			try {
+				this.running = false;
+				this.thread = null;
+				this.startTime = 0L;
+			} finally {
+			}
+		}
 	}
 }

@@ -101,7 +101,7 @@ public class MainActivity extends FragmentActivity  {
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.activity_home_title);
 		
 		pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
-		currentUserId = pref.getString(UserEditActivity.CURRENT_USER_ID, UserEditActivity.USER_1);
+		currentUserId = pref.getString(UserEditActivity.CURRENT_USER_ID, UserEditActivity.USER_1_KEY);
 		showInfoByUserId(currentUserId);
 
 		settingBtn = (ImageButton) findViewById(R.id.main_title_setting);
@@ -140,7 +140,7 @@ public class MainActivity extends FragmentActivity  {
 				SharedPreferences.Editor editor = getSharedPreferences(
 						BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE).edit();
 				String currentUserId = pref.getString(UserEditActivity.CURRENT_USER_ID, "");
-				if (currentUserId.equals(UserEditActivity.USER_1)) {
+				if (currentUserId.equals(UserEditActivity.USER_1_KEY)) {
 					editor.putString(UserEditActivity.CURRENT_USER_ID,"2");
 					editor.commit();
 				} else {
@@ -167,14 +167,14 @@ public class MainActivity extends FragmentActivity  {
 		String name = "";
 		String age = "";
 		
-		if(userId.equals(UserEditActivity.USER_1)) {
-			name = pref.getString(UserEditActivity.DAD, getString(R.string.main_dad));
-			age = pref.getString(UserEditActivity.USER_1_AGE, "0");
+		if(userId.equals(UserEditActivity.USER_1_KEY)) {
+			name = pref.getString(UserEditActivity.USER_1_NAME_VALUE, getString(R.string.main_dad));
+			age = pref.getString(UserEditActivity.USER_1_AGE_VALUE, "0");
 			txtView.setText(name);
 			ageView.setText(age);
 		}else {
-			name = pref.getString(UserEditActivity.MOM, getString(R.string.main_mom));
-			age = pref.getString(UserEditActivity.USER_2_AGE, "0");
+			name = pref.getString(UserEditActivity.USER_2_NAME_VALUE, getString(R.string.main_mom));
+			age = pref.getString(UserEditActivity.USER_2_AGE_VALUE, "0");
 			txtView.setText(name);
 			ageView.setText(age);
 		}
@@ -200,7 +200,7 @@ public class MainActivity extends FragmentActivity  {
 			}else {
 				imgView.setImageResource(R.drawable.health_heavy);
 			}
-		}else {
+		} else {
 			highTxt.setText("0");
 			lowTxt.setText("0");
 			beatTxt.setText("0");
@@ -215,7 +215,7 @@ public class MainActivity extends FragmentActivity  {
 	public void setDrawableFace4Main(ImageView face) {
 		
 		String path = "";
-		if(pref.getString(UserEditActivity.CURRENT_USER_ID, UserEditActivity.USER_1).equals(UserEditActivity.USER_1)) {
+		if(pref.getString(UserEditActivity.CURRENT_USER_ID, UserEditActivity.USER_1_KEY).equals(UserEditActivity.USER_1_KEY)) {
 			path = Environment.getExternalStorageDirectory() + "/" + UserEditActivity.DAD_IMAGE_FILE_NAME;
 			File f = new File(path);
 			if (f.exists()) {
@@ -223,7 +223,7 @@ public class MainActivity extends FragmentActivity  {
 			}else {
 				face.setImageDrawable(getResources().getDrawable(R.drawable.pic_dad));
 			}
-		} else if(pref.getString(UserEditActivity.CURRENT_USER_ID, UserEditActivity.USER_1).equals(UserEditActivity.USER_2)) {
+		} else if(pref.getString(UserEditActivity.CURRENT_USER_ID, UserEditActivity.USER_1_KEY).equals(UserEditActivity.USER_2_KEY)) {
 			path = Environment.getExternalStorageDirectory() + "/" + UserEditActivity.MOM_IMAGE_FILE_NAME;
 			File f = new File(path);
 			if (f.exists()) {

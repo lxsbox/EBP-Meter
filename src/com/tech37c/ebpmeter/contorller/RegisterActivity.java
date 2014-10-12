@@ -38,13 +38,13 @@ public class RegisterActivity extends Activity {
 	public static final String DEVICE_ID = "devId";
 	public static final String DEVICE_TYPE = "devType";
 	public static final String IS_REGISTERED = "isRegistered";
+	public static final String DEVICE_IS_MATCH = "deviceIsMatch";
 	public static int MAXTRIES = 3;
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);//自定义标题栏
 		
 		SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
@@ -62,36 +62,26 @@ public class RegisterActivity extends Activity {
 	    			String type = typeText.getText().toString();
 	    	    	String id = idText.getText().toString();
 	    			String[] typeId = {type, id};
-	    			
-	    			//检测是否在连上互联网 ！！！ 虚拟机下验证不成功
+	    			/* Testing the Internet is available*/
 	    			if(ProtoUtil.isConnected2Internet(v.getContext())) {
 	    				new RegisterTask(v.getContext()).execute(typeId);
 	    			} else {
 	    				Toast.makeText(v.getContext(), getString(R.string.net_unavailable, ""), Toast.LENGTH_SHORT).show();
 	    			};
-	    			
 	    		}
 	    	});
-			
-			
 			final Button skipRegButton  = (Button)findViewById(R.id.skipReg);
 			skipRegButton.setOnClickListener(new Button.OnClickListener(){
 	    		public void onClick (View v){
-//	    			SharedPreferences.Editor editor = getSharedPreferences(
-//	    					BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE).edit();
-//					editor.putString(UserEditActivity.CURRENT_USER_ID,"1");
-//					editor.commit();
-	    			
-//	    			Intent intent = new Intent(v.getContext(), MainActivity.class);
-//	    			startActivity(intent);
 	    			Intent intent = new Intent(v.getContext(), SearchingIntroductionActivity.class);
 	    			startActivity(intent);
+	    			finish();
 	    		}
 	    	});
-			
 		} else {
 			Intent intent = new Intent(this, MainActivity.class);
 			startActivity(intent);
+			finish();
 		}
 	}
 

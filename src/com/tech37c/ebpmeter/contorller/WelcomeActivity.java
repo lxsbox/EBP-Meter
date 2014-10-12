@@ -22,7 +22,7 @@ public class WelcomeActivity extends Activity {
 		String devId = pref.getString(RegisterActivity.DEVICE_ID, "");
 		String devType = pref.getString(RegisterActivity.DEVICE_TYPE, "");
 		
-		if (devId.equals("")||devType.equals("")) {//如果已经注册过直接到主页面
+		if (devId.equals("")||devType.equals("")) {//If this App is not been registered
 			setContentView(R.layout.activity_welcome);
 			final Button regButton  = (Button)findViewById(R.id.welcomeButton);
 			final TextView skipBtn  = (TextView)findViewById(R.id.skipBtn);
@@ -35,7 +35,8 @@ public class WelcomeActivity extends Activity {
 	    	});
 			skipBtn.setOnClickListener(new Button.OnClickListener(){
 	    		public void onClick (View v){
-	    			Intent intent = new Intent(v.getContext(), RegisterActivity.class);
+	    			Intent intent = new Intent(v.getContext(), SearchingIntroductionActivity.class);
+//	    			Intent intent = new Intent(v.getContext(), RegisterActivity.class);
 	     			startActivity(intent);
 	     			finish();
 	    		}

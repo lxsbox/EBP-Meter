@@ -71,8 +71,9 @@ public class ChartActivity extends FragmentActivity implements OnCheckedChangeLi
 		backBt.setOnClickListener(new Button.OnClickListener(){
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), RecordsActivity.class);
-    			startActivity(intent);
+//				Intent intent = new Intent(v.getContext(), RecordsActivity.class);
+//    			startActivity(intent);
+				finish();
 			}
 		});
 		

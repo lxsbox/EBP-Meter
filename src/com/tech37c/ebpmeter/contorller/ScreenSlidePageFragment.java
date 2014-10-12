@@ -107,8 +107,8 @@ public class ScreenSlidePageFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.activity_main_content, container, false);
         
         SharedPreferences pref =  getActivity().getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
-		String name = pref.getString(UserEditActivity.CURRENT_USER_ID, "").equals(UserEditActivity.USER_1)?//获取当前用户名
-				pref.getString(UserEditActivity.DAD, ""):pref.getString(UserEditActivity.MOM, "");
+		String name = pref.getString(UserEditActivity.CURRENT_USER_ID, "").equals(UserEditActivity.USER_1_KEY)?//获取当前用户名
+				pref.getString(UserEditActivity.USER_1_NAME_VALUE, ""):pref.getString(UserEditActivity.USER_2_NAME_VALUE, "");
 		final TextView txtView = (TextView) rootView.findViewById(R.id.user_In_content);
 		txtView.setText(name + "的血压记录");
 		

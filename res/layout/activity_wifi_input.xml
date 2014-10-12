@@ -7,6 +7,16 @@
         android:layout_weight="0.08"
         style="@style/layout_vertical"
         android:background="#0099f1">
+        <ImageButton
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerInParent="true"
+	        android:layout_alignParentLeft="true"
+	        android:layout_marginLeft="10dp"
+	        android:background="#0099f1"
+	        android:src="@drawable/back_2_parent"
+	        android:visibility="invisible"
+	        android:id="@+id/back_2_parent"/>
         <TextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -16,7 +26,7 @@
 			android:paddingTop="10dip"
 			android:text="设置  XXXXX 血压计"
 			android:textColor="@android:color/white"
-			android:id="@+id/myTitle"/>
+			android:id="@+id/wifi_input_title_text"/>
 		<ImageButton
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -37,12 +47,14 @@
 		<TableRow 
 		    android:layout_weight="0.05"
 		    style="@style/layout_horizontal">
-		    <TextView 
+		    <TextView
 		        android:layout_weight="1"
 		        android:layout_width="0dp"
 		        android:layout_height="wrap_content"
 		        android:text="血压计使用者的 "
-		        android:textColor="#fc7e7f"/>
+		        android:textColor="#fc7e7f"
+		        android:visibility="visible"
+		        android:id="@+id/red_top_hit"/>
 		</TableRow>
 		<TableRow 
 		    android:layout_weight="0.1"
@@ -68,6 +80,7 @@
 	            android:inputType="textVisiblePassword"
 	            android:background="@drawable/edit_text_bg"
 	            android:hint="Wifi Password"
+	            android:visibility="visible"
 	            android:id="@+id/wifi_password"/>
 		</TableRow>
 		<TableRow

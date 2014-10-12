@@ -65,15 +65,14 @@
                 android:layout_gravity="center_vertical"
                 android:background="#0099f1"
                 android:textColor="@android:color/white"
-                android:text="搜 索"
+                android:text="搜索"
                 android:id="@+id/start_2_scan"/>
             <TextView
                 android:layout_weight="0.5"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingLeft="80dp"
                 android:layout_marginLeft="15dp"
-                android:text="跳 过"
+                android:text="跳过"
                 android:id="@+id/skip_scan"/>
         </TableRow>
     </TableLayout>

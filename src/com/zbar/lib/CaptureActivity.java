@@ -338,11 +338,13 @@ public class CaptureActivity extends Activity implements Callback {
     	    	Editor edit = pref.edit();
     	    	edit.putString(RegisterActivity.DEVICE_TYPE, this.devType);
     	    	edit.putString(RegisterActivity.DEVICE_ID, this.devId);
+    	    	edit.commit();
+    	    	
     	    	Toast.makeText(mContext, getString(R.string.register_sucess, ""), Toast.LENGTH_SHORT).show();
     	    	Intent intent = new Intent(mContext, SearchingIntroductionActivity.class);
     			startActivity(intent);
     			finish();// Preventing going back
-//    			startService(new Intent(BackgroundService.ACTION));//开始心跳服务
+    			startService(new Intent(BackgroundService.ACTION));//Start the heart beating service
 			}else {
 				xh_ProgressBar.setVisibility(View.GONE);
 				Toast.makeText(mContext, getString(R.string.register_failed, ""), Toast.LENGTH_SHORT).show();

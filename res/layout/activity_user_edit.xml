@@ -74,12 +74,13 @@
                 android:paddingLeft="50dp"
                 android:textSize="20sp"
                 android:textColor="#d3d3d3"
-                android:id="@+id/dadText" />
+                android:id="@+id/dad_name_text"/>
             <ImageButton
                 android:layout_weight="0.1"
                 android:background="#ffffff"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/setting_arrow" />
+                android:src="@drawable/setting_arrow"
+                android:id="@+id/dad_name_button" />
         </TableRow>
         <TableRow android:layout_weight="0.1" >
             <View
@@ -111,12 +112,14 @@
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="50dp"
                 android:textSize="20sp"
-                android:textColor="#d3d3d3" />
+                android:textColor="#d3d3d3" 
+                android:id="@+id/dad_age_text"/>
             <ImageButton
                 android:layout_weight="0.1"
                 android:background="#ffffff"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/setting_arrow" />
+                android:src="@drawable/setting_arrow" 
+                android:id="@+id/dad_birthday_button"/>
         </TableRow>
         <TableRow android:layout_weight="0.1" >
             <View
@@ -224,12 +227,13 @@
                 android:paddingLeft="50dp"
                 android:textSize="20sp"
                 android:textColor="#d3d3d3"
-                android:id="@+id/momText" />
+                android:id="@+id/mom_name_text" />
             <ImageButton
                 android:layout_weight="0.1"
                 android:background="#ffffff"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/setting_arrow" />
+                android:src="@drawable/setting_arrow" 
+                android:id="@+id/mom_name_button"/>
         </TableRow>
         <TableRow android:layout_weight="0.1" >
             <View
@@ -261,12 +265,14 @@
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="50dp"
                 android:textSize="20sp"
-                android:textColor="#d3d3d3" />
+                android:textColor="#d3d3d3"
+                android:id="@+id/mom_age_text" />
             <ImageButton
                 android:layout_weight="0.1"
                 android:background="#ffffff"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/setting_arrow" />
+                android:src="@drawable/setting_arrow"
+                android:id="@+id/mom_birthday_button" />
         </TableRow>
         <TableRow android:layout_weight="0.1" >
             <View

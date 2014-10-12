@@ -56,12 +56,9 @@ public class RecordsActivity extends ListActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_records);
 
-		SharedPreferences pref = getSharedPreferences(
-				BackgroundService.SHARED_PREFS_NAME, 0);
-		String name = pref.getString(UserEditActivity.CURRENT_USER_ID, "")
-				.equals(UserEditActivity.USER_1) ? // 获取当前用户名
-		pref.getString(UserEditActivity.DAD, "")
-				: pref.getString(UserEditActivity.MOM, "");
+		SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
+		String name = pref.getString(UserEditActivity.CURRENT_USER_ID, "").equals(UserEditActivity.USER_1_KEY) ? // 获取当前用户名
+		pref.getString(UserEditActivity.USER_1_NAME_VALUE, ""):pref.getString(UserEditActivity.USER_2_NAME_VALUE, "");
 		final TextView txtView = (TextView) findViewById(R.id.current_user222);
 		txtView.setText(name + "测量记录");
 
@@ -77,8 +74,9 @@ public class RecordsActivity extends ListActivity {
 		backBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), MainActivity.class);
-				startActivity(intent);
+//				Intent intent = new Intent(v.getContext(), MainActivity.class);
+//				startActivity(intent);
+				finish();
 			}
 		});
 

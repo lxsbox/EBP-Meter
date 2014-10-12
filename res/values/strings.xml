@@ -3,7 +3,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="app_name">YZY 血压</string>
+    <string name="app_name">游子吟血压</string>
     <string name="register_cloud">注册 ></string>
     <string name="back_2_records"> &#060; 返回 </string>
     <string name="register">注册</string>
@@ -56,5 +56,11 @@
     <string name="title_activity_device_searching">DeviceSearchingActivity</string>
     <string name="title_activity_searching">SearchingActivity</string>
     <string name="title_activity_wifi_input">WifiInputActivity</string>
+    <string name="title_activity_user_name_edit">UserNameEditActivity</string>
+    <string name="title_activity_user_age_edit">UserAgeEditActivity</string>
+    <string name="user1_default_name">爸爸</string>
+    <string name="user2_default_name">妈妈</string>
+    <string name="edit_user_name">用户名修改</string>
+    
 
 </resources>

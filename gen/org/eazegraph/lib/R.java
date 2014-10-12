@@ -8,39 +8,39 @@ package org.eazegraph.lib;
 
 public final class R {
 	public static final class attr {
-		public static final int egAnimationTime = 0x7f010004;
-		public static final int egAutoCenter = 0x7f01000c;
-		public static final int egBarMargin = 0x7f010002;
-		public static final int egBarWidth = 0x7f010001;
-		public static final int egCurveSmoothness = 0x7f010012;
-		public static final int egDrawValueInPie = 0x7f01000d;
-		public static final int egFixedBarWidth = 0x7f010003;
-		public static final int egHighlightStrength = 0x7f01000a;
-		public static final int egIndicatorColor = 0x7f010018;
-		public static final int egIndicatorLeftPadding = 0x7f01001a;
-		public static final int egIndicatorTextSize = 0x7f010019;
-		public static final int egIndicatorTopPadding = 0x7f01001b;
-		public static final int egIndicatorWidth = 0x7f010017;
-		public static final int egInnerPadding = 0x7f010007;
-		public static final int egInnerPaddingOutline = 0x7f010008;
-		public static final int egLegendHeight = 0x7f010005;
-		public static final int egLegendTextSize = 0x7f010006;
-		public static final int egLineStroke = 0x7f010015;
-		public static final int egOpenClockwise = 0x7f010011;
-		public static final int egShowDecimal = 0x7f010020;
-		public static final int egShowStandardValue = 0x7f01001c;
-		public static final int egShowValueIndicator = 0x7f010016;
-		public static final int egShowValues = 0x7f010000;
-		public static final int egStandardValueColor = 0x7f01001e;
-		public static final int egStandardValueIndicatorStroke = 0x7f01001d;
-		public static final int egUseCubic = 0x7f010013;
-		public static final int egUseCustomInnerValue = 0x7f010010;
-		public static final int egUseInnerPadding = 0x7f010009;
-		public static final int egUseOverlapFill = 0x7f010014;
-		public static final int egUsePieRotation = 0x7f01000b;
-		public static final int egValueTextColor = 0x7f01000f;
-		public static final int egValueTextSize = 0x7f01000e;
-		public static final int egXAxisStroke = 0x7f01001f;
+		public static final int egAnimationTime = 0x7f01000b;
+		public static final int egAutoCenter = 0x7f010013;
+		public static final int egBarMargin = 0x7f010009;
+		public static final int egBarWidth = 0x7f010008;
+		public static final int egCurveSmoothness = 0x7f010019;
+		public static final int egDrawValueInPie = 0x7f010014;
+		public static final int egFixedBarWidth = 0x7f01000a;
+		public static final int egHighlightStrength = 0x7f010011;
+		public static final int egIndicatorColor = 0x7f01001f;
+		public static final int egIndicatorLeftPadding = 0x7f010021;
+		public static final int egIndicatorTextSize = 0x7f010020;
+		public static final int egIndicatorTopPadding = 0x7f010022;
+		public static final int egIndicatorWidth = 0x7f01001e;
+		public static final int egInnerPadding = 0x7f01000e;
+		public static final int egInnerPaddingOutline = 0x7f01000f;
+		public static final int egLegendHeight = 0x7f01000c;
+		public static final int egLegendTextSize = 0x7f01000d;
+		public static final int egLineStroke = 0x7f01001c;
+		public static final int egOpenClockwise = 0x7f010018;
+		public static final int egShowDecimal = 0x7f010027;
+		public static final int egShowStandardValue = 0x7f010023;
+		public static final int egShowValueIndicator = 0x7f01001d;
+		public static final int egShowValues = 0x7f010007;
+		public static final int egStandardValueColor = 0x7f010025;
+		public static final int egStandardValueIndicatorStroke = 0x7f010024;
+		public static final int egUseCubic = 0x7f01001a;
+		public static final int egUseCustomInnerValue = 0x7f010017;
+		public static final int egUseInnerPadding = 0x7f010010;
+		public static final int egUseOverlapFill = 0x7f01001b;
+		public static final int egUsePieRotation = 0x7f010012;
+		public static final int egValueTextColor = 0x7f010016;
+		public static final int egValueTextSize = 0x7f010015;
+		public static final int egXAxisStroke = 0x7f010026;
 	}
 	public static final class dimen {
 		public static final int activity_horizontal_margin = 0x7f050000;
@@ -50,7 +50,7 @@ public final class R {
 		public static final int ic_launcher = 0x7f020016;
 	}
 	public static final class id {
-		public static final int action_settings = 0x7f090075;
+		public static final int action_settings = 0x7f09009a;
 	}
 	public static final class layout {
 		public static final int activity_main = 0x7f030006;
@@ -68,17 +68,17 @@ public final class R {
 		public static final int AppTheme = 0x7f070001;
 	}
 	public static final class styleable {
-		public static final int[] BarChart = { 0x7f010000 };
+		public static final int[] BarChart = { 0x7f010007 };
 		public static final int BarChart_egShowValues = 0;
-		public static final int[] BaseBarChart = { 0x7f010001, 0x7f010002, 0x7f010003 };
+		public static final int[] BaseBarChart = { 0x7f010008, 0x7f010009, 0x7f01000a };
 		public static final int BaseBarChart_egBarMargin = 1;
 		public static final int BaseBarChart_egBarWidth = 0;
 		public static final int BaseBarChart_egFixedBarWidth = 2;
-		public static final int[] BaseChart = { 0x7f010004, 0x7f010005, 0x7f010006 };
+		public static final int[] BaseChart = { 0x7f01000b, 0x7f01000c, 0x7f01000d };
 		public static final int BaseChart_egAnimationTime = 0;
 		public static final int BaseChart_egLegendHeight = 1;
 		public static final int BaseChart_egLegendTextSize = 2;
-		public static final int[] PieChart = { 0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f, 0x7f010010, 0x7f010011 };
+		public static final int[] PieChart = { 0x7f01000e, 0x7f01000f, 0x7f010010, 0x7f010011, 0x7f010012, 0x7f010013, 0x7f010014, 0x7f010015, 0x7f010016, 0x7f010017, 0x7f010018 };
 		public static final int PieChart_egAutoCenter = 5;
 		public static final int PieChart_egDrawValueInPie = 6;
 		public static final int PieChart_egHighlightStrength = 3;
@@ -90,7 +90,7 @@ public final class R {
 		public static final int PieChart_egUsePieRotation = 4;
 		public static final int PieChart_egValueTextColor = 8;
 		public static final int PieChart_egValueTextSize = 7;
-		public static final int[] ValueLineChart = { 0x7f010012, 0x7f010013, 0x7f010014, 0x7f010015, 0x7f010016, 0x7f010017, 0x7f010018, 0x7f010019, 0x7f01001a, 0x7f01001b, 0x7f01001c, 0x7f01001d, 0x7f01001e, 0x7f01001f, 0x7f010020 };
+		public static final int[] ValueLineChart = { 0x7f010019, 0x7f01001a, 0x7f01001b, 0x7f01001c, 0x7f01001d, 0x7f01001e, 0x7f01001f, 0x7f010020, 0x7f010021, 0x7f010022, 0x7f010023, 0x7f010024, 0x7f010025, 0x7f010026, 0x7f010027 };
 		public static final int ValueLineChart_egCurveSmoothness = 0;
 		public static final int ValueLineChart_egIndicatorColor = 6;
 		public static final int ValueLineChart_egIndicatorLeftPadding = 8;

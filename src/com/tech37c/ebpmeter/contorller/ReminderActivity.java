@@ -27,8 +27,9 @@ public class ReminderActivity extends Activity {
 		backBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(v.getContext(), MainActivity.class);
-    			startActivity(intent);
+//				Intent intent = new Intent(v.getContext(), MainActivity.class);
+//    			startActivity(intent);
+				finish();
 			}
 		});
 	}

@@ -6,6 +6,7 @@ import com.tech37c.ebpmeter.service.BackgroundService;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -39,8 +40,9 @@ public class SettingActivity extends Activity {
 		
 		back2MainBtn.setOnClickListener(new Button.OnClickListener(){
     		public void onClick (View v){
-				Intent intent = new Intent(v.getContext(), MainActivity.class);
-    			startActivity(intent);
+//				Intent intent = new Intent(v.getContext(), MainActivity.class);
+//    			startActivity(intent);
+    			finish();
     		}
     	});
 		
@@ -72,8 +74,20 @@ public class SettingActivity extends Activity {
 		
 		rgstDevBtn.setOnClickListener(new Button.OnClickListener(){
 			public void onClick (View v){
-				Intent intent = new Intent(v.getContext(), WelcomeActivity.class);
-    			startActivity(intent);
+				SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
+				String devId = pref.getString(RegisterActivity.DEVICE_ID, "");
+				String devType = pref.getString(RegisterActivity.DEVICE_TYPE, "");
+				String deviceIsMatch = pref.getString(RegisterActivity.DEVICE_IS_MATCH, "");
+				if (devId.equals("")||devType.equals("")) {//App is not been registered
+					Intent intent = new Intent(v.getContext(), WelcomeActivity.class);
+	    			startActivity(intent);
+				} else if(!devId.equals("") && deviceIsMatch.equals("")) {//Device is not match
+					Intent intent = new Intent(v.getContext(), SearchingIntroductionActivity.class);
+	    			startActivity(intent);
+				} else {
+					Intent intent = new Intent(v.getContext(), SearchingIntroductionActivity.class);
+	    			startActivity(intent);
+				}
     		}
 		});
 	}

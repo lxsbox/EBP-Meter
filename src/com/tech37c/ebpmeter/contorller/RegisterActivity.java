@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -97,7 +98,7 @@ public class RegisterActivity extends Activity {
 	 * @param devType
 	 * @param devId
 	 */
-	public byte[] registerDevice(String devType, String devId) {
+	/*public byte[] registerDevice(String devType, String devId) {
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			byte[] bDateTime = ProtoUtil.time2Byte(df.format(new Date()));
 			DatagramSocket socket = null;
@@ -164,6 +165,89 @@ public class RegisterActivity extends Activity {
 			}
 			socket.close();
 			return in;
+	}*/
+	
+	/**
+	 * 向服务端注册
+	 * @param devType
+	 * @param devId
+	 */
+	public byte[] registerDevice(String devType, String devId) {
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			byte[] bDateTime = ProtoUtil.time2Byte(df.format(new Date()));
+			DatagramSocket socket = null;
+			int tries = 0;
+			boolean receivedResponse = false;
+			try {
+				socket = new DatagramSocket();
+				socket.setSoTimeout(BackgroundService.TIME_OUT);
+				EmptyByte eb = new EmptyByte(34);
+				byte[] out = eb.getSbyte();
+				out[0] = 0x25;
+				out[1] = 0x43;
+				out[2] = 0x0F;//报文类型
+				out[3] = 22;//有效数据区长度2
+				out[5] = 0x0C;//源类型（安卓）
+				out[6] = 0x0A;//宿类型
+//			    out[10] = 1; //设备型号
+//			    short sId = (short)65534;
+				out[10] = (byte)Integer.parseInt(devType); //设备型号
+			    short sId = (short)Integer.parseInt(devId);
+			    byte[] bId = ProtoUtil.shortToByte(sId);
+			    out[11] = bId[1]; //设备ID
+			    out[12] = bId[0]; //设备ID
+			    
+			    TelephonyManager telephonyManager = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+				this.getSystemService(Context.TELEPHONY_SERVICE);
+				String imei = telephonyManager.getDeviceId();
+				byte[] bIme = imei.getBytes();
+				int j=13;
+				for(int i=0; i<bIme.length; i++) {
+					out[j] = bIme[i];
+					j++;
+				}
+				out[28]	= bDateTime[0];//时间6B
+				out[29] = bDateTime[1];
+				out[30] = bDateTime[2];
+				out[31] = bDateTime[3];
+				out[32] = bDateTime[4];
+				out[33] = bDateTime[5];
+				DatagramPacket outPacket = new DatagramPacket(out,34,
+						InetAddress.getByName(BackgroundService.DATA_CENTER_IP), BackgroundService.DATA_CENTER_UDP_PORT);// 包裹
+				socket.send(outPacket);// 发送报文
+			} catch (SocketException e1) {
+				e1.printStackTrace();
+			}catch (UnknownHostException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			EmptyByte eb = new EmptyByte(14);
+			byte[] in = eb.getSbyte();
+			DatagramPacket inPacket = new DatagramPacket(in, 14);// 构造用来接收长度为length的数据包
+			do {
+				try {
+					socket.receive(inPacket);
+					//为什么得到得值还有一个／？
+//					if (!inPacket.getAddress().equals(DATA_CENTER_IP)) {
+//						throw new IOException("Received packet from an unknown source");
+//					}
+					receivedResponse = true;
+				} catch (InterruptedIOException e) {
+					tries += 1;
+					System.out.println("Timed out," + (RegisterActivity.MAXTRIES - tries) + " more tries ...");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} while (!receivedResponse && (tries < RegisterActivity.MAXTRIES));
+			if (receivedResponse) {
+				System.out.println("Receive record: " + in[13]);
+			} else {
+				System.out.println("No response -- register giving up");
+				return null;
+			}
+			socket.close();
+			return in;
 	}
 	
 	
@@ -200,26 +284,19 @@ public class RegisterActivity extends Activity {
 		@Override
 		protected void onPostExecute(byte[] result) {
 			super.onPostExecute(result);
-			
-			if (null != result && result[2] == 0x18 && (int)result[10] == 0 ) {
+			if (null != result && result[2] == 0x11) {
 				xh_ProgressBar.setVisibility(View.GONE);
-				
 				SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
     	    	Editor edit = pref.edit();
-    	    	edit.putString(DEVICE_TYPE, this.devType);
-    	    	edit.putString(DEVICE_ID, this.devId);
+    	    	edit.putString(RegisterActivity.DEVICE_TYPE, this.devType);
+    	    	edit.putString(RegisterActivity.DEVICE_ID, this.devId);
+    	    	edit.commit();
     	    	
     	    	Toast.makeText(mContext, getString(R.string.register_sucess, ""), Toast.LENGTH_SHORT).show();
-    	    	
-//                Intent intent = new Intent(mContext, UserEditActivity.class);
-//    	    	Intent intent = new Intent(mContext, MainActivity.class);
     	    	Intent intent = new Intent(mContext, SearchingIntroductionActivity.class);
     			startActivity(intent);
-    			
-//    			Intent intent2 = new Intent(mContext, TabsActivity.class);
-//    			startActivity(intent2);
-    			startService(new Intent(BackgroundService.ACTION));//开始心跳服务
-    			finish();
+    			startService(new Intent(BackgroundService.ACTION));//Start the heart beating service
+    			finish();// Preventing going back
 			}else {
 				xh_ProgressBar.setVisibility(View.GONE);
 				Toast.makeText(mContext, getString(R.string.register_failed, ""), Toast.LENGTH_SHORT).show();

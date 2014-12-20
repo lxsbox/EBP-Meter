@@ -74,8 +74,7 @@ public class RecordsActivity extends ListActivity {
 		backBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				Intent intent = new Intent(v.getContext(), MainActivity.class);
-//				startActivity(intent);
+				RecordsActivity.this.unregisterReceiver(receiver);
 				finish();
 			}
 		});
@@ -83,13 +82,14 @@ public class RecordsActivity extends ListActivity {
 		mData = getData();
 		adapter = new MyAdapter(this, mData);
 		setListAdapter(adapter);
-		// 接收BackgroundService的广播
+		//接收BackgroundService的广播
 		receiver = new MyReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("android.intent.action.test");
 		RecordsActivity.this.registerReceiver(receiver, filter);
 	}
 
+	
 	private List<Map<String, Object>> getData() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 
@@ -249,7 +249,6 @@ public class RecordsActivity extends ListActivity {
 		// 自定义一个广播接收器
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			// TODO Auto-generated method stub
 			System.out.println("OnReceiver");
 			Bundle bundle = intent.getExtras();
 			final String popT = bundle.getString("popT");
@@ -270,5 +269,4 @@ public class RecordsActivity extends ListActivity {
 			System.out.println("MyReceiver");
 		}
 	}
-
 }

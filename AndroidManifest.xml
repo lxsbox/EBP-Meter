@@ -68,7 +68,7 @@
         </activity>
 
         <service android:name="com.tech37c.ebpmeter.service.BackgroundService" >
-            <intent-filter>
+            <intent-filter >
                 <action android:name="com.tech37c.ebpmeter.service.BackgroundService" />
             </intent-filter>
         </service>
@@ -115,7 +115,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+<!--     <uses-permission android:name="android.permission.READ_CONTACTS" /> -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />

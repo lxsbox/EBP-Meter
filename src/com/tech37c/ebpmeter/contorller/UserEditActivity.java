@@ -208,24 +208,17 @@ public class UserEditActivity extends Activity {
 						case 0:
 							Intent intentFromGallery = new Intent();
 							intentFromGallery.setType("image/*"); // 设置文件类型
-							intentFromGallery
-									.setAction(Intent.ACTION_GET_CONTENT);
-							startActivityForResult(intentFromGallery,
-									IMAGE_REQUEST_CODE);
+							intentFromGallery.setAction(Intent.ACTION_GET_CONTENT);
+							startActivityForResult(intentFromGallery,IMAGE_REQUEST_CODE);
 							break;
 						case 1:
-							Intent intentFromCapture = new Intent(
-									MediaStore.ACTION_IMAGE_CAPTURE);
+							Intent intentFromCapture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 							// 判断存储卡是否可以用，可用进行存储
 							if (ProtoUtil.hasSdcard()) {
-								intentFromCapture.putExtra(
-										MediaStore.EXTRA_OUTPUT,
-										Uri.fromFile(new File(Environment
-												.getExternalStorageDirectory(),
-												DAD_IMAGE_FILE_NAME)));
+								intentFromCapture.putExtra(MediaStore.EXTRA_OUTPUT,
+															Uri.fromFile(new File(Environment.getExternalStorageDirectory(),DAD_IMAGE_FILE_NAME)));
 							}
-							startActivityForResult(intentFromCapture,
-									CAMERA_REQUEST_CODE);
+							startActivityForResult(intentFromCapture,CAMERA_REQUEST_CODE);
 							break;
 						}
 					}

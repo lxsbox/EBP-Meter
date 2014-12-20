@@ -24,6 +24,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.telephony.TelephonyManager;
 import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.SurfaceHolder.Callback;
@@ -40,6 +41,7 @@ import android.widget.Toast;
 import com.tech37c.ebpmeter.R;
 import com.tech37c.ebpmeter.contorller.RegisterActivity;
 import com.tech37c.ebpmeter.contorller.SearchingIntroductionActivity;
+import com.tech37c.ebpmeter.contorller.WelcomeActivity;
 import com.tech37c.ebpmeter.model.EmptyByte;
 import com.tech37c.ebpmeter.service.BackgroundService;
 import com.tech37c.ebpmeter.utils.ProtoUtil;
@@ -121,7 +123,7 @@ public class CaptureActivity extends Activity implements Callback {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		setContentView(R.layout.activity_qr_scan);
 		// 初始化 CameraManager
 		CameraManager.init(getApplication());
@@ -332,7 +334,7 @@ public class CaptureActivity extends Activity implements Callback {
 		@Override
 		protected void onPostExecute(byte[] result) {
 			super.onPostExecute(result);
-			if (null != result && result[2] == 0x18 && (int)result[10] == 0 ) {
+			if (null != result && result[2] == 0x11) {
 				xh_ProgressBar.setVisibility(View.GONE);
 				SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE);
     	    	Editor edit = pref.edit();
@@ -343,8 +345,8 @@ public class CaptureActivity extends Activity implements Callback {
     	    	Toast.makeText(mContext, getString(R.string.register_sucess, ""), Toast.LENGTH_SHORT).show();
     	    	Intent intent = new Intent(mContext, SearchingIntroductionActivity.class);
     			startActivity(intent);
-    			finish();// Preventing going back
     			startService(new Intent(BackgroundService.ACTION));//Start the heart beating service
+    			finish();// Preventing going back
 			}else {
 				xh_ProgressBar.setVisibility(View.GONE);
 				Toast.makeText(mContext, getString(R.string.register_failed, ""), Toast.LENGTH_SHORT).show();
@@ -368,11 +370,11 @@ public class CaptureActivity extends Activity implements Callback {
 			try {
 				socket = new DatagramSocket();
 				socket.setSoTimeout(BackgroundService.TIME_OUT);
-				EmptyByte eb = new EmptyByte(20);
+				EmptyByte eb = new EmptyByte(34);
 				byte[] out = eb.getSbyte();
 				out[0] = 0x25;
 				out[1] = 0x43;
-				out[2] = 0x17;//报文类型
+				out[2] = 0x0F;//报文类型
 				out[3] = 22;//有效数据区长度2
 				out[5] = 0x0C;//源类型（安卓）
 				out[6] = 0x0A;//宿类型
@@ -383,13 +385,23 @@ public class CaptureActivity extends Activity implements Callback {
 			    byte[] bId = ProtoUtil.shortToByte(sId);
 			    out[11] = bId[1]; //设备ID
 			    out[12] = bId[0]; //设备ID
-				out[13]	= bDateTime[0];//时间6B
-				out[14] = bDateTime[1];
-				out[15] = bDateTime[2];
-				out[16] = bDateTime[3];
-				out[17] = bDateTime[4];
-				out[18] = bDateTime[5];
-				DatagramPacket outPacket = new DatagramPacket(out,20,
+			    
+			    TelephonyManager telephonyManager = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+				this.getSystemService(Context.TELEPHONY_SERVICE);
+				String imei = telephonyManager.getDeviceId();
+				byte[] bIme = imei.getBytes();
+				int j=13;
+				for(int i=0; i<bIme.length; i++) {
+					out[j] = bIme[i];
+					j++;
+				}
+				out[28]	= bDateTime[0];//时间6B
+				out[29] = bDateTime[1];
+				out[30] = bDateTime[2];
+				out[31] = bDateTime[3];
+				out[32] = bDateTime[4];
+				out[33] = bDateTime[5];
+				DatagramPacket outPacket = new DatagramPacket(out,34,
 						InetAddress.getByName(BackgroundService.DATA_CENTER_IP), BackgroundService.DATA_CENTER_UDP_PORT);// 包裹
 				socket.send(outPacket);// 发送报文
 			} catch (SocketException e1) {
@@ -399,9 +411,9 @@ public class CaptureActivity extends Activity implements Callback {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			EmptyByte eb = new EmptyByte(24);
+			EmptyByte eb = new EmptyByte(14);
 			byte[] in = eb.getSbyte();
-			DatagramPacket inPacket = new DatagramPacket(in, 24);// 构造用来接收长度为length的数据包
+			DatagramPacket inPacket = new DatagramPacket(in, 14);// 构造用来接收长度为length的数据包
 			do {
 				try {
 					socket.receive(inPacket);
@@ -418,7 +430,7 @@ public class CaptureActivity extends Activity implements Callback {
 				}
 			} while (!receivedResponse && (tries < RegisterActivity.MAXTRIES));
 			if (receivedResponse) {
-				System.out.println("Receive record: " + in[0]);
+				System.out.println("Receive record: " + in[13]);
 			} else {
 				System.out.println("No response -- register giving up");
 				return null;

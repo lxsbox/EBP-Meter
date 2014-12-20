@@ -3,11 +3,11 @@
 
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="app_name">游子吟血压</string>
+    <string name="app_name">游子吟</string>
     <string name="register_cloud">注册 ></string>
     <string name="back_2_records"> &#060; 返回 </string>
     <string name="register">注册</string>
-    <string name="main_title">游子吟智能电子血压计</string>
+    <string name="main_title">游子吟血压计</string>
     <string name="main_dad">某爸爸</string>
     <string name="main_mom">某妈妈</string>
     <string name="setting">设置</string>

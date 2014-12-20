@@ -86,10 +86,10 @@
                 android:layout_height="30dp" />
         </TableRow>
     </TableLayout>
-
+    
+<!--         android:layout_marginTop="0.1dp" -->
     <TableLayout
         style="@style/layout_vertical"
-        android:layout_marginTop="0.5dp"
         android:layout_weight="1"
         android:background="#0099f1" >
 

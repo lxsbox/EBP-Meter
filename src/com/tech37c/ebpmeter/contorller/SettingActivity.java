@@ -24,8 +24,6 @@ public class SettingActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);//自定义标题栏
 		setContentView(R.layout.activity_setting);
-//		final TextView txtView = (TextView)findViewById(R.id.myTitle);
-//		txtView.setText("设置");
 		
 		final Switch openBuble = (Switch)findViewById(R.id.openBuble);
 		final Switch openNeverUse = (Switch) findViewById(R.id.openNeverUse);
@@ -40,8 +38,6 @@ public class SettingActivity extends Activity {
 		
 		back2MainBtn.setOnClickListener(new Button.OnClickListener(){
     		public void onClick (View v){
-//				Intent intent = new Intent(v.getContext(), MainActivity.class);
-//    			startActivity(intent);
     			finish();
     		}
     	});
@@ -94,7 +90,6 @@ public class SettingActivity extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.setting, menu);
 		return true;
 	}

@@ -18,6 +18,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 public class SettingActivity extends Activity {
+	public static final String IS_ON_4_BUBLE = "isON4Buble";
+	public static final String IS_ON_4_IN_USE = "isInUse";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +33,6 @@ public class SettingActivity extends Activity {
 		final ImageButton back2MainBtn = (ImageButton) findViewById(R.id.back_2_main);
 		final ImageButton userSetting = (ImageButton) findViewById(R.id.user_setting);
 		final ImageButton rgstDevBtn = (ImageButton) findViewById(R.id.register_dev);
-		
-		
 		openBuble.setChecked(true);
 		openNeverUse.setChecked(true);
 		
@@ -41,18 +41,30 @@ public class SettingActivity extends Activity {
     			finish();
     		}
     	});
-		
 		openBuble.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if(isChecked)  {
-					BackgroundService.isON4Buble = true;
-				}else{
-					BackgroundService.isON4Buble = false;
+				SharedPreferences.Editor editor = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE).edit();
+				if(isChecked) {
+	    			editor.putBoolean(IS_ON_4_BUBLE, true);
+				} else {
+	    			editor.putBoolean(IS_ON_4_BUBLE, false);
 				}
+				editor.commit();
 			}
 		});
-		
+		openNeverUse.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				SharedPreferences.Editor editor = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, MODE_PRIVATE).edit();
+				if(isChecked) {
+	    			editor.putBoolean(IS_ON_4_IN_USE, true);
+				} else {
+	    			editor.putBoolean(IS_ON_4_IN_USE, false);
+				}
+				editor.commit();
+			}
+		});
 		updateBtn.setOnClickListener(new Button.OnClickListener(){
     		public void onClick (View v){
     			UpdateManager manager = new UpdateManager(SettingActivity.this);

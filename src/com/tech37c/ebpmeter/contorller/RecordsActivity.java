@@ -42,7 +42,7 @@ import android.widget.TextView;
  */
 public class RecordsActivity extends ListActivity {
 
-	public static boolean isOnForeground = true;
+	public static boolean isOnForeground = false;
 
 	private List<Map<String, Object>> mData;
 	private BusinessHandler handler;
@@ -55,9 +55,10 @@ public class RecordsActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_records);
+		this.isOnForeground = false;
 
 		SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
-		String name = pref.getString(UserEditActivity.CURRENT_USER_ID, "").equals(UserEditActivity.USER_1_KEY) ? // 获取当前用户名
+		String name = pref.getString(UserEditActivity.CURRENT_USER_ID, "").equals(UserEditActivity.USER_1_KEY)?//获取当前用户名
 		pref.getString(UserEditActivity.USER_1_NAME_VALUE, ""):pref.getString(UserEditActivity.USER_2_NAME_VALUE, "");
 		final TextView txtView = (TextView) findViewById(R.id.current_user222);
 		txtView.setText(name + "测量记录");
@@ -183,7 +184,7 @@ public class RecordsActivity extends ListActivity {
 				// holder.time.setTextColor(lastId==getCount()?Color.parseColor("#ffffff"):Color.parseColor("#000000"));
 				// holder.high.setTextColor(lastId==getCount()?Color.parseColor("#ffffff"):Color.parseColor("#000000"));
 				// holder.low.setTextColor(lastId==getCount()?Color.parseColor("#ffffff"):Color.parseColor("#000000"));
-//				holder.viewBtn.setVisibility(lastId==getCount()?0:4);//0:visible
+				//holder.viewBtn.setVisibility(lastId==getCount()?0:4);//0:visible
 				holder.viewBtn.setVisibility(0);//0:visible
 				// holder.layout.setBackgroundColor(lastId==getCount()?Color.parseColor("#9FF781"):Color.parseColor("#ffffff"));
 
@@ -214,22 +215,19 @@ public class RecordsActivity extends ListActivity {
 
 		public MyCursorAdapter(Context context, Cursor c) {
 			super(context, c);
-			// TODO Auto-generated constructor stub
 		}
 
 		@Override
 		public void bindView(View arg0, Context arg1, Cursor arg2) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public View newView(Context arg0, Cursor arg1, ViewGroup arg2) {
-			// TODO Auto-generated method stub
 			return null;
 		}
-		
 	}
+	
 	/**
 	 * 加上是否在 foreground 的标志
 	 */

@@ -9,8 +9,6 @@ import android.app.Activity;
 import android.database.Cursor;
 
 public class BusinessHandler extends Activity {
-	private static String DATA_CENTER_IP = "54.200.144.55";
-	private static int DATA_CENTER_UDP_PORT = 18899;
 	public static final String SHARED_PREFS_NAME = "tech37c_ebpmeter_preferences";
 	private BaseDAO dao;
 	
@@ -46,6 +44,15 @@ public class BusinessHandler extends Activity {
 	
 	public Cursor getRecordCursor() {
 		return dao.all();
+	}
+	
+	public RecordPOJO getLastOne() {
+		RecordPOJO rp = new RecordPOJO();
+		Cursor cursor = dao.all();
+		if (cursor.moveToNext()) {
+			rp.setMeasure_Time(cursor.getString(4));
+		}
+		return rp;
 	}
 	
 	/**

@@ -12,11 +12,13 @@ import com.tech37c.ebpmeter.R;
 import com.tech37c.ebpmeter.contorller.MainActivity;
 import com.tech37c.ebpmeter.contorller.RecordsActivity;
 import com.tech37c.ebpmeter.contorller.RegisterActivity;
+import com.tech37c.ebpmeter.contorller.SettingActivity;
 import com.tech37c.ebpmeter.contorller.TabsActivity;
 import com.tech37c.ebpmeter.contorller.UserEditActivity;
 import com.tech37c.ebpmeter.contorller.WelcomeActivity;
 import com.tech37c.ebpmeter.model.BaseDAO;
 import com.tech37c.ebpmeter.model.EmptyByte;
+import com.tech37c.ebpmeter.model.RecordPOJO;
 import com.tech37c.ebpmeter.utils.ProtoUtil;
 
 import android.app.Notification;
@@ -26,6 +28,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.IBinder;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -63,7 +66,6 @@ public class BackgroundService extends Service {
 	private Notification notification;
 	private NotificationManager notificatioManager;
 	private BaseDAO dao;
-	public static boolean isON4Buble = true;//用户提醒开关
 	public DatagramSocket backgroudSocket;//BackGround Socket, Must be open
 	
 	
@@ -102,7 +104,7 @@ public class BackgroundService extends Service {
 	class HeartBeatThread extends Thread {
 		public void run() {
 			while (true) {
-				reportHeart();
+//				reportHeart();
 			}
 		}
 	}
@@ -158,6 +160,7 @@ public class BackgroundService extends Service {
 		DatagramPacket inPacket = new DatagramPacket(in, 24);
 		
 		try {
+			backgroudSocket.setSoTimeout(3000);
 			backgroudSocket.receive(inPacket);
 			if (!inPacket.getAddress().toString().equals("/"+DATA_CENTER_IP)) {
 				throw new IOException("Received packet from an unknown source");
@@ -173,27 +176,50 @@ public class BackgroundService extends Service {
 	@SuppressWarnings("deprecation")
 	public void checkPopUp() {
 		byte[] bMsg = receiveMsg();
+		
 		if (bMsg[2] == 0x08) {
+			System.out.println("--- --- Get A Record:" + bMsg);
 			// 缺少本地库记录时间验证验证， 以保证数据不重复！！！
 			String dateTime = ProtoUtil.byte2Time(bMsg[13], bMsg[14],bMsg[15],
-												bMsg[16], bMsg[17], bMsg[18]);//测量时间
+													bMsg[16], bMsg[17], bMsg[18]);//测量时间
 			dao.insert(bMsg[10] + "", bMsg[11] + "", bMsg[19] + "",dateTime,
-					(bMsg[20] & 0xFF) + "", (bMsg[21] & 0xFF) + "",bMsg[22] + "");//高压值可能溢出，转为无符号
+						(bMsg[20] & 0xFF) + "", (bMsg[21] & 0xFF) + "",bMsg[22] + "");//高压值可能溢出，转为无符号
 			dao.close();
-		
-			if (!RecordsActivity.isOnForeground) {
-				notification.setLatestEventInfo(BackgroundService.this, "新消息",dateTime+ " " + bMsg[19] +
-												"测了血压：  >< "+  (bMsg[20] & 0xFF) +" <>" + (bMsg[21] & 0xFF) + 
-												" -^-" + bMsg[22], messagePendingIntent);
-				notificatioManager.notify(messageNotificationID, notification);
-			} else {//每隔1秒发送一次广播，同时把i放进intent传出
-				Intent intent = new Intent();
-				intent.putExtra("popT", dateTime);
-				intent.putExtra("popH", (bMsg[20] & 0xFF)+"");
-				intent.putExtra("popL", (bMsg[21] & 0xFF)+"");
-				intent.putExtra("popB", bMsg[22]+"");
-				intent.setAction("android.intent.action.test");//action与接收器相同
-				sendBroadcast(intent);
+			
+			SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
+			boolean isON4Buble = pref.getBoolean(SettingActivity.IS_ON_4_BUBLE, true);
+			if(isON4Buble) {
+				if (!RecordsActivity.isOnForeground) {
+					notification.setLatestEventInfo(BackgroundService.this, "新消息",dateTime+ " " + bMsg[19] +
+													"测了血压：  >< "+  (bMsg[20] & 0xFF) +" <>" + (bMsg[21] & 0xFF) + 
+													" -^-" + bMsg[22], messagePendingIntent);
+					notificatioManager.notify(messageNotificationID, notification);
+				} else {//每隔1秒发送一次广播，同时把i放进intent传出
+					Intent intent = new Intent();
+					intent.putExtra("popT", dateTime);
+					intent.putExtra("popH", (bMsg[20] & 0xFF)+"");
+					intent.putExtra("popL", (bMsg[21] & 0xFF)+"");
+					intent.putExtra("popB", bMsg[22]+"");
+					intent.setAction("android.intent.action.test");//action与接收器相同
+					sendBroadcast(intent);
+				}
+			}
+		}
+		checkNoInUse();
+	}
+	
+	public void checkNoInUse() {
+		SharedPreferences pref = getSharedPreferences(BackgroundService.SHARED_PREFS_NAME, 0);
+		boolean isOn4InUse = pref.getBoolean(SettingActivity.IS_ON_4_IN_USE, true);
+		if(isOn4InUse) {
+		Cursor cursor = dao.all();
+			if (cursor.moveToNext()) {
+				String lastTime = cursor.getString(4);
+				int days = ProtoUtil.computeDValTime(lastTime);
+				if(days >14) {
+					notification.setLatestEventInfo(BackgroundService.this, "新消息","亲，咱父母2周没测血压了呢！问候下呗", messagePendingIntent);
+					notificatioManager.notify(messageNotificationID, notification);
+				}
 			}
 		}
 	}

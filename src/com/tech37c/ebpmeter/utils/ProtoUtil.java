@@ -215,4 +215,19 @@ public class ProtoUtil {
 			return false;
 		}
 	}
+	
+	public static int computeDValTime(String sTime) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date begin = null;
+		try {
+			begin = df.parse(sTime);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Date end = new Date();
+		long between = (end.getTime()- begin.getTime())/1000;//除以1000是为了转换成秒   
+		int	day = (int)between/(24*3600);
+		return day;
+	}
+	
 }
